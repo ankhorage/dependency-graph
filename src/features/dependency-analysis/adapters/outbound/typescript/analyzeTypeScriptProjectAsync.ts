@@ -1,4 +1,5 @@
 import { readFile } from 'node:fs/promises';
+import path from 'node:path';
 
 import type { GraphEdge, GraphNode } from '@ankhorage/graph';
 import { toPortablePath } from '@ankhorage/utility/node/path';
@@ -68,7 +69,7 @@ function addImport(
   addExternalNode(context, resolved, nodes);
   const edgeId = `${sourceNodeId}->${resolved.targetNodeId}`;
   const evidence: DependencyImportEvidence = {
-    sourceFile: toPortablePath(pathRelative(context.package.rootPath, sourceFile)),
+    sourceFile: toPortablePath(path.relative(context.package.rootPath, sourceFile)),
     specifier,
     classification: resolved.classification,
     declarations: resolved.declarations,
@@ -111,9 +112,4 @@ function addExternalNode(
 function nodeIdForFile(context: DependencyGraphAnalyzerContext, file: string): string {
   const modulePath = modulePathForFile(context.package.rootPath, file);
   return modulePath === '' ? context.package.nodeId : `${context.package.nodeId}#${modulePath}`;
-}
-
-/*** Keep path.relative isolated so dependency evidence stays platform-neutral. */
-function pathRelative(rootPath: string, file: string): string {
-  return new URL(file, `file://${rootPath.endsWith('/') ? rootPath : `${rootPath}/`}`).pathname;
 }
