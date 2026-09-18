@@ -51,7 +51,9 @@ async function inspectProjectInputAsync(
   project: DependencyGraphProjectInput,
   signal: AbortSignal | undefined,
 ): Promise<InspectedInput> {
-  const inspection = await inspectProjectAsync(project.rootPath, { signal });
+  const inspection = await inspectProjectAsync(project.rootPath, {
+    ...(signal === undefined ? {} : { signal }),
+  });
   if (!inspection.complete) {
     throw new Error(
       `Dependency graph inspection is incomplete for "${project.id}": ${inspection.diagnostics
@@ -102,7 +104,15 @@ async function analyzePackagesAsync(
             candidate.rootPath.startsWith(`${packageContext.rootPath}${path.sep}`),
         )
         .map(({ rootPath }) => rootPath);
-      return [analyzer.analyzeAsync({ package: packageContext, inspection, focusPackages, excludedRoots, signal })];
+      return [
+        analyzer.analyzeAsync({
+          package: packageContext,
+          inspection,
+          focusPackages,
+          excludedRoots,
+          ...(signal === undefined ? {} : { signal }),
+        }),
+      ];
     }),
   );
   if (tasks.length === 0) throw new Error('No dependency graph analyzer supports the supplied projects.');
