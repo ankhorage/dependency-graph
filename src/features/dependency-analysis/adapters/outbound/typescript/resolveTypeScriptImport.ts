@@ -25,7 +25,11 @@ export function resolveTypeScriptImport(
   focusPackages: ReadonlyMap<string, string>,
 ): ResolvedTypeScriptImport {
   if (specifier.startsWith('./') || specifier.startsWith('../')) {
-    return resolveIntrinsic(packageContext, path.resolve(path.dirname(sourceFile), specifier), sourceFiles);
+    return resolveIntrinsic(
+      packageContext,
+      path.resolve(path.dirname(sourceFile), specifier),
+      sourceFiles,
+    );
   }
   if (specifier.startsWith('@/')) {
     return resolveIntrinsic(
@@ -34,6 +38,7 @@ export function resolveTypeScriptImport(
       sourceFiles,
     );
   }
+
   const packageName = barePackageName(specifier);
   if (packageName !== undefined) {
     const focusNodeId = focusPackages.get(packageName);
@@ -41,9 +46,10 @@ export function resolveTypeScriptImport(
       targetNodeId: focusNodeId ?? `vendor:${packageName}`,
       classification: focusNodeId === undefined ? 'vendor' : 'focus',
       packageName,
-      declarations: packageContext.declarations[packageName] ?? [],
+      declarations: declarationsFor(packageContext.declarations, packageName),
     };
   }
+
   return {
     targetNodeId: `unknown:${specifier}`,
     classification: 'unknown',
@@ -57,7 +63,9 @@ function resolveIntrinsic(
   unresolvedPath: string,
   sourceFiles: ReadonlySet<string>,
 ): ResolvedTypeScriptImport {
-  const targetFile = sourceCandidates(unresolvedPath).find((candidate) => sourceFiles.has(candidate));
+  const targetFile = sourceCandidates(unresolvedPath).find((candidate) =>
+    sourceFiles.has(candidate),
+  );
   const target = targetFile ?? unresolvedPath;
   const relative = toPortablePath(path.relative(packageContext.rootPath, target));
   if (relative === '..' || relative.startsWith('../')) {
@@ -67,6 +75,7 @@ function resolveIntrinsic(
       declarations: [],
     };
   }
+
   const modulePath = toPortablePath(path.dirname(relative));
   const normalizedPath = modulePath === '.' ? '' : modulePath.split('/').join('.');
   return {
@@ -76,6 +85,15 @@ function resolveIntrinsic(
     targetPath: normalizedPath,
     declarations: [],
   };
+}
+
+/*** Read dependency declarations without dynamic object-key access. */
+function declarationsFor(
+  declarations: Readonly<Record<string, readonly DependencyDeclaration[]>>,
+  packageName: string,
+): readonly DependencyDeclaration[] {
+  const entry = Object.entries(declarations).find(([name]) => name === packageName);
+  return entry === undefined ? [] : entry[1];
 }
 
 /*** Generate deterministic TypeScript module resolution candidates without executing project config. */
@@ -98,6 +116,7 @@ function barePackageName(specifier: string): string | undefined {
   ) {
     return undefined;
   }
+
   const segments = specifier.split('/');
   if (specifier.startsWith('@')) {
     return segments.length >= 2 ? `${segments[0]}/${segments[1]}` : undefined;
