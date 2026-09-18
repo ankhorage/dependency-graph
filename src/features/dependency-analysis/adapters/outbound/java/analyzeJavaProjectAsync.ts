@@ -27,10 +27,15 @@ export async function analyzeJavaProjectAsync(
     context.signal,
   );
   const sources = await Promise.all(
-    files.map(async (file) => ({ file, dependencies: extractJavaDependencies(await readFile(file, 'utf8')) })),
+    files.map(async (file) => ({
+      file,
+      dependencies: extractJavaDependencies(await readFile(file, 'utf8')),
+    })),
   );
   const intrinsicPackages = new Set(
-    sources.map(({ dependencies }) => dependencies.packageName).filter((packageName) => packageName !== ''),
+    sources
+      .map(({ dependencies }) => dependencies.packageName)
+      .filter((packageName) => packageName !== ''),
   );
   const nodes = new Map<string, GraphNode<DependencyGraphNodeData>>();
   for (const packageName of intrinsicPackages) addIntrinsicHierarchy(context, packageName, nodes);
@@ -59,7 +64,9 @@ function addImport(
   const targetPackage = extractJavaPackageFromImport(specifier);
   if (targetPackage === '') return;
   const intrinsic = intrinsicPackages.has(targetPackage);
-  const targetNodeId = intrinsic ? nodeIdForPackage(context, targetPackage) : `unknown:${targetPackage}`;
+  const targetNodeId = intrinsic
+    ? nodeIdForPackage(context, targetPackage)
+    : `unknown:${targetPackage}`;
   if (targetNodeId === sourceNodeId) return;
   if (!intrinsic && !nodes.has(targetNodeId)) {
     nodes.set(targetNodeId, {
@@ -111,7 +118,7 @@ function addIntrinsicHierarchy(
         kind: 'module',
         classification: 'intrinsic',
         focus: true,
-        label: segments[index] ?? current,
+        label: current.split('.').at(-1) ?? current,
         projectId: context.package.projectId,
         ...(context.package.name === undefined ? {} : { packageName: context.package.name }),
         path: current,
