@@ -102,7 +102,6 @@ async function createFixtureAsync(files: Readonly<Record<string, string>>): Prom
   return root;
 }
 
-
 test('builds Java package dependencies with intrinsic and external import evidence', async () => {
   const root = await createFixtureAsync({
     'pom.xml': '<project><modelVersion>4.0.0</modelVersion><groupId>fixture</groupId><artifactId>java-fixture</artifactId><version>1.0.0</version></project>',
