@@ -5,10 +5,7 @@ export type DependencyNodeClassification = 'intrinsic' | 'unknown' | 'vendor';
 export type DependencyReferenceClassification = DependencyNodeClassification | 'focus';
 export type DependencyNodeKind = 'module' | 'package';
 export type DependencyDeclarationKind =
-  | 'dependency'
-  | 'devDependency'
-  | 'optionalDependency'
-  | 'peerDependency';
+  'dependency' | 'devDependency' | 'optionalDependency' | 'peerDependency';
 
 export interface DependencyDeclaration {
   readonly kind: DependencyDeclarationKind;
@@ -74,7 +71,9 @@ export interface DependencyGraphAnalyzerContext {
 export interface DependencyGraphAnalyzer {
   readonly id: string;
   readonly supports: (detection: ProjectDetection) => boolean;
-  readonly analyzeAsync: (context: DependencyGraphAnalyzerContext) => Promise<DependencyGraphFragment>;
+  readonly analyzeAsync: (
+    context: DependencyGraphAnalyzerContext,
+  ) => Promise<DependencyGraphFragment>;
 }
 
 export interface CreateDependencyGraphInput {
