@@ -2,6 +2,7 @@ import path from 'node:path';
 
 import { createGraph } from '@ankhorage/graph';
 import { inspectProjectAsync } from '@ankhorage/project-detector/node';
+import type { InspectedPackage, ProjectInspection } from '@ankhorage/project-detector/types';
 
 import type {
   CreateDependencyGraphInput,
@@ -33,16 +34,17 @@ export async function createDependencyGraphAsync(
       return [node.id, node] as const;
     }),
   );
+
   for (const node of fragments.flatMap(({ nodes: fragmentNodes }) => fragmentNodes)) {
     if (!nodes.has(node.id)) nodes.set(node.id, node);
   }
+
   const edges = fragments.flatMap(({ edges: fragmentEdges }) => fragmentEdges);
   return createGraph({ nodes: [...nodes.values()], edges });
 }
 
 interface InspectedInput {
-  readonly project: DependencyGraphProjectInput;
-  readonly inspection: Awaited<ReturnType<typeof inspectProjectAsync>>;
+  readonly inspection: ProjectInspection;
   readonly packages: readonly DependencyGraphPackage[];
 }
 
@@ -61,29 +63,34 @@ async function inspectProjectInputAsync(
         .join('; ')}`,
     );
   }
-  const detectedPackages =
+
+  const detectedPackages: readonly InspectedPackage[] =
     inspection.packages.length > 0
       ? inspection.packages
       : [{ rootPath: '.', detection: inspection.detection, manifestPath: '' }];
+
   const packages = await Promise.all(
     detectedPackages.map(async (detected) => {
       const relativeRoot = detected.rootPath;
       const id = `${project.id}:${relativeRoot}`;
       const manifestPath =
-        detected.manifestPath === '' ? undefined : path.join(inspection.rootPath, detected.manifestPath);
+        detected.manifestPath === ''
+          ? undefined
+          : path.join(inspection.rootPath, detected.manifestPath);
+
       return {
         id,
         nodeId: `package:${id}`,
         projectId: project.id,
         rootPath: path.resolve(inspection.rootPath, relativeRoot),
         relativeRoot,
-        ...('name' in detected && detected.name !== undefined ? { name: detected.name } : {}),
+        ...(detected.name === undefined ? {} : { name: detected.name }),
         detection: detected.detection,
         declarations: await readDependencyDeclarationsAsync(manifestPath),
       } satisfies DependencyGraphPackage;
     }),
   );
-  return { project, inspection, packages };
+  return { inspection, packages };
 }
 
 /*** Analyze each package with the first compatible analyzer and retain mixed-language packages safely. */
@@ -97,6 +104,7 @@ async function analyzePackagesAsync(
     packages.flatMap((packageContext) => {
       const analyzer = analyzers.find(({ supports }) => supports(packageContext.detection));
       if (analyzer === undefined) return [];
+
       const excludedRoots = packages
         .filter(
           (candidate) =>
@@ -104,6 +112,7 @@ async function analyzePackagesAsync(
             candidate.rootPath.startsWith(`${packageContext.rootPath}${path.sep}`),
         )
         .map(({ rootPath }) => rootPath);
+
       return [
         analyzer.analyzeAsync({
           package: packageContext,
@@ -115,7 +124,10 @@ async function analyzePackagesAsync(
       ];
     }),
   );
-  if (tasks.length === 0) throw new Error('No dependency graph analyzer supports the supplied projects.');
+
+  if (tasks.length === 0) {
+    throw new Error('No dependency graph analyzer supports the supplied projects.');
+  }
   return Promise.all(tasks);
 }
 
@@ -138,8 +150,15 @@ function createFocusPackageMap(
 
 /*** Reject ambiguous project IDs before filesystem inspection. */
 function assertProjectInputs(projects: readonly DependencyGraphProjectInput[]): void {
-  if (projects.length === 0) throw new Error('At least one dependency graph project is required.');
+  if (projects.length === 0) {
+    throw new Error('At least one dependency graph project is required.');
+  }
+
   const ids = projects.map(({ id }) => id);
-  if (ids.some((id) => id.trim() === '')) throw new Error('Dependency graph project IDs must be non-empty.');
-  if (new Set(ids).size !== ids.length) throw new Error('Dependency graph project IDs must be unique.');
+  if (ids.some((id) => id.trim() === '')) {
+    throw new Error('Dependency graph project IDs must be non-empty.');
+  }
+  if (new Set(ids).size !== ids.length) {
+    throw new Error('Dependency graph project IDs must be unique.');
+  }
 }
