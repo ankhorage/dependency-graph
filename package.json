@@ -1,0 +1,71 @@
+{
+  "name": "@ankhorage/dependency-graph",
+  "version": "0.0.0",
+  "type": "module",
+  "description": "Project-aware dependency analysis that produces canonical Ankhorage graphs.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ankhorage/dependency-graph.git"
+  },
+  "homepage": "https://github.com/ankhorage/dependency-graph#readme",
+  "bugs": {
+    "url": "https://github.com/ankhorage/dependency-graph/issues"
+  },
+  "keywords": [
+    "ankhorage",
+    "dependency-analysis",
+    "dependency-graph",
+    "graph",
+    "typescript"
+  ],
+  "sideEffects": false,
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md",
+    "examples"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/dependencyGraph.d.ts",
+      "import": "./dist/dependencyGraph.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "build": "rm -rf dist tsconfig.tsbuildinfo && bun x tsc -p tsconfig.build.json",
+    "changeset": "ankhorage-changeset",
+    "changeset:status": "ankhorage-changeset status --since=origin/main",
+    "docs": "paradox",
+    "format": "ankhorage-prettier --write .",
+    "format:check": "ankhorage-prettier --check .",
+    "lint": "ankhorage-eslint . --max-warnings=0",
+    "lint:fix": "ankhorage-eslint . --fix --max-warnings=0",
+    "prepack": "bun run build",
+    "test": "bun test src",
+    "typecheck": "bun x tsc --noEmit -p tsconfig.json",
+    "version-packages": "ankhorage-changeset version",
+    "knip:check": "ankhorage-knip"
+  },
+  "dependencies": {
+    "@ankhorage/graph": "^0.1.0",
+    "@ankhorage/project-detector": "^0.1.0",
+    "@ankhorage/utility": "^1.2.0",
+    "typescript": "~6.0.3"
+  },
+  "devDependencies": {
+    "@ankhorage/devtools": "^1.15.9",
+    "@ankhorage/paradox": "^0.1.26",
+    "@types/bun": "^1.4.1",
+    "@types/node": "^26.5.1"
+  },
+  "packageManager": "bun@1.4.2"
+}
