@@ -104,7 +104,14 @@ async function createFixtureAsync(files: Readonly<Record<string, string>>): Prom
 
 test('builds Java package dependencies with intrinsic and external import evidence', async () => {
   const root = await createFixtureAsync({
-    'pom.xml': '<project><modelVersion>4.0.0</modelVersion><groupId>fixture</groupId><artifactId>java-fixture</artifactId><version>1.0.0</version></project>',
+    'pom.xml': [
+      '<project>',
+      '<modelVersion>4.0.0</modelVersion>',
+      '<groupId>fixture</groupId>',
+      '<artifactId>java-fixture</artifactId>',
+      '<version>1.0.0</version>',
+      '</project>',
+    ].join(''),
     'src/main/java/com/example/app/App.java': [
       'package com.example.app;',
       'import com.example.shared.Value;',
