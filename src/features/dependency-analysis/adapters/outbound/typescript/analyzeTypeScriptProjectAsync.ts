@@ -13,8 +13,8 @@ import type {
 } from '../../../../../types/dependencyGraph.js';
 import { collectTypeScriptFilesAsync } from './collectTypeScriptFilesAsync.js';
 import { createTypeScriptModuleNodes } from './createTypeScriptModuleNodes.js';
-import { modulePathForFile } from './modulePathForFile.js';
 import { extractTypeScriptImports } from './extractTypeScriptImports.js';
+import { modulePathForFile } from './modulePathForFile.js';
 import { resolveTypeScriptImport } from './resolveTypeScriptImport.js';
 
 /*** Analyze one detected TypeScript package into module/import dependency evidence. */
@@ -112,6 +112,7 @@ function addTargetNode(
     });
     return;
   }
+
   nodes.set(resolved.targetNodeId, {
     id: resolved.targetNodeId,
     data: {
