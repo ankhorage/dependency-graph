@@ -89,19 +89,6 @@ test('rejects duplicate project identities before analysis', async () => {
   }
 });
 
-/*** Create an isolated filesystem fixture for dependency graph integration tests. */
-async function createFixtureAsync(files: Readonly<Record<string, string>>): Promise<string> {
-  const root = await mkdtemp(path.join(os.tmpdir(), 'dependency-graph-test-'));
-  await Promise.all(
-    Object.entries(files).map(async ([file, content]) => {
-      const target = path.join(root, file);
-      await mkdir(path.dirname(target), { recursive: true });
-      await writeFile(target, content);
-    }),
-  );
-  return root;
-}
-
 test('builds Java package dependencies with intrinsic and external import evidence', async () => {
   const root = await createFixtureAsync({
     'pom.xml': [
@@ -118,12 +105,12 @@ test('builds Java package dependencies with intrinsic and external import eviden
       'import java.util.List;',
       'public class App {}',
       '',
-    ].join('\\n'),
+    ].join('\n'),
     'src/main/java/com/example/shared/Value.java': [
       'package com.example.shared;',
       'public class Value {}',
       '',
-    ].join('\\n'),
+    ].join('\n'),
   });
 
   try {
@@ -146,3 +133,16 @@ test('builds Java package dependencies with intrinsic and external import eviden
     await rm(root, { recursive: true });
   }
 });
+
+/*** Create an isolated filesystem fixture for dependency graph integration tests. */
+async function createFixtureAsync(files: Readonly<Record<string, string>>): Promise<string> {
+  const root = await mkdtemp(path.join(os.tmpdir(), 'dependency-graph-test-'));
+  await Promise.all(
+    Object.entries(files).map(async ([file, fileContent]) => {
+      const target = path.join(root, file);
+      await mkdir(path.dirname(target), { recursive: true });
+      await writeFile(target, fileContent);
+    }),
+  );
+  return root;
+}
