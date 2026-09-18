@@ -1,4 +1,5 @@
 import type { GraphNode } from '@ankhorage/graph';
+
 import type {
   DependencyGraphNodeData,
   DependencyGraphPackage,
@@ -26,9 +27,7 @@ export function createTypeScriptModuleNodes(
         projectId: packageContext.projectId,
         ...(packageContext.name === undefined ? {} : { packageName: packageContext.name }),
         path: modulePath,
-        parentPath: modulePath.includes('.')
-          ? modulePath.split('.').slice(0, -1).join('.')
-          : '',
+        parentPath: modulePath.includes('.') ? modulePath.split('.').slice(0, -1).join('.') : '',
       },
     }));
 }
