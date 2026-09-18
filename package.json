@@ -58,11 +58,11 @@
   "dependencies": {
     "@ankhorage/graph": "^0.1.0",
     "@ankhorage/project-detector": "^0.1.0",
-    "@ankhorage/utility": "^1.2.0",
+    "@ankhorage/utility": "^0.8.0",
     "typescript": "~6.0.3"
   },
   "devDependencies": {
-    "@ankhorage/devtools": "^1.15.9",
+    "@ankhorage/devtools": "^1.14.7",
     "@ankhorage/paradox": "^0.1.26",
     "@types/bun": "^1.4.1",
     "@types/node": "^26.5.1"
