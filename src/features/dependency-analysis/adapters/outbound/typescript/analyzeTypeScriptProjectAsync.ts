@@ -12,10 +12,8 @@ import type {
   DependencyImportEvidence,
 } from '../../../../../types/dependencyGraph.js';
 import { collectTypeScriptFilesAsync } from './collectTypeScriptFilesAsync.js';
-import {
-  createTypeScriptModuleNodes,
-  modulePathForFile,
-} from './createTypeScriptModuleNodes.js';
+import { createTypeScriptModuleNodes } from './createTypeScriptModuleNodes.js';
+import { modulePathForFile } from './modulePathForFile.js';
 import { extractTypeScriptImports } from './extractTypeScriptImports.js';
 import { resolveTypeScriptImport } from './resolveTypeScriptImport.js';
 
