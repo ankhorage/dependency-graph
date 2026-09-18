@@ -64,7 +64,7 @@ function addImport(
     context.focusPackages,
   );
   if (resolved.targetNodeId === sourceNodeId) return;
-  addExternalNode(context, resolved, nodes);
+  addTargetNode(context, resolved, nodes);
   const edgeId = `${sourceNodeId}->${resolved.targetNodeId}`;
   const evidence: DependencyImportEvidence = {
     sourceFile: toPortablePath(path.relative(context.package.rootPath, sourceFile)),
@@ -86,14 +86,32 @@ function addImport(
   });
 }
 
-/*** Materialize vendor and unknown targets while focus/intrinsic targets are owned elsewhere. */
-function addExternalNode(
+/*** Materialize intrinsic, vendor and unknown targets while focus targets are globally owned. */
+function addTargetNode(
   context: DependencyGraphAnalyzerContext,
   resolved: ReturnType<typeof resolveTypeScriptImport>,
   nodes: Map<string, GraphNode<DependencyGraphNodeData>>,
 ): void {
-  if (resolved.classification === 'intrinsic' || resolved.classification === 'focus') return;
-  if (nodes.has(resolved.targetNodeId)) return;
+  if (resolved.classification === 'focus' || nodes.has(resolved.targetNodeId)) return;
+  if (resolved.classification === 'intrinsic') {
+    if (resolved.targetPath === undefined || resolved.targetPath === '') return;
+    nodes.set(resolved.targetNodeId, {
+      id: resolved.targetNodeId,
+      data: {
+        kind: 'module',
+        classification: 'intrinsic',
+        focus: true,
+        label: resolved.targetPath.split('.').at(-1) ?? resolved.targetPath,
+        projectId: context.package.projectId,
+        ...(context.package.name === undefined ? {} : { packageName: context.package.name }),
+        path: resolved.targetPath,
+        parentPath: resolved.targetPath.includes('.')
+          ? resolved.targetPath.split('.').slice(0, -1).join('.')
+          : '',
+      },
+    });
+    return;
+  }
   nodes.set(resolved.targetNodeId, {
     id: resolved.targetNodeId,
     data: {
