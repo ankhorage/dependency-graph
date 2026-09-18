@@ -89,14 +89,59 @@ test('rejects duplicate project identities before analysis', async () => {
   }
 });
 
+test('builds Java package dependencies with intrinsic and external import evidence', async () => {
+  const root = await createFixtureAsync({
+    'pom.xml': [
+      '<project>',
+      '<modelVersion>4.0.0</modelVersion>',
+      '<groupId>fixture</groupId>',
+      '<artifactId>java-fixture</artifactId>',
+      '<version>1.0.0</version>',
+      '</project>',
+    ].join(''),
+    'src/main/java/com/example/app/App.java': [
+      'package com.example.app;',
+      'import com.example.shared.Value;',
+      'import java.util.List;',
+      'public class App {}',
+      '',
+    ].join('\n'),
+    'src/main/java/com/example/shared/Value.java': [
+      'package com.example.shared;',
+      'public class Value {}',
+      '',
+    ].join('\n'),
+  });
+
+  try {
+    const graph = await createDependencyGraphAsync({
+      projects: [{ id: 'java-fixture', rootPath: root }],
+    });
+    const intrinsic = graph.edges.find(({ data }) =>
+      data.evidence.some(({ specifier }) => specifier === 'com.example.shared.Value'),
+    );
+    const external = graph.edges.find(({ data }) =>
+      data.evidence.some(({ specifier }) => specifier === 'java.util.List'),
+    );
+
+    expect(intrinsic?.data.analyzerId).toBe('java');
+    expect(intrinsic?.data.evidence[0]?.classification).toBe('intrinsic');
+    expect(external?.data.evidence[0]?.classification).toBe('unknown');
+    expect(graph.nodes.some(({ data }) => data.path === 'com.example.app')).toBe(true);
+    expect(graph.nodes.some(({ data }) => data.path === 'com.example.shared')).toBe(true);
+  } finally {
+    await rm(root, { recursive: true });
+  }
+});
+
 /*** Create an isolated filesystem fixture for dependency graph integration tests. */
 async function createFixtureAsync(files: Readonly<Record<string, string>>): Promise<string> {
   const root = await mkdtemp(path.join(os.tmpdir(), 'dependency-graph-test-'));
   await Promise.all(
-    Object.entries(files).map(async ([file, content]) => {
+    Object.entries(files).map(async ([file, fileContent]) => {
       const target = path.join(root, file);
       await mkdir(path.dirname(target), { recursive: true });
-      await writeFile(target, content);
+      await writeFile(target, fileContent);
     }),
   );
   return root;
