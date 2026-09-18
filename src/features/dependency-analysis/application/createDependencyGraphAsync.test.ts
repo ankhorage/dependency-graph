@@ -1,3 +1,4 @@
+import { rejects } from 'node:assert/strict';
 import { mkdir, mkdtemp, rm, writeFile } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
@@ -14,7 +15,9 @@ test('builds weighted intrinsic and vendor TypeScript dependencies with declarat
     'src/shared/value.ts': 'export const value = 1;\n',
   });
   try {
-    const graph = await createDependencyGraphAsync({ projects: [{ id: 'fixture', rootPath: root }] });
+    const graph = await createDependencyGraphAsync({
+      projects: [{ id: 'fixture', rootPath: root }],
+    });
     const vendor = graph.nodes.find(({ data }) => data.packageName === 'react');
     const vendorEdge = graph.edges.find(({ target }) => target === vendor?.id);
     const intrinsicEdge = graph.edges.find(({ data }) =>
@@ -46,6 +49,7 @@ test('routes imports between supplied focus packages without creating vendor dup
     'package.json': JSON.stringify({ name: '@fixture/second' }),
     'src/index.ts': 'export const second = 2;\n',
   });
+
   try {
     const graph = await createDependencyGraphAsync({
       projects: [
@@ -69,15 +73,17 @@ test('rejects duplicate project identities before analysis', async () => {
     'package.json': JSON.stringify({ name: 'fixture' }),
     'src/index.ts': 'export {};\n',
   });
+
   try {
-    await expect(
+    await rejects(
       createDependencyGraphAsync({
         projects: [
           { id: 'duplicate', rootPath: root },
           { id: 'duplicate', rootPath: root },
         ],
       }),
-    ).rejects.toThrow('must be unique');
+      /must be unique/u,
+    );
   } finally {
     await rm(root, { recursive: true });
   }
