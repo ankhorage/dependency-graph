@@ -12,6 +12,7 @@ import type {
   DependencyGraphPackage,
   DependencyGraphProjectInput,
 } from '../../../types/dependencyGraph.js';
+import { javaDependencyGraphAnalyzer } from '../adapters/outbound/java/javaDependencyGraphAnalyzer.js';
 import { typescriptDependencyGraphAnalyzer } from '../adapters/outbound/typescript/typescriptDependencyGraphAnalyzer.js';
 import { createFocusPackageNode } from '../domain/createFocusPackageNode.js';
 import { readDependencyDeclarationsAsync } from '../domain/readDependencyDeclarationsAsync.js';
@@ -21,7 +22,7 @@ export async function createDependencyGraphAsync(
   input: CreateDependencyGraphInput,
 ): Promise<DependencyGraph> {
   assertProjectInputs(input.projects);
-  const analyzers = input.analyzers ?? [typescriptDependencyGraphAnalyzer];
+  const analyzers = input.analyzers ?? [typescriptDependencyGraphAnalyzer, javaDependencyGraphAnalyzer];
   const inspected = await Promise.all(
     input.projects.map((project) => inspectProjectInputAsync(project, input.signal)),
   );

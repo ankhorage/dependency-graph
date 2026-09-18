@@ -101,3 +101,42 @@ async function createFixtureAsync(files: Readonly<Record<string, string>>): Prom
   );
   return root;
 }
+
+
+test('builds Java package dependencies with intrinsic and external import evidence', async () => {
+  const root = await createFixtureAsync({
+    'pom.xml': '<project><modelVersion>4.0.0</modelVersion><groupId>fixture</groupId><artifactId>java-fixture</artifactId><version>1.0.0</version></project>',
+    'src/main/java/com/example/app/App.java': [
+      'package com.example.app;',
+      'import com.example.shared.Value;',
+      'import java.util.List;',
+      'public class App {}',
+      '',
+    ].join('\\n'),
+    'src/main/java/com/example/shared/Value.java': [
+      'package com.example.shared;',
+      'public class Value {}',
+      '',
+    ].join('\\n'),
+  });
+
+  try {
+    const graph = await createDependencyGraphAsync({
+      projects: [{ id: 'java-fixture', rootPath: root }],
+    });
+    const intrinsic = graph.edges.find(({ data }) =>
+      data.evidence.some(({ specifier }) => specifier === 'com.example.shared.Value'),
+    );
+    const external = graph.edges.find(({ data }) =>
+      data.evidence.some(({ specifier }) => specifier === 'java.util.List'),
+    );
+
+    expect(intrinsic?.data.analyzerId).toBe('java');
+    expect(intrinsic?.data.evidence[0]?.classification).toBe('intrinsic');
+    expect(external?.data.evidence[0]?.classification).toBe('unknown');
+    expect(graph.nodes.some(({ data }) => data.path === 'com.example.app')).toBe(true);
+    expect(graph.nodes.some(({ data }) => data.path === 'com.example.shared')).toBe(true);
+  } finally {
+    await rm(root, { recursive: true });
+  }
+});
