@@ -3,7 +3,7 @@
   "configVersion": 1,
   "workspaces": {
     "": {
-      "name": "@ankhorage/project-detector",
+      "name": "@ankhorage/dependency-graph",
       "dependencies": {
         "@ankhorage/graph": "^0.1.0",
         "@ankhorage/project-detector": "^0.1.0",
