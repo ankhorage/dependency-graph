@@ -22,7 +22,10 @@ export async function createDependencyGraphAsync(
   input: CreateDependencyGraphInput,
 ): Promise<DependencyGraph> {
   assertProjectInputs(input.projects);
-  const analyzers = input.analyzers ?? [typescriptDependencyGraphAnalyzer, javaDependencyGraphAnalyzer];
+  const analyzers = input.analyzers ?? [
+    typescriptDependencyGraphAnalyzer,
+    javaDependencyGraphAnalyzer,
+  ];
   const inspected = await Promise.all(
     input.projects.map((project) => inspectProjectInputAsync(project, input.signal)),
   );
