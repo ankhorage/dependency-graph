@@ -1,12 +1,9 @@
-import path from 'node:path';
-
 import type { GraphNode } from '@ankhorage/graph';
-import { toPortablePath } from '@ankhorage/utility/node/path';
-
 import type {
   DependencyGraphNodeData,
   DependencyGraphPackage,
 } from '../../../../../types/dependencyGraph.js';
+import { modulePathForFile } from './modulePathForFile.js';
 
 /*** Create intrinsic module nodes, including ancestor directories, for TypeScript source files. */
 export function createTypeScriptModuleNodes(
@@ -34,12 +31,6 @@ export function createTypeScriptModuleNodes(
           : '',
       },
     }));
-}
-
-/*** Return the package-level dotted path owning one source file. */
-export function modulePathForFile(rootPath: string, file: string): string {
-  const relativeDirectory = toPortablePath(path.relative(rootPath, path.dirname(file)));
-  return relativeDirectory === '.' ? '' : relativeDirectory.split('/').join('.');
 }
 
 /*** Expand a module path into the hierarchy required for package-level graph projections. */
