@@ -217,9 +217,7 @@ test('builds C++ include dependencies with local and external evidence', async (
       '}',
       '',
     ].join('\n'),
-    'src/shared/Value.hpp': ['namespace example::shared {', 'class Value {};', '}', ''].join(
-      '\n',
-    ),
+    'src/shared/Value.hpp': ['namespace example::shared {', 'class Value {};', '}', ''].join('\n'),
   });
 
   try {
