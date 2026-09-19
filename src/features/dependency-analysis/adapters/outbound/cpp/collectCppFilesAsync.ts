@@ -41,7 +41,10 @@ async function visitDirectoryAsync(
       if (entry.isDirectory()) {
         if (excludedDirectoryNames.has(entry.name) || excludedRoots.has(target)) continue;
         files.push(...(await visitDirectoryAsync(target, excludedRoots, signal)));
-      } else if (entry.isFile() && cppExtensions.some((extension) => entry.name.endsWith(extension))) {
+      } else if (
+        entry.isFile() &&
+        cppExtensions.some((extension) => entry.name.endsWith(extension))
+      ) {
         files.push(target);
       }
     }
