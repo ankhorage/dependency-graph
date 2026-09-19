@@ -14,6 +14,7 @@ import type {
 } from '../../../types/dependencyGraph.js';
 import { javaDependencyGraphAnalyzer } from '../adapters/outbound/java/javaDependencyGraphAnalyzer.js';
 import { kotlinDependencyGraphAnalyzer } from '../adapters/outbound/kotlin/kotlinDependencyGraphAnalyzer.js';
+import { pythonDependencyGraphAnalyzer } from '../adapters/outbound/python/pythonDependencyGraphAnalyzer.js';
 import { typescriptDependencyGraphAnalyzer } from '../adapters/outbound/typescript/typescriptDependencyGraphAnalyzer.js';
 import { createFocusPackageNode } from '../domain/createFocusPackageNode.js';
 import { readDependencyDeclarationsAsync } from '../domain/readDependencyDeclarationsAsync.js';
@@ -27,6 +28,7 @@ export async function createDependencyGraphAsync(
     typescriptDependencyGraphAnalyzer,
     javaDependencyGraphAnalyzer,
     kotlinDependencyGraphAnalyzer,
+    pythonDependencyGraphAnalyzer,
   ];
   const inspected = await Promise.all(
     input.projects.map((project) => inspectProjectInputAsync(project, input.signal)),

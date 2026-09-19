@@ -172,6 +172,44 @@ test('builds Kotlin package dependencies with intrinsic and external import evid
   }
 });
 
+test('builds Python package dependencies with intrinsic and external import evidence', async () => {
+  const root = await createFixtureAsync({
+    'pyproject.toml': '[project]\nname = "python-fixture"\nversion = "1.0.0"\n',
+    'src/services/app.py': [
+      'from models.user import User',
+      'import requests',
+      'class App:',
+      '    pass',
+      '',
+    ].join('\n'),
+    'src/models/user.py': [
+      'class User:',
+      '    pass',
+      '',
+    ].join('\n'),
+  });
+
+  try {
+    const graph = await createDependencyGraphAsync({
+      projects: [{ id: 'python-fixture', rootPath: root }],
+    });
+    const intrinsic = graph.edges.find(({ data }) =>
+      data.evidence.some(({ specifier }) => specifier === 'models.user'),
+    );
+    const external = graph.edges.find(({ data }) =>
+      data.evidence.some(({ specifier }) => specifier === 'requests'),
+    );
+
+    expect(intrinsic?.data.analyzerId).toBe('python');
+    expect(intrinsic?.data.evidence[0]?.classification).toBe('intrinsic');
+    expect(external?.data.evidence[0]?.classification).toBe('unknown');
+    expect(graph.nodes.some(({ data }) => data.path === 'services')).toBe(true);
+    expect(graph.nodes.some(({ data }) => data.path === 'models')).toBe(true);
+  } finally {
+    await rm(root, { recursive: true });
+  }
+});
+
 /*** Create an isolated filesystem fixture for dependency graph integration tests. */
 async function createFixtureAsync(files: Readonly<Record<string, string>>): Promise<string> {
   const root = await mkdtemp(path.join(os.tmpdir(), 'dependency-graph-test-'));
