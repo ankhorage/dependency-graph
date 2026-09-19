@@ -12,7 +12,7 @@ export interface CppDependencies {
 export function extractCppDependencies(content: string): CppDependencies {
   const namespace =
     /namespace\s+([a-zA-Z0-9_:]+)\s*\{/u.exec(content)?.[1]?.replace(/::/gu, '.') ?? '';
-  const includes = Array.from(content.matchAll(/#include\s+(["<])([^">]+)[">]/gu)).map(
+  const includes = Array.from(content.matchAll(/#include\s+([\"<])([^\">]+)[\">]/gu)).map(
     (match) => ({
       local: match[1] === '"',
       specifier: match[2] ?? '',
