@@ -251,13 +251,9 @@ test('builds Delphi unit dependencies with intrinsic and external evidence', asy
       'end.',
       '',
     ].join('\n'),
-    'src/Models/User.pas': [
-      'unit Models.User;',
-      'interface',
-      'implementation',
-      'end.',
-      '',
-    ].join('\n'),
+    'src/Models/User.pas': ['unit Models.User;', 'interface', 'implementation', 'end.', ''].join(
+      '\n',
+    ),
   });
 
   try {
