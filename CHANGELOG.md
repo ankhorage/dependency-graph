@@ -1,5 +1,11 @@
 # @ankhorage/dependency-graph
 
+## 0.6.0
+
+### Minor Changes
+
+- c037021: Add canonical Delphi unit/import dependency analysis.
+
 ## 0.5.0
 
 ### Minor Changes
