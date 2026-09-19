@@ -206,6 +206,46 @@ test('builds Python package dependencies with intrinsic and external import evid
   }
 });
 
+test('builds C++ include dependencies with local and external evidence', async () => {
+  const root = await createFixtureAsync({
+    'CMakeLists.txt': 'cmake_minimum_required(VERSION 3.20)\nproject(cpp_fixture)\n',
+    'src/app/App.cpp': [
+      '#include "shared/Value.hpp"',
+      '#include <boost/asio.hpp>',
+      'namespace example::app {',
+      'class App {};',
+      '}',
+      '',
+    ].join('\n'),
+    'src/shared/Value.hpp': [
+      'namespace example::shared {',
+      'class Value {};',
+      '}',
+      '',
+    ].join('\n'),
+  });
+
+  try {
+    const graph = await createDependencyGraphAsync({
+      projects: [{ id: 'cpp-fixture', rootPath: root }],
+    });
+    const local = graph.edges.find(({ data }) =>
+      data.evidence.some(({ specifier }) => specifier === 'shared/Value.hpp'),
+    );
+    const external = graph.edges.find(({ data }) =>
+      data.evidence.some(({ specifier }) => specifier === 'boost/asio.hpp'),
+    );
+
+    expect(local?.data.analyzerId).toBe('cpp');
+    expect(local?.data.evidence[0]?.classification).toBe('intrinsic');
+    expect(external?.data.evidence[0]?.classification).toBe('unknown');
+    expect(graph.nodes.some(({ data }) => data.path === 'example.app')).toBe(true);
+    expect(graph.nodes.some(({ data }) => data.path === 'example.shared')).toBe(true);
+  } finally {
+    await rm(root, { recursive: true });
+  }
+});
+
 /*** Create an isolated filesystem fixture for dependency graph integration tests. */
 async function createFixtureAsync(files: Readonly<Record<string, string>>): Promise<string> {
   const root = await mkdtemp(path.join(os.tmpdir(), 'dependency-graph-test-'));
