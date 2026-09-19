@@ -12,7 +12,8 @@ import type {
   DependencyImportEvidence,
 } from '../../../../../types/dependencyGraph.js';
 import { collectCppFilesAsync } from './collectCppFilesAsync.js';
-import { extractCppDependencies, type CppInclude } from './extractCppDependencies.js';
+import type { CppInclude } from './extractCppDependencies.js';
+import { extractCppDependencies } from './extractCppDependencies.js';
 import { extractCppPackageFromInclude } from './extractCppPackageFromInclude.js';
 
 /*** Analyze one detected C++ package into namespace/include dependency evidence. */
