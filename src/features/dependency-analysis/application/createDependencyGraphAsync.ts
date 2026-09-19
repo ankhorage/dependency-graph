@@ -13,6 +13,7 @@ import type {
   DependencyGraphProjectInput,
 } from '../../../types/dependencyGraph.js';
 import { cppDependencyGraphAnalyzer } from '../adapters/outbound/cpp/cppDependencyGraphAnalyzer.js';
+import { delphiDependencyGraphAnalyzer } from '../adapters/outbound/delphi/delphiDependencyGraphAnalyzer.js';
 import { javaDependencyGraphAnalyzer } from '../adapters/outbound/java/javaDependencyGraphAnalyzer.js';
 import { kotlinDependencyGraphAnalyzer } from '../adapters/outbound/kotlin/kotlinDependencyGraphAnalyzer.js';
 import { pythonDependencyGraphAnalyzer } from '../adapters/outbound/python/pythonDependencyGraphAnalyzer.js';
@@ -28,6 +29,7 @@ export async function createDependencyGraphAsync(
   const analyzers = input.analyzers ?? [
     typescriptDependencyGraphAnalyzer,
     cppDependencyGraphAnalyzer,
+    delphiDependencyGraphAnalyzer,
     javaDependencyGraphAnalyzer,
     kotlinDependencyGraphAnalyzer,
     pythonDependencyGraphAnalyzer,

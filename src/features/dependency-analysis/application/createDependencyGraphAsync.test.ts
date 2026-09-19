@@ -241,6 +241,46 @@ test('builds C++ include dependencies with local and external evidence', async (
   }
 });
 
+test('builds Delphi unit dependencies with intrinsic and external evidence', async () => {
+  const root = await createFixtureAsync({
+    'src/Services/UserService.pas': [
+      'unit Services.UserService;',
+      'interface',
+      'uses Models.User, System.SysUtils;',
+      'implementation',
+      'end.',
+      '',
+    ].join('\n'),
+    'src/Models/User.pas': [
+      'unit Models.User;',
+      'interface',
+      'implementation',
+      'end.',
+      '',
+    ].join('\n'),
+  });
+
+  try {
+    const graph = await createDependencyGraphAsync({
+      projects: [{ id: 'delphi-fixture', rootPath: root }],
+    });
+    const intrinsic = graph.edges.find(({ data }) =>
+      data.evidence.some(({ specifier }) => specifier === 'Models.User'),
+    );
+    const external = graph.edges.find(({ data }) =>
+      data.evidence.some(({ specifier }) => specifier === 'System.SysUtils'),
+    );
+
+    expect(intrinsic?.data.analyzerId).toBe('delphi');
+    expect(intrinsic?.data.evidence[0]?.classification).toBe('intrinsic');
+    expect(external?.data.evidence[0]?.classification).toBe('unknown');
+    expect(graph.nodes.some(({ data }) => data.path === 'Services')).toBe(true);
+    expect(graph.nodes.some(({ data }) => data.path === 'Models')).toBe(true);
+  } finally {
+    await rm(root, { recursive: true });
+  }
+});
+
 /*** Create an isolated filesystem fixture for dependency graph integration tests. */
 async function createFixtureAsync(files: Readonly<Record<string, string>>): Promise<string> {
   const root = await mkdtemp(path.join(os.tmpdir(), 'dependency-graph-test-'));

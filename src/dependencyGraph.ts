@@ -1,4 +1,5 @@
 export { cppDependencyGraphAnalyzer } from './features/dependency-analysis/adapters/outbound/cpp/cppDependencyGraphAnalyzer.js';
+export { delphiDependencyGraphAnalyzer } from './features/dependency-analysis/adapters/outbound/delphi/delphiDependencyGraphAnalyzer.js';
 export { javaDependencyGraphAnalyzer } from './features/dependency-analysis/adapters/outbound/java/javaDependencyGraphAnalyzer.js';
 export { kotlinDependencyGraphAnalyzer } from './features/dependency-analysis/adapters/outbound/kotlin/kotlinDependencyGraphAnalyzer.js';
 export { pythonDependencyGraphAnalyzer } from './features/dependency-analysis/adapters/outbound/python/pythonDependencyGraphAnalyzer.js';
