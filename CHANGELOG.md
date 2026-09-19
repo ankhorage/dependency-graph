@@ -1,5 +1,11 @@
 # @ankhorage/dependency-graph
 
+## 0.4.0
+
+### Minor Changes
+
+- 668b594: Add canonical Python package/import dependency analysis.
+
 ## 0.3.0
 
 ### Minor Changes
