@@ -1,3 +1,4 @@
+export { kotlinDependencyGraphAnalyzer } from './features/dependency-analysis/adapters/outbound/kotlin/kotlinDependencyGraphAnalyzer.js';
 export { javaDependencyGraphAnalyzer } from './features/dependency-analysis/adapters/outbound/java/javaDependencyGraphAnalyzer.js';
 export { typescriptDependencyGraphAnalyzer } from './features/dependency-analysis/adapters/outbound/typescript/typescriptDependencyGraphAnalyzer.js';
 export { createDependencyGraphAsync } from './features/dependency-analysis/application/createDependencyGraphAsync.js';

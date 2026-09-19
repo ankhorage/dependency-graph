@@ -134,6 +134,44 @@ test('builds Java package dependencies with intrinsic and external import eviden
   }
 });
 
+test('builds Kotlin package dependencies with intrinsic and external import evidence', async () => {
+  const root = await createFixtureAsync({
+    'build.gradle.kts': 'plugins { kotlin("jvm") version "2.0.0" }',
+    'src/main/kotlin/com/example/app/App.kt': [
+      'package com.example.app',
+      'import com.example.shared.Value',
+      'import kotlinx.coroutines.launch',
+      'class App',
+      '',
+    ].join('\n'),
+    'src/main/kotlin/com/example/shared/Value.kt': [
+      'package com.example.shared',
+      'class Value',
+      '',
+    ].join('\n'),
+  });
+
+  try {
+    const graph = await createDependencyGraphAsync({
+      projects: [{ id: 'kotlin-fixture', rootPath: root }],
+    });
+    const intrinsic = graph.edges.find(({ data }) =>
+      data.evidence.some(({ specifier }) => specifier === 'com.example.shared.Value'),
+    );
+    const external = graph.edges.find(({ data }) =>
+      data.evidence.some(({ specifier }) => specifier === 'kotlinx.coroutines.launch'),
+    );
+
+    expect(intrinsic?.data.analyzerId).toBe('kotlin');
+    expect(intrinsic?.data.evidence[0]?.classification).toBe('intrinsic');
+    expect(external?.data.evidence[0]?.classification).toBe('unknown');
+    expect(graph.nodes.some(({ data }) => data.path === 'com.example.app')).toBe(true);
+    expect(graph.nodes.some(({ data }) => data.path === 'com.example.shared')).toBe(true);
+  } finally {
+    await rm(root, { recursive: true });
+  }
+});
+
 /*** Create an isolated filesystem fixture for dependency graph integration tests. */
 async function createFixtureAsync(files: Readonly<Record<string, string>>): Promise<string> {
   const root = await mkdtemp(path.join(os.tmpdir(), 'dependency-graph-test-'));
