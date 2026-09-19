@@ -1,5 +1,11 @@
 # @ankhorage/dependency-graph
 
+## 0.3.0
+
+### Minor Changes
+
+- 836b3e2: Add canonical Kotlin package/import dependency analysis.
+
 ## 0.2.0
 
 ### Minor Changes
