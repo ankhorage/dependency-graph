@@ -1,5 +1,11 @@
 # @ankhorage/dependency-graph
 
+## 0.5.0
+
+### Minor Changes
+
+- 7174cf6: Add canonical C++ include/dependency analysis.
+
 ## 0.4.0
 
 ### Minor Changes
