@@ -182,11 +182,7 @@ test('builds Python package dependencies with intrinsic and external import evid
       '    pass',
       '',
     ].join('\n'),
-    'src/models/user.py': [
-      'class User:',
-      '    pass',
-      '',
-    ].join('\n'),
+    'src/models/user.py': ['class User:', '    pass', ''].join('\n'),
   });
 
   try {
