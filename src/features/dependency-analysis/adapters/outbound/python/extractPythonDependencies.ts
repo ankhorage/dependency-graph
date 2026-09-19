@@ -9,13 +9,17 @@ export function extractPythonDependencies(content: string): PythonDependencies {
     /(?:^|\n)\s*(?:from\s+([\w.]+)\s+)?import\s+([\w\s,*]+?)(?:\s+as\s+\w+)?(?:\s|$|#)/gmu;
 
   for (const match of content.matchAll(importRegex)) {
-    const fromModule = match[1];
-    const importedItems = match[2] ?? '';
+    const [, fromModule, importedItems = ''] = match;
     if (fromModule !== undefined) {
       imports.push(fromModule);
       continue;
     }
-    imports.push(...importedItems.split(',').map((item) => item.trim()).filter(Boolean));
+    imports.push(
+      ...importedItems
+        .split(',')
+        .map((item) => item.trim())
+        .filter(Boolean),
+    );
   }
   return { imports };
 }
