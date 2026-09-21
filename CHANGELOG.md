@@ -1,5 +1,11 @@
 # @ankhorage/dependency-graph
 
+## 0.6.1
+
+### Patch Changes
+
+- 7bda07e: Ignore the generated `.ankh` root during project inspection and dependency source collection so materialized Ankh artifacts do not interrupt graph analysis or become graph evidence.
+
 ## 0.6.0
 
 ### Minor Changes
