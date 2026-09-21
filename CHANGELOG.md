@@ -1,5 +1,11 @@
 # @ankhorage/dependency-graph
 
+## 0.6.2
+
+### Patch Changes
+
+- 1a0544d: Select analyzer sources from Project Detector's released, pruned inspection file list so generated `.ankh` materialization stays out of dependency graphs, including projects with root-level source files.
+
 ## 0.6.1
 
 ### Patch Changes
