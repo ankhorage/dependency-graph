@@ -11,7 +11,7 @@ import type {
   DependencyGraphNodeData,
   DependencyImportEvidence,
 } from '../../../../../types/dependencyGraph.js';
-import { collectKotlinFilesAsync } from './collectKotlinFilesAsync.js';
+import { collectInspectedSourceFiles } from '../../../utils/collectInspectedSourceFiles.js';
 import { extractKotlinDependencies } from './extractKotlinDependencies.js';
 import { extractKotlinPackageFromImport } from './extractKotlinPackageFromImport.js';
 
@@ -20,11 +20,11 @@ export async function analyzeKotlinProjectAsync(
   context: DependencyGraphAnalyzerContext,
 ): Promise<DependencyGraphFragment> {
   const language = context.package.detection.languages.find(({ id }) => id === 'kotlin');
-  const files = await collectKotlinFilesAsync(
-    context.package.rootPath,
+  const files = collectInspectedSourceFiles(
+    context,
     language?.sourceRoots ?? ['src/main/kotlin', 'src', '.'],
-    context.excludedRoots,
-    context.signal,
+    (file) => file.endsWith('.kt') || file.endsWith('.kts'),
+    ['.git', 'build', 'coverage', 'dist', 'target'],
   );
   const sources = await Promise.all(
     files.map(async (file) => ({

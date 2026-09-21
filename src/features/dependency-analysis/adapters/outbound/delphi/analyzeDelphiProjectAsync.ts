@@ -11,7 +11,7 @@ import type {
   DependencyGraphNodeData,
   DependencyImportEvidence,
 } from '../../../../../types/dependencyGraph.js';
-import { collectDelphiFilesAsync } from './collectDelphiFilesAsync.js';
+import { collectInspectedSourceFiles } from '../../../utils/collectInspectedSourceFiles.js';
 import { delphiPackageForFile } from './delphiPackageForFile.js';
 import { extractDelphiDependencies } from './extractDelphiDependencies.js';
 import { extractDelphiPackageFromImport } from './extractDelphiPackageFromImport.js';
@@ -22,11 +22,11 @@ export async function analyzeDelphiProjectAsync(
 ): Promise<DependencyGraphFragment> {
   const language = context.package.detection.languages.find(({ id }) => id === 'delphi');
   const sourceRoots = language?.sourceRoots ?? ['src', 'Source', '.'];
-  const files = await collectDelphiFilesAsync(
-    context.package.rootPath,
+  const files = collectInspectedSourceFiles(
+    context,
     sourceRoots,
-    context.excludedRoots,
-    context.signal,
+    (file) => ['.pas', '.pp', '.dpr'].some((extension) => file.toLowerCase().endsWith(extension)),
+    ['.git', 'build', 'coverage', 'dist', 'lib'],
   );
   const sources = await Promise.all(
     files.map(async (file) => {

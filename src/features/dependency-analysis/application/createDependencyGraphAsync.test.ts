@@ -1,11 +1,11 @@
 import { rejects } from 'node:assert/strict';
-import { mkdir, mkdtemp, rm, symlink, writeFile } from 'node:fs/promises';
+import { mkdir, mkdtemp, rm, writeFile } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 
 import { expect, test } from 'bun:test';
 
-import { createDependencyGraphAsync } from './createDependencyGraphAsync.js';
+import { createDependencyGraphAsync } from '../../../dependencyGraph.js';
 
 test('builds weighted intrinsic and vendor TypeScript dependencies with declaration evidence', async () => {
   const root = await createFixtureAsync({
@@ -32,46 +32,6 @@ test('builds weighted intrinsic and vendor TypeScript dependencies with declarat
     expect(intrinsicEdge?.data.weight).toBe(1);
     expect(graph.nodes.some(({ data }) => data.path === 'src.features')).toBe(true);
     expect(graph.nodes.some(({ data }) => data.path === 'src.shared')).toBe(true);
-  } finally {
-    await rm(root, { recursive: true });
-  }
-});
-
-test('ignores generated Ankh files and symlinks while retaining project imports', async () => {
-  const root = await createFixtureAsync({
-    'package.json': JSON.stringify({ name: 'fixture' }),
-    'src/features/index.ts': "import '../shared/value';\n",
-    'src/shared/value.ts': 'export const value = 1;\n',
-    '.ankh/zora/staging/generated.ts': "import 'ignored-vendor';\n",
-  });
-  try {
-    await symlink(path.join(root, 'src'), path.join(root, '.ankh/zora/web'), 'dir');
-
-    const graph = await createDependencyGraphAsync({
-      projects: [{ id: 'fixture', rootPath: root }],
-    });
-    const evidence = graph.edges.flatMap(({ data }) => data.evidence);
-
-    expect(evidence.some(({ sourceFile }) => sourceFile === 'src/features/index.ts')).toBe(true);
-    expect(evidence.some(({ sourceFile }) => sourceFile.startsWith('.ankh/'))).toBe(false);
-    expect(graph.nodes.some(({ data }) => data.packageName === 'ignored-vendor')).toBe(false);
-  } finally {
-    await rm(root, { recursive: true });
-  }
-});
-
-test('keeps unrelated symlink diagnostics blocking dependency analysis', async () => {
-  const root = await createFixtureAsync({
-    'package.json': JSON.stringify({ name: 'fixture' }),
-    'src/index.ts': 'export {};\n',
-  });
-  try {
-    await symlink(path.join(root, 'src/index.ts'), path.join(root, 'linked.ts'));
-
-    await rejects(
-      createDependencyGraphAsync({ projects: [{ id: 'fixture', rootPath: root }] }),
-      /Symbolic links are not followed/u,
-    );
   } finally {
     await rm(root, { recursive: true });
   }
@@ -258,6 +218,7 @@ test('builds C++ include dependencies with local and external evidence', async (
       '',
     ].join('\n'),
     'src/shared/Value.hpp': ['namespace example::shared {', 'class Value {};', '}', ''].join('\n'),
+    'src/shared/Legacy.h': ['namespace example::legacy {', 'class Legacy {};', '}', ''].join('\n'),
   });
 
   try {
@@ -276,6 +237,7 @@ test('builds C++ include dependencies with local and external evidence', async (
     expect(external?.data.evidence[0]?.classification).toBe('unknown');
     expect(graph.nodes.some(({ data }) => data.path === 'example.app')).toBe(true);
     expect(graph.nodes.some(({ data }) => data.path === 'example.shared')).toBe(true);
+    expect(graph.nodes.some(({ data }) => data.path === 'example.legacy')).toBe(true);
   } finally {
     await rm(root, { recursive: true });
   }

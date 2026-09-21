@@ -57,7 +57,7 @@
   },
   "dependencies": {
     "@ankhorage/graph": "^0.1.0",
-    "@ankhorage/project-detector": "^0.1.0",
+    "@ankhorage/project-detector": "^0.2.0",
     "@ankhorage/utility": "^0.8.0"
   },
   "peerDependencies": {
