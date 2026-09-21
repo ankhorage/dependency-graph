@@ -5,7 +5,7 @@ import path from 'node:path';
 
 import { expect, test } from 'bun:test';
 
-import { createDependencyGraphAsync } from './createDependencyGraphAsync.js';
+import { createDependencyGraphAsync } from '../../../dependencyGraph.js';
 
 test('builds weighted intrinsic and vendor TypeScript dependencies with declaration evidence', async () => {
   const root = await createFixtureAsync({
