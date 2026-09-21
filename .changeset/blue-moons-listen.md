@@ -2,4 +2,4 @@
 '@ankhorage/dependency-graph': patch
 ---
 
-Consume the released Project Detector policy that excludes generated `.ankh` materialization during dependency analysis.
+Select analyzer sources from Project Detector's released, pruned inspection file list so generated `.ankh` materialization stays out of dependency graphs, including projects with root-level source files.
