@@ -11,7 +11,7 @@ import type {
   DependencyGraphNodeData,
   DependencyImportEvidence,
 } from '../../../../../types/dependencyGraph.js';
-import { collectTypeScriptFilesAsync } from './collectTypeScriptFilesAsync.js';
+import { collectInspectedSourceFiles } from '../../../utils/collectInspectedSourceFiles.js';
 import { createTypeScriptModuleNodes } from './createTypeScriptModuleNodes.js';
 import { extractTypeScriptImports } from './extractTypeScriptImports.js';
 import { modulePathForFile } from './modulePathForFile.js';
@@ -22,11 +22,11 @@ export async function analyzeTypeScriptProjectAsync(
   context: DependencyGraphAnalyzerContext,
 ): Promise<DependencyGraphFragment> {
   const language = context.package.detection.languages.find(({ id }) => id === 'typescript');
-  const files = await collectTypeScriptFilesAsync(
-    context.package.rootPath,
+  const files = collectInspectedSourceFiles(
+    context,
     language?.sourceRoots ?? ['.'],
-    context.excludedRoots,
-    context.signal,
+    (file) => ['.ts', '.tsx', '.mts', '.cts'].some((extension) => file.endsWith(extension)),
+    ['.git', '.next', 'build', 'coverage', 'dist', 'node_modules'],
   );
   const sourceFiles = new Set(files);
   const nodes = new Map(

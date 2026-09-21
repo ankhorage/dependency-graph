@@ -11,7 +11,7 @@ import type {
   DependencyGraphNodeData,
   DependencyImportEvidence,
 } from '../../../../../types/dependencyGraph.js';
-import { collectJavaFilesAsync } from './collectJavaFilesAsync.js';
+import { collectInspectedSourceFiles } from '../../../utils/collectInspectedSourceFiles.js';
 import { extractJavaDependencies } from './extractJavaDependencies.js';
 import { extractJavaPackageFromImport } from './extractJavaPackageFromImport.js';
 
@@ -20,11 +20,11 @@ export async function analyzeJavaProjectAsync(
   context: DependencyGraphAnalyzerContext,
 ): Promise<DependencyGraphFragment> {
   const language = context.package.detection.languages.find(({ id }) => id === 'java');
-  const files = await collectJavaFilesAsync(
-    context.package.rootPath,
+  const files = collectInspectedSourceFiles(
+    context,
     language?.sourceRoots ?? ['src/main/java', '.'],
-    context.excludedRoots,
-    context.signal,
+    (file) => file.endsWith('.java'),
+    ['.git', 'build', 'coverage', 'dist', 'target'],
   );
   const sources = await Promise.all(
     files.map(async (file) => ({

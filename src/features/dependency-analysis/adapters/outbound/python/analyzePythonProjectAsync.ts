@@ -11,7 +11,7 @@ import type {
   DependencyGraphNodeData,
   DependencyImportEvidence,
 } from '../../../../../types/dependencyGraph.js';
-import { collectPythonFilesAsync } from './collectPythonFilesAsync.js';
+import { collectInspectedSourceFiles } from '../../../utils/collectInspectedSourceFiles.js';
 import { extractPythonDependencies } from './extractPythonDependencies.js';
 import { extractPythonPackageFromImport } from './extractPythonPackageFromImport.js';
 import { pythonPackageForFile } from './pythonPackageForFile.js';
@@ -22,11 +22,11 @@ export async function analyzePythonProjectAsync(
 ): Promise<DependencyGraphFragment> {
   const language = context.package.detection.languages.find(({ id }) => id === 'python');
   const sourceRoots = language?.sourceRoots ?? ['src', 'app', '.'];
-  const files = await collectPythonFilesAsync(
-    context.package.rootPath,
+  const files = collectInspectedSourceFiles(
+    context,
     sourceRoots,
-    context.excludedRoots,
-    context.signal,
+    (file) => file.endsWith('.py') || file.endsWith('.pyi'),
+    ['.git', '.mypy_cache', '.pytest_cache', '.venv', '__pycache__', 'build', 'dist', 'venv'],
   );
   const sources = await Promise.all(
     files.map(async (file) => ({

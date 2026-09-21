@@ -218,6 +218,7 @@ test('builds C++ include dependencies with local and external evidence', async (
       '',
     ].join('\n'),
     'src/shared/Value.hpp': ['namespace example::shared {', 'class Value {};', '}', ''].join('\n'),
+    'src/shared/Legacy.h': ['namespace example::legacy {', 'class Legacy {};', '}', ''].join('\n'),
   });
 
   try {
@@ -236,6 +237,7 @@ test('builds C++ include dependencies with local and external evidence', async (
     expect(external?.data.evidence[0]?.classification).toBe('unknown');
     expect(graph.nodes.some(({ data }) => data.path === 'example.app')).toBe(true);
     expect(graph.nodes.some(({ data }) => data.path === 'example.shared')).toBe(true);
+    expect(graph.nodes.some(({ data }) => data.path === 'example.legacy')).toBe(true);
   } finally {
     await rm(root, { recursive: true });
   }

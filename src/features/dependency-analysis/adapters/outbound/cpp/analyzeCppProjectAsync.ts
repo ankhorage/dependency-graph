@@ -11,7 +11,7 @@ import type {
   DependencyGraphNodeData,
   DependencyImportEvidence,
 } from '../../../../../types/dependencyGraph.js';
-import { collectCppFilesAsync } from './collectCppFilesAsync.js';
+import { collectInspectedSourceFiles } from '../../../utils/collectInspectedSourceFiles.js';
 import type { CppInclude } from './extractCppDependencies.js';
 import { extractCppDependencies } from './extractCppDependencies.js';
 import { extractCppPackageFromInclude } from './extractCppPackageFromInclude.js';
@@ -21,11 +21,12 @@ export async function analyzeCppProjectAsync(
   context: DependencyGraphAnalyzerContext,
 ): Promise<DependencyGraphFragment> {
   const language = context.package.detection.languages.find(({ id }) => id === 'cpp');
-  const files = await collectCppFilesAsync(
-    context.package.rootPath,
+  const files = collectInspectedSourceFiles(
+    context,
     language?.sourceRoots ?? ['src', '.'],
-    context.excludedRoots,
-    context.signal,
+    (file) =>
+      ['.cpp', '.cc', '.cxx', '.h', '.hpp', '.hxx'].some((extension) => file.endsWith(extension)),
+    ['.git', 'build', 'coverage', 'dist', 'out'],
   );
   const sources = await Promise.all(
     files.map(async (file) => ({

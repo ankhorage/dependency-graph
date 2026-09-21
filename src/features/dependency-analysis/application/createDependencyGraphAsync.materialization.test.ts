@@ -43,6 +43,41 @@ test('ignores canonical generated Ankh materialization during public dependency 
   }
 });
 
+test('ignores generated Ankh source when TypeScript source roots include the project root', async () => {
+  const root = await createFixtureAsync({
+    'package.json': JSON.stringify({
+      name: 'fixture',
+      dependencies: { 'real-only': '^1.0.0' },
+    }),
+    'index.ts': "import 'real-only';\n",
+    '.ankh/zora/.web-gen-1/src/generated.ts': "import 'generated-only';\n",
+  });
+
+  try {
+    await symlink(
+      path.join(root, '.ankh/zora/.web-gen-1'),
+      path.join(root, '.ankh/zora/web'),
+      process.platform === 'win32' ? 'junction' : 'dir',
+    );
+
+    const graph = await createDependencyGraphAsync({
+      projects: [{ id: 'current', rootPath: root }],
+    });
+    const evidence = graph.edges.flatMap(({ data }) => data.evidence);
+
+    expect(evidence).toContainEqual({
+      sourceFile: 'index.ts',
+      specifier: 'real-only',
+      classification: 'vendor',
+      declarations: [{ kind: 'dependency', range: '^1.0.0' }],
+    });
+    expect(graph.nodes.some(({ data }) => data.packageName === 'generated-only')).toBe(false);
+    expect(evidence.some(({ sourceFile }) => sourceFile.includes('.ankh'))).toBe(false);
+  } finally {
+    await rm(root, { recursive: true });
+  }
+});
+
 test('rejects incomplete inspection for a symlink outside generated Ankh materialization', async () => {
   const root = await createFixtureAsync({
     'package.json': JSON.stringify({ name: 'fixture' }),
