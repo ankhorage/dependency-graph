@@ -66,6 +66,7 @@ async function inspectProjectInputAsync(
   signal: AbortSignal | undefined,
 ): Promise<InspectedInput> {
   const inspection = await inspectProjectAsync(project.rootPath, {
+    excludeDirectories: ['.ankh'],
     ...(signal === undefined ? {} : { signal }),
   });
   if (!inspection.complete) {
@@ -130,7 +131,7 @@ async function analyzePackagesAsync(
           package: packageContext,
           inspection,
           focusPackages,
-          excludedRoots,
+          excludedRoots: [path.join(packageContext.rootPath, '.ankh'), ...excludedRoots],
           ...(signal === undefined ? {} : { signal }),
         }),
       ];
