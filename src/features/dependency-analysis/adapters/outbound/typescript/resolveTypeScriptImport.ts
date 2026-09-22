@@ -53,8 +53,7 @@ export function resolveTypeScriptImport(
 
     const declarations = declarationsFor(packageContext.declarations, packageName);
     return {
-      targetNodeId:
-        declarations.length > 0 ? `vendor:${packageName}` : `unknown:${packageName}`,
+      targetNodeId: declarations.length > 0 ? `vendor:${packageName}` : `unknown:${packageName}`,
       classification: declarations.length > 0 ? 'vendor' : 'unknown',
       packageName,
       declarations,
