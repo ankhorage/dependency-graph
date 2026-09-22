@@ -1,5 +1,11 @@
 # @ankhorage/dependency-graph
 
+## 0.7.0
+
+### Minor Changes
+
+- 3587a10: Allow dependency analysis to consume existing Project Detector inspections without rescanning project roots, while keeping the path-based API as a convenience wrapper.
+
 ## 0.6.2
 
 ### Patch Changes
