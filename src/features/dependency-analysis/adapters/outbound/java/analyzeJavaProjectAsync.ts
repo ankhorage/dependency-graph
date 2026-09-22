@@ -12,6 +12,7 @@ import type {
   DependencyImportEvidence,
 } from '../../../../../types/dependencyGraph.js';
 import { collectInspectedSourceFiles } from '../../../utils/collectInspectedSourceFiles.js';
+import { findIntrinsicPackageForReference } from '../../../utils/findIntrinsicPackageForReference.js';
 import { extractJavaDependencies } from './extractJavaDependencies.js';
 import { extractJavaPackageFromImport } from './extractJavaPackageFromImport.js';
 
@@ -61,9 +62,10 @@ function addImport(
   nodes: Map<string, GraphNode<DependencyGraphNodeData>>,
   edges: Map<string, GraphEdge<DependencyGraphEdgeData>>,
 ): void {
-  const targetPackage = extractJavaPackageFromImport(specifier);
+  const intrinsicPackage = findIntrinsicPackageForReference(specifier, intrinsicPackages);
+  const targetPackage = intrinsicPackage ?? extractJavaPackageFromImport(specifier);
   if (targetPackage === '') return;
-  const intrinsic = intrinsicPackages.has(targetPackage);
+  const intrinsic = intrinsicPackage !== undefined;
   const targetNodeId = intrinsic
     ? nodeIdForPackage(context, targetPackage)
     : `unknown:${targetPackage}`;
