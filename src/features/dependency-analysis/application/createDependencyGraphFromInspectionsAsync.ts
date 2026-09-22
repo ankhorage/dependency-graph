@@ -115,8 +115,7 @@ function selectFocusPackages(inspection: ProjectInspection): readonly InspectedP
   const workspacePackages = inspection.packages.filter(
     ({ rootPath }) => rootPath !== '.' && workspaceRoots.has(rootPath),
   );
-  const root =
-    rootPackage ?? { rootPath: '.', detection: inspection.detection, manifestPath: '' };
+  const root = rootPackage ?? { rootPath: '.', detection: inspection.detection, manifestPath: '' };
   return [root, ...workspacePackages];
 }
 

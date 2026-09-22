@@ -54,14 +54,9 @@ test('scopes focus packages to the root and declared workspaces only', async () 
     const graph = await createDependencyGraphFromInspectionsAsync({
       projects: [{ id: 'scoped', inspection }],
     });
-    const focusNodes = graph.nodes.filter(
-      ({ data }) => data.kind === 'package' && data.focus,
-    );
+    const focusNodes = graph.nodes.filter(({ data }) => data.kind === 'package' && data.focus);
 
-    expect(focusNodes.map(({ data }) => data.label).sort()).toEqual([
-      '@fixture/workspace',
-      'root',
-    ]);
+    expect(focusNodes.map(({ data }) => data.label).sort()).toEqual(['@fixture/workspace', 'root']);
     expect(graph.nodes.some(({ id }) => id.includes('scripts.fixture'))).toBe(false);
     expect(graph.nodes.some(({ id }) => id === 'package:scoped:packages/workspace')).toBe(true);
   } finally {
