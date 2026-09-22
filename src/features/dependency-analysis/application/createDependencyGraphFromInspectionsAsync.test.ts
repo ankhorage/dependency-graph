@@ -3,9 +3,9 @@ import { mkdir, mkdtemp, rm, writeFile } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 
-import { expect, test } from 'bun:test';
 import { inspectProjectAsync } from '@ankhorage/project-detector/node';
 import type { ProjectInspection } from '@ankhorage/project-detector/types';
+import { expect, test } from 'bun:test';
 
 import {
   createDependencyGraphAsync,
@@ -97,7 +97,7 @@ test('rejects duplicate supplied project identities before analysis', async () =
       ],
       analyzers: [],
     }),
-    /must be unique/u
+    /must be unique/u,
   );
 });
 
@@ -142,7 +142,7 @@ async function createFixtureAsync(files: Readonly<Record<string, string>>): Prom
       const target = path.join(root, file);
       await mkdir(path.dirname(target), { recursive: true });
       await writeFile(target, fileContent);
-    })
+    }),
   );
   return root;
 }

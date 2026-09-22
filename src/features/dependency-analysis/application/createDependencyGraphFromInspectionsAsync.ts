@@ -25,7 +25,7 @@ import { assertDependencyGraphProjectIds } from './assertDependencyGraphProjectI
  * Build one canonical dependency graph from already-inspected projects without rescanning them.
  */
 export async function createDependencyGraphFromInspectionsAsync(
-  input: CreateDependencyGraphFromInspectionsInput
+  input: CreateDependencyGraphFromInspectionsInput,
 ): Promise<DependencyGraph> {
   assertDependencyGraphProjectIds(input.projects);
   const analyzers = input.analyzers ?? [
@@ -41,10 +41,10 @@ export async function createDependencyGraphFromInspectionsAsync(
   const focusPackages = createFocusPackageMap(packages);
   const fragments = await analyzePackagesAsync(inspected, analyzers, focusPackages, input.signal);
   const nodes = new Map(
-    packages.map(packageContext => {
+    packages.map((packageContext) => {
       const node = createFocusPackageNode(packageContext);
       return [node.id, node] as const;
-    })
+    }),
   );
 
   for (const node of fragments.flatMap(({ nodes: fragmentNodes }) => fragmentNodes)) {
@@ -62,14 +62,14 @@ interface InspectedInput {
 
 /*** Normalize one supplied inspection into dependency-analysis package contexts. */
 async function createInspectedInputAsync(
-  project: DependencyGraphInspectionProjectInput
+  project: DependencyGraphInspectionProjectInput,
 ): Promise<InspectedInput> {
   const { inspection } = project;
   if (!inspection.complete) {
     throw new Error(
       `Dependency graph inspection is incomplete for "${project.id}": ${inspection.diagnostics
         .map(({ message }) => message)
-        .join('; ')}`
+        .join('; ')}`,
     );
   }
 
@@ -79,7 +79,7 @@ async function createInspectedInputAsync(
       : [{ rootPath: '.', detection: inspection.detection, manifestPath: '' }];
 
   const packages = await Promise.all(
-    detectedPackages.map(async detected => {
+    detectedPackages.map(async (detected) => {
       const relativeRoot = detected.rootPath;
       const id = `${project.id}:${relativeRoot}`;
       const manifestPath =
@@ -97,7 +97,7 @@ async function createInspectedInputAsync(
         detection: detected.detection,
         declarations: await readDependencyDeclarationsAsync(manifestPath),
       } satisfies DependencyGraphPackage;
-    })
+    }),
   );
 
   return { inspection, packages };
@@ -108,18 +108,18 @@ async function analyzePackagesAsync(
   inspected: readonly InspectedInput[],
   analyzers: readonly DependencyGraphAnalyzer[],
   focusPackages: ReadonlyMap<string, string>,
-  signal: AbortSignal | undefined
+  signal: AbortSignal | undefined,
 ): Promise<readonly DependencyGraphFragment[]> {
   const tasks = inspected.flatMap(({ inspection, packages }) =>
-    packages.flatMap(packageContext => {
+    packages.flatMap((packageContext) => {
       const analyzer = analyzers.find(({ supports }) => supports(packageContext.detection));
       if (analyzer === undefined) return [];
 
       const excludedRoots = packages
         .filter(
-          candidate =>
+          (candidate) =>
             candidate.id !== packageContext.id &&
-            candidate.rootPath.startsWith(`${packageContext.rootPath}${path.sep}`)
+            candidate.rootPath.startsWith(`${packageContext.rootPath}${path.sep}`),
         )
         .map(({ rootPath }) => rootPath);
 
@@ -132,7 +132,7 @@ async function analyzePackagesAsync(
           ...(signal === undefined ? {} : { signal }),
         }),
       ];
-    })
+    }),
   );
 
   if (tasks.length === 0) {
@@ -143,16 +143,14 @@ async function analyzePackagesAsync(
 
 /*** Build a unique package-name map for focus routing across repositories and workspaces. */
 function createFocusPackageMap(
-  packages: readonly DependencyGraphPackage[]
+  packages: readonly DependencyGraphPackage[],
 ): ReadonlyMap<string, string> {
   const named = packages.filter(
-    (
-      packageContext
-    ): packageContext is DependencyGraphPackage & { readonly name: string } =>
-      packageContext.name !== undefined
+    (packageContext): packageContext is DependencyGraphPackage & { readonly name: string } =>
+      packageContext.name !== undefined,
   );
   const duplicates = named.filter(
-    (item, index) => named.findIndex(({ name }) => name === item.name) !== index
+    (item, index) => named.findIndex(({ name }) => name === item.name) !== index,
   );
   if (duplicates.length > 0) {
     throw new Error(`Duplicate focus package name: ${duplicates[0]?.name ?? 'unknown'}.`);

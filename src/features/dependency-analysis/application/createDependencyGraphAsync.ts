@@ -9,16 +9,16 @@ import { createDependencyGraphFromInspectionsAsync } from './createDependencyGra
 
 /*** Inspect project roots, then delegate dependency topology construction to the inspection API. */
 export async function createDependencyGraphAsync(
-  input: CreateDependencyGraphInput
+  input: CreateDependencyGraphInput,
 ): Promise<DependencyGraph> {
   assertDependencyGraphProjectIds(input.projects);
   const projects = await Promise.all(
-    input.projects.map(async project => ({
+    input.projects.map(async (project) => ({
       id: project.id,
       inspection: await inspectProjectAsync(project.rootPath, {
         ...(input.signal === undefined ? {} : { signal: input.signal }),
       }),
-    }))
+    })),
   );
 
   return createDependencyGraphFromInspectionsAsync({
