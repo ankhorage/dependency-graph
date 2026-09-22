@@ -62,9 +62,10 @@ function addImport(
   nodes: Map<string, GraphNode<DependencyGraphNodeData>>,
   edges: Map<string, GraphEdge<DependencyGraphEdgeData>>,
 ): void {
-  const targetPackage = extractKotlinPackageFromImport(specifier);
+  const intrinsicPackage = findIntrinsicPackageForReference(specifier, intrinsicPackages);
+  const targetPackage = intrinsicPackage ?? extractKotlinPackageFromImport(specifier);
   if (targetPackage === '') return;
-  const intrinsic = intrinsicPackages.has(targetPackage);
+  const intrinsic = intrinsicPackage !== undefined;
   const targetNodeId = intrinsic
     ? nodeIdForPackage(context, targetPackage)
     : `unknown:${targetPackage}`;
