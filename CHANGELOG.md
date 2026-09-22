@@ -1,5 +1,11 @@
 # @ankhorage/dependency-graph
 
+## 0.7.1
+
+### Patch Changes
+
+- 6d555e3: Scope dependency-analysis focus packages to the selected root and root-declared workspaces while retaining unrelated nested package roots as analysis boundaries.
+
 ## 0.7.0
 
 ### Minor Changes
