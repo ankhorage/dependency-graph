@@ -33,6 +33,42 @@ test('matches filesystem analysis for an inspected TypeScript workspace', async 
   }
 });
 
+test('scopes focus packages to the root and declared workspaces only', async () => {
+  const root = await createFixtureAsync({
+    'package.json': JSON.stringify({ name: 'root', workspaces: ['packages/*'] }),
+    'src/index.ts': 'export const rootValue = 1;\n',
+    'packages/workspace/package.json': JSON.stringify({ name: '@fixture/workspace' }),
+    'packages/workspace/src/index.ts': 'export const workspaceValue = 2;\n',
+    'scripts/fixture/package.json': JSON.stringify({ name: '@fixture/nested-fixture' }),
+    'scripts/fixture/src/index.ts': 'export const fixtureValue = 3;\n',
+  });
+
+  try {
+    const inspection = await inspectProjectAsync(root);
+    expect(inspection.packages.map(({ name }) => name).sort()).toEqual([
+      '@fixture/nested-fixture',
+      '@fixture/workspace',
+      'root',
+    ]);
+
+    const graph = await createDependencyGraphFromInspectionsAsync({
+      projects: [{ id: 'scoped', inspection }],
+    });
+    const focusNodes = graph.nodes.filter(
+      ({ data }) => data.kind === 'package' && data.focus,
+    );
+
+    expect(focusNodes.map(({ data }) => data.label).sort()).toEqual([
+      '@fixture/workspace',
+      'root',
+    ]);
+    expect(graph.nodes.some(({ id }) => id.includes('scripts.fixture'))).toBe(false);
+    expect(graph.nodes.some(({ id }) => id === 'package:scoped:packages/workspace')).toBe(true);
+  } finally {
+    await rm(root, { recursive: true });
+  }
+});
+
 test('matches filesystem analysis for an inspected Java project', async () => {
   const root = await createFixtureAsync({
     'pom.xml': [
