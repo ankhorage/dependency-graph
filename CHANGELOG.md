@@ -1,5 +1,11 @@
 # @ankhorage/dependency-graph
 
+## 0.7.2
+
+### Patch Changes
+
+- eee8614: Classify TypeScript vendors only from declared dependency evidence and resolve Java/Kotlin intrinsic member imports from source-declared package ownership before falling back to unknown references.
+
 ## 0.7.1
 
 ### Patch Changes
