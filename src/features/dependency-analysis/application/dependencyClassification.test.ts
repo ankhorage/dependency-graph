@@ -80,9 +80,7 @@ test('resolves Java static members through source-declared intrinsic packages', 
     expect(edge?.data.evidence[0]?.classification).toBe('intrinsic');
     expect(
       graph.nodes.some(
-        ({ data }) =>
-          data.path === 'io.reflectoring.coderadar.project' &&
-          data.classification === 'intrinsic',
+        ({ data }) => data.path === 'io.reflectoring.coderadar.project' && data.classification === 'intrinsic',
       ),
     ).toBe(true);
     expect(
