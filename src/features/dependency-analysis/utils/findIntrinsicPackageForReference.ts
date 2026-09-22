@@ -4,9 +4,7 @@ export function findIntrinsicPackageForReference(
   intrinsicPackages: ReadonlySet<string>,
 ): string | undefined {
   return [...intrinsicPackages]
-    .filter(
-      (packageName) => reference === packageName || reference.startsWith(`${packageName}.`),
-    )
+    .filter((packageName) => reference === packageName || reference.startsWith(`${packageName}.`))
     .sort((left, right) => right.length - left.length)
     .at(0);
 }
