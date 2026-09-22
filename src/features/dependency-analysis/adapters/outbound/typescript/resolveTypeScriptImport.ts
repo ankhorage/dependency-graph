@@ -42,11 +42,22 @@ export function resolveTypeScriptImport(
   const packageName = barePackageName(specifier);
   if (packageName !== undefined) {
     const focusNodeId = focusPackages.get(packageName);
+    if (focusNodeId !== undefined) {
+      return {
+        targetNodeId: focusNodeId,
+        classification: 'focus',
+        packageName,
+        declarations: declarationsFor(packageContext.declarations, packageName),
+      };
+    }
+
+    const declarations = declarationsFor(packageContext.declarations, packageName);
     return {
-      targetNodeId: focusNodeId ?? `vendor:${packageName}`,
-      classification: focusNodeId === undefined ? 'vendor' : 'focus',
+      targetNodeId:
+        declarations.length > 0 ? `vendor:${packageName}` : `unknown:${packageName}`,
+      classification: declarations.length > 0 ? 'vendor' : 'unknown',
       packageName,
-      declarations: declarationsFor(packageContext.declarations, packageName),
+      declarations,
     };
   }
 
