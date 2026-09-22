@@ -5,7 +5,9 @@ export { kotlinDependencyGraphAnalyzer } from './features/dependency-analysis/ad
 export { pythonDependencyGraphAnalyzer } from './features/dependency-analysis/adapters/outbound/python/pythonDependencyGraphAnalyzer.js';
 export { typescriptDependencyGraphAnalyzer } from './features/dependency-analysis/adapters/outbound/typescript/typescriptDependencyGraphAnalyzer.js';
 export { createDependencyGraphAsync } from './features/dependency-analysis/application/createDependencyGraphAsync.js';
+export { createDependencyGraphFromInspectionsAsync } from './features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.js';
 export type {
+  CreateDependencyGraphFromInspectionsInput,
   CreateDependencyGraphInput,
   DependencyDeclaration,
   DependencyDeclarationKind,
@@ -14,6 +16,7 @@ export type {
   DependencyGraphAnalyzerContext,
   DependencyGraphEdgeData,
   DependencyGraphFragment,
+  DependencyGraphInspectionProjectInput,
   DependencyGraphNodeData,
   DependencyGraphPackage,
   DependencyGraphProjectInput,
