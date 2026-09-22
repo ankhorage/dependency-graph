@@ -12,6 +12,7 @@ import type {
   DependencyImportEvidence,
 } from '../../../../../types/dependencyGraph.js';
 import { collectInspectedSourceFiles } from '../../../utils/collectInspectedSourceFiles.js';
+import { findIntrinsicPackageForReference } from '../../../utils/findIntrinsicPackageForReference.js';
 import { extractKotlinDependencies } from './extractKotlinDependencies.js';
 import { extractKotlinPackageFromImport } from './extractKotlinPackageFromImport.js';
 
