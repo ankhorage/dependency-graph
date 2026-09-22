@@ -1,0 +1,14 @@
+sequenceDiagram
+  participant participant_analyzePackagesAsync as analyzePackagesAsync
+  participant participant_assertDependencyGraphProjectIds as assertDependencyGraphProjectIds
+  participant participant_createDependencyGraphFromInspectionsAsync as createDependencyGraphFromInspectionsAsync
+  participant participant_createFocusPackageMap as createFocusPackageMap
+  participant participant_createGraph as createGraph
+  participant_createDependencyGraphFromInspectionsAsync->>participant_assertDependencyGraphProjectIds: assertDependencyGraphProjectIds()
+  participant_assertDependencyGraphProjectIds-->>participant_createDependencyGraphFromInspectionsAsync: return
+  participant_createDependencyGraphFromInspectionsAsync->>participant_createFocusPackageMap: createFocusPackageMap()
+  participant_createFocusPackageMap-->>participant_createDependencyGraphFromInspectionsAsync: return
+  participant_createDependencyGraphFromInspectionsAsync->>participant_analyzePackagesAsync: analyzePackagesAsync()
+  participant_analyzePackagesAsync-->>participant_createDependencyGraphFromInspectionsAsync: return
+  participant_createDependencyGraphFromInspectionsAsync->>participant_createGraph: createGraph()
+  participant_createGraph-->>participant_createDependencyGraphFromInspectionsAsync: return

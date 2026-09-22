@@ -1,0 +1,814 @@
+[
+  {
+    "name": "cppDependencyGraphAnalyzer",
+    "description": "C++ analyzer adapter selected from project-detector language evidence.",
+    "isReadme": false,
+    "examples": [],
+    "kind": "value",
+    "modulePath": "src/features/dependency-analysis/adapters/outbound/cpp/cppDependencyGraphAnalyzer.ts",
+    "sourceLocation": {
+      "filePath": "src/features/dependency-analysis/adapters/outbound/cpp/cppDependencyGraphAnalyzer.ts",
+      "line": 5,
+      "column": 14
+    },
+    "exportPaths": ["src/dependencyGraph.ts"],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "createDependencyGraphAsync",
+    "description": "Inspect project roots, then delegate dependency topology construction to the inspection API.",
+    "isReadme": false,
+    "examples": [],
+    "kind": "function",
+    "modulePath": "src/features/dependency-analysis/application/createDependencyGraphAsync.ts",
+    "sourceLocation": {
+      "filePath": "src/features/dependency-analysis/application/createDependencyGraphAsync.ts",
+      "line": 11,
+      "column": 1
+    },
+    "exportPaths": ["src/dependencyGraph.ts"],
+    "relatedSymbols": ["CreateDependencyGraphInput", "DependencyGraph"],
+    "signatures": [
+      {
+        "label": "(input: CreateDependencyGraphInput) => Promise<DependencyGraph>",
+        "parameters": [
+          {
+            "name": "input",
+            "type": "CreateDependencyGraphInput",
+            "required": true,
+            "description": null
+          }
+        ],
+        "returnType": "Promise<DependencyGraph>",
+        "returnDescription": null
+      }
+    ],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "createDependencyGraphFromInspectionsAsync",
+    "description": "Build one canonical dependency graph from already-inspected projects without rescanning them.",
+    "isReadme": false,
+    "examples": [],
+    "kind": "function",
+    "modulePath": "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.ts",
+    "sourceLocation": {
+      "filePath": "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.ts",
+      "line": 27,
+      "column": 1
+    },
+    "exportPaths": ["src/dependencyGraph.ts"],
+    "relatedSymbols": ["CreateDependencyGraphFromInspectionsInput", "DependencyGraph"],
+    "signatures": [
+      {
+        "label": "(input: CreateDependencyGraphFromInspectionsInput) => Promise<DependencyGraph>",
+        "parameters": [
+          {
+            "name": "input",
+            "type": "CreateDependencyGraphFromInspectionsInput",
+            "required": true,
+            "description": null
+          }
+        ],
+        "returnType": "Promise<DependencyGraph>",
+        "returnDescription": null
+      }
+    ],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "CreateDependencyGraphFromInspectionsInput",
+    "description": null,
+    "isReadme": false,
+    "examples": [],
+    "kind": "type",
+    "modulePath": "src/types/dependencyGraph.ts",
+    "sourceLocation": {
+      "filePath": "src/types/dependencyGraph.ts",
+      "line": 90,
+      "column": 1
+    },
+    "exportPaths": ["src/dependencyGraph.ts"],
+    "relatedSymbols": ["DependencyGraphAnalyzer", "DependencyGraphInspectionProjectInput"],
+    "signatures": [],
+    "members": [
+      {
+        "name": "analyzers",
+        "kind": "property",
+        "type": "readonly DependencyGraphAnalyzer[]",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "projects",
+        "kind": "property",
+        "type": "readonly DependencyGraphInspectionProjectInput[]",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "signal",
+        "kind": "property",
+        "type": "AbortSignal",
+        "required": false,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "CreateDependencyGraphInput",
+    "description": null,
+    "isReadme": false,
+    "examples": [],
+    "kind": "type",
+    "modulePath": "src/types/dependencyGraph.ts",
+    "sourceLocation": {
+      "filePath": "src/types/dependencyGraph.ts",
+      "line": 84,
+      "column": 1
+    },
+    "exportPaths": ["src/dependencyGraph.ts"],
+    "relatedSymbols": ["DependencyGraphAnalyzer", "DependencyGraphProjectInput"],
+    "signatures": [],
+    "members": [
+      {
+        "name": "analyzers",
+        "kind": "property",
+        "type": "readonly DependencyGraphAnalyzer[]",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "projects",
+        "kind": "property",
+        "type": "readonly DependencyGraphProjectInput[]",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "signal",
+        "kind": "property",
+        "type": "AbortSignal",
+        "required": false,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "delphiDependencyGraphAnalyzer",
+    "description": "Delphi analyzer adapter selected from project-detector language evidence.",
+    "isReadme": false,
+    "examples": [],
+    "kind": "value",
+    "modulePath": "src/features/dependency-analysis/adapters/outbound/delphi/delphiDependencyGraphAnalyzer.ts",
+    "sourceLocation": {
+      "filePath": "src/features/dependency-analysis/adapters/outbound/delphi/delphiDependencyGraphAnalyzer.ts",
+      "line": 5,
+      "column": 14
+    },
+    "exportPaths": ["src/dependencyGraph.ts"],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "DependencyDeclaration",
+    "description": null,
+    "isReadme": false,
+    "examples": [],
+    "kind": "type",
+    "modulePath": "src/types/dependencyGraph.ts",
+    "sourceLocation": {
+      "filePath": "src/types/dependencyGraph.ts",
+      "line": 10,
+      "column": 1
+    },
+    "exportPaths": ["src/dependencyGraph.ts"],
+    "relatedSymbols": ["DependencyDeclarationKind"],
+    "signatures": [],
+    "members": [
+      {
+        "name": "kind",
+        "kind": "property",
+        "type": "DependencyDeclarationKind",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "range",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "DependencyDeclarationKind",
+    "description": null,
+    "isReadme": false,
+    "examples": [],
+    "kind": "unknown",
+    "modulePath": "src/types/dependencyGraph.ts",
+    "sourceLocation": {
+      "filePath": "src/types/dependencyGraph.ts",
+      "line": 7,
+      "column": 1
+    },
+    "exportPaths": ["src/dependencyGraph.ts"],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "DependencyGraph",
+    "description": null,
+    "isReadme": false,
+    "examples": [],
+    "kind": "unknown",
+    "modulePath": "src/types/dependencyGraph.ts",
+    "sourceLocation": {
+      "filePath": "src/types/dependencyGraph.ts",
+      "line": 40,
+      "column": 1
+    },
+    "exportPaths": ["src/dependencyGraph.ts"],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "DependencyGraphAnalyzer",
+    "description": null,
+    "isReadme": false,
+    "examples": [],
+    "kind": "type",
+    "modulePath": "src/types/dependencyGraph.ts",
+    "sourceLocation": {
+      "filePath": "src/types/dependencyGraph.ts",
+      "line": 76,
+      "column": 1
+    },
+    "exportPaths": ["src/dependencyGraph.ts"],
+    "relatedSymbols": ["DependencyGraphAnalyzerContext", "DependencyGraphFragment"],
+    "signatures": [],
+    "members": [
+      {
+        "name": "analyzeAsync",
+        "kind": "property",
+        "type": "(context: DependencyGraphAnalyzerContext) => Promise<DependencyGraphFragment>",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "id",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "supports",
+        "kind": "property",
+        "type": "(detection: ProjectDetection) => boolean",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "DependencyGraphAnalyzerContext",
+    "description": null,
+    "isReadme": false,
+    "examples": [],
+    "kind": "type",
+    "modulePath": "src/types/dependencyGraph.ts",
+    "sourceLocation": {
+      "filePath": "src/types/dependencyGraph.ts",
+      "line": 68,
+      "column": 1
+    },
+    "exportPaths": ["src/dependencyGraph.ts"],
+    "relatedSymbols": ["DependencyGraphPackage"],
+    "signatures": [],
+    "members": [
+      {
+        "name": "excludedRoots",
+        "kind": "property",
+        "type": "readonly string[]",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "focusPackages",
+        "kind": "property",
+        "type": "ReadonlyMap<string, string>",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "inspection",
+        "kind": "property",
+        "type": "ProjectInspection",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "package",
+        "kind": "property",
+        "type": "DependencyGraphPackage",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "signal",
+        "kind": "property",
+        "type": "AbortSignal",
+        "required": false,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "DependencyGraphEdgeData",
+    "description": null,
+    "isReadme": false,
+    "examples": [],
+    "kind": "type",
+    "modulePath": "src/types/dependencyGraph.ts",
+    "sourceLocation": {
+      "filePath": "src/types/dependencyGraph.ts",
+      "line": 33,
+      "column": 1
+    },
+    "exportPaths": ["src/dependencyGraph.ts"],
+    "relatedSymbols": ["DependencyImportEvidence"],
+    "signatures": [],
+    "members": [
+      {
+        "name": "analyzerId",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "evidence",
+        "kind": "property",
+        "type": "readonly DependencyImportEvidence[]",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "kind",
+        "kind": "property",
+        "type": "\"import\"",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "weight",
+        "kind": "property",
+        "type": "number",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "DependencyGraphFragment",
+    "description": null,
+    "isReadme": false,
+    "examples": [],
+    "kind": "type",
+    "modulePath": "src/types/dependencyGraph.ts",
+    "sourceLocation": {
+      "filePath": "src/types/dependencyGraph.ts",
+      "line": 63,
+      "column": 1
+    },
+    "exportPaths": ["src/dependencyGraph.ts"],
+    "relatedSymbols": ["DependencyGraphEdgeData", "DependencyGraphNodeData"],
+    "signatures": [],
+    "members": [
+      {
+        "name": "edges",
+        "kind": "property",
+        "type": "readonly GraphEdge<DependencyGraphEdgeData>[]",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "nodes",
+        "kind": "property",
+        "type": "readonly GraphNode<DependencyGraphNodeData>[]",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "DependencyGraphInspectionProjectInput",
+    "description": null,
+    "isReadme": false,
+    "examples": [],
+    "kind": "type",
+    "modulePath": "src/types/dependencyGraph.ts",
+    "sourceLocation": {
+      "filePath": "src/types/dependencyGraph.ts",
+      "line": 47,
+      "column": 1
+    },
+    "exportPaths": ["src/dependencyGraph.ts"],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [
+      {
+        "name": "id",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "inspection",
+        "kind": "property",
+        "type": "ProjectInspection",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "DependencyGraphNodeData",
+    "description": null,
+    "isReadme": false,
+    "examples": [],
+    "kind": "type",
+    "modulePath": "src/types/dependencyGraph.ts",
+    "sourceLocation": {
+      "filePath": "src/types/dependencyGraph.ts",
+      "line": 22,
+      "column": 1
+    },
+    "exportPaths": ["src/dependencyGraph.ts"],
+    "relatedSymbols": ["DependencyNodeClassification", "DependencyNodeKind"],
+    "signatures": [],
+    "members": [
+      {
+        "name": "classification",
+        "kind": "property",
+        "type": "DependencyNodeClassification",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "focus",
+        "kind": "property",
+        "type": "boolean",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "kind",
+        "kind": "property",
+        "type": "DependencyNodeKind",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "label",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "packageName",
+        "kind": "property",
+        "type": "string",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "parentPath",
+        "kind": "property",
+        "type": "string",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "path",
+        "kind": "property",
+        "type": "string",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "projectId",
+        "kind": "property",
+        "type": "string",
+        "required": false,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "DependencyGraphPackage",
+    "description": null,
+    "isReadme": false,
+    "examples": [],
+    "kind": "type",
+    "modulePath": "src/types/dependencyGraph.ts",
+    "sourceLocation": {
+      "filePath": "src/types/dependencyGraph.ts",
+      "line": 52,
+      "column": 1
+    },
+    "exportPaths": ["src/dependencyGraph.ts"],
+    "relatedSymbols": ["DependencyDeclaration"],
+    "signatures": [],
+    "members": [
+      {
+        "name": "declarations",
+        "kind": "property",
+        "type": "Readonly<Record<string, readonly DependencyDeclaration[]>>",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "detection",
+        "kind": "property",
+        "type": "ProjectDetection",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "id",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "name",
+        "kind": "property",
+        "type": "string",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "nodeId",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "projectId",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "relativeRoot",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "rootPath",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "DependencyGraphProjectInput",
+    "description": null,
+    "isReadme": false,
+    "examples": [],
+    "kind": "type",
+    "modulePath": "src/types/dependencyGraph.ts",
+    "sourceLocation": {
+      "filePath": "src/types/dependencyGraph.ts",
+      "line": 42,
+      "column": 1
+    },
+    "exportPaths": ["src/dependencyGraph.ts"],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [
+      {
+        "name": "id",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "rootPath",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "DependencyImportEvidence",
+    "description": null,
+    "isReadme": false,
+    "examples": [],
+    "kind": "type",
+    "modulePath": "src/types/dependencyGraph.ts",
+    "sourceLocation": {
+      "filePath": "src/types/dependencyGraph.ts",
+      "line": 15,
+      "column": 1
+    },
+    "exportPaths": ["src/dependencyGraph.ts"],
+    "relatedSymbols": ["DependencyDeclaration", "DependencyReferenceClassification"],
+    "signatures": [],
+    "members": [
+      {
+        "name": "classification",
+        "kind": "property",
+        "type": "DependencyReferenceClassification",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "declarations",
+        "kind": "property",
+        "type": "readonly DependencyDeclaration[]",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "sourceFile",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "specifier",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "DependencyNodeClassification",
+    "description": null,
+    "isReadme": false,
+    "examples": [],
+    "kind": "unknown",
+    "modulePath": "src/types/dependencyGraph.ts",
+    "sourceLocation": {
+      "filePath": "src/types/dependencyGraph.ts",
+      "line": 4,
+      "column": 1
+    },
+    "exportPaths": ["src/dependencyGraph.ts"],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "DependencyNodeKind",
+    "description": null,
+    "isReadme": false,
+    "examples": [],
+    "kind": "unknown",
+    "modulePath": "src/types/dependencyGraph.ts",
+    "sourceLocation": {
+      "filePath": "src/types/dependencyGraph.ts",
+      "line": 6,
+      "column": 1
+    },
+    "exportPaths": ["src/dependencyGraph.ts"],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "DependencyReferenceClassification",
+    "description": null,
+    "isReadme": false,
+    "examples": [],
+    "kind": "unknown",
+    "modulePath": "src/types/dependencyGraph.ts",
+    "sourceLocation": {
+      "filePath": "src/types/dependencyGraph.ts",
+      "line": 5,
+      "column": 1
+    },
+    "exportPaths": ["src/dependencyGraph.ts"],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "javaDependencyGraphAnalyzer",
+    "description": "Java analyzer adapter selected from project-detector language evidence.",
+    "isReadme": false,
+    "examples": [],
+    "kind": "value",
+    "modulePath": "src/features/dependency-analysis/adapters/outbound/java/javaDependencyGraphAnalyzer.ts",
+    "sourceLocation": {
+      "filePath": "src/features/dependency-analysis/adapters/outbound/java/javaDependencyGraphAnalyzer.ts",
+      "line": 5,
+      "column": 14
+    },
+    "exportPaths": ["src/dependencyGraph.ts"],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "kotlinDependencyGraphAnalyzer",
+    "description": "Kotlin analyzer adapter selected from project-detector language evidence.",
+    "isReadme": false,
+    "examples": [],
+    "kind": "value",
+    "modulePath": "src/features/dependency-analysis/adapters/outbound/kotlin/kotlinDependencyGraphAnalyzer.ts",
+    "sourceLocation": {
+      "filePath": "src/features/dependency-analysis/adapters/outbound/kotlin/kotlinDependencyGraphAnalyzer.ts",
+      "line": 5,
+      "column": 14
+    },
+    "exportPaths": ["src/dependencyGraph.ts"],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "pythonDependencyGraphAnalyzer",
+    "description": "Python analyzer adapter selected from project-detector language evidence.",
+    "isReadme": false,
+    "examples": [],
+    "kind": "value",
+    "modulePath": "src/features/dependency-analysis/adapters/outbound/python/pythonDependencyGraphAnalyzer.ts",
+    "sourceLocation": {
+      "filePath": "src/features/dependency-analysis/adapters/outbound/python/pythonDependencyGraphAnalyzer.ts",
+      "line": 5,
+      "column": 14
+    },
+    "exportPaths": ["src/dependencyGraph.ts"],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "typescriptDependencyGraphAnalyzer",
+    "description": "TypeScript analyzer adapter selected from project-detector language evidence.",
+    "isReadme": false,
+    "examples": [],
+    "kind": "value",
+    "modulePath": "src/features/dependency-analysis/adapters/outbound/typescript/typescriptDependencyGraphAnalyzer.ts",
+    "sourceLocation": {
+      "filePath": "src/features/dependency-analysis/adapters/outbound/typescript/typescriptDependencyGraphAnalyzer.ts",
+      "line": 5,
+      "column": 14
+    },
+    "exportPaths": ["src/dependencyGraph.ts"],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [],
+    "structuredRows": []
+  }
+]

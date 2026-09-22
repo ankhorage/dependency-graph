@@ -57,6 +57,7 @@ export async function createDependencyGraphFromInspectionsAsync(
 
 interface InspectedInput {
   readonly inspection: ProjectInspection;
+  readonly packageRoots: readonly string[];
   readonly packages: readonly DependencyGraphPackage[];
 }
 
@@ -73,10 +74,10 @@ async function createInspectedInputAsync(
     );
   }
 
-  const detectedPackages: readonly InspectedPackage[] =
-    inspection.packages.length > 0
-      ? inspection.packages
-      : [{ rootPath: '.', detection: inspection.detection, manifestPath: '' }];
+  const detectedPackages = selectFocusPackages(inspection);
+  const packageRoots = inspection.packages.map(({ rootPath }) =>
+    path.resolve(inspection.rootPath, rootPath),
+  );
 
   const packages = await Promise.all(
     detectedPackages.map(async (detected) => {
@@ -100,7 +101,22 @@ async function createInspectedInputAsync(
     }),
   );
 
-  return { inspection, packages };
+  return { inspection, packageRoots, packages };
+}
+
+/*** Select the repository root plus packages declared by root workspace metadata as graph focus. */
+function selectFocusPackages(inspection: ProjectInspection): readonly InspectedPackage[] {
+  const rootPackage = inspection.packages.find(({ rootPath }) => rootPath === '.');
+  const workspaceRoots = new Set(
+    inspection.workspaces
+      .filter(({ rootPath }) => rootPath === '.')
+      .flatMap(({ packagePaths }) => packagePaths),
+  );
+  const workspacePackages = inspection.packages.filter(
+    ({ rootPath }) => rootPath !== '.' && workspaceRoots.has(rootPath),
+  );
+  const root = rootPackage ?? { rootPath: '.', detection: inspection.detection, manifestPath: '' };
+  return [root, ...workspacePackages];
 }
 
 /*** Analyze each package with the first compatible analyzer while preserving mixed-language inputs. */
@@ -110,18 +126,16 @@ async function analyzePackagesAsync(
   focusPackages: ReadonlyMap<string, string>,
   signal: AbortSignal | undefined,
 ): Promise<readonly DependencyGraphFragment[]> {
-  const tasks = inspected.flatMap(({ inspection, packages }) =>
+  const tasks = inspected.flatMap(({ inspection, packageRoots, packages }) =>
     packages.flatMap((packageContext) => {
       const analyzer = analyzers.find(({ supports }) => supports(packageContext.detection));
       if (analyzer === undefined) return [];
 
-      const excludedRoots = packages
-        .filter(
-          (candidate) =>
-            candidate.id !== packageContext.id &&
-            candidate.rootPath.startsWith(`${packageContext.rootPath}${path.sep}`),
-        )
-        .map(({ rootPath }) => rootPath);
+      const excludedRoots = packageRoots.filter(
+        (rootPath) =>
+          rootPath !== packageContext.rootPath &&
+          rootPath.startsWith(`${packageContext.rootPath}${path.sep}`),
+      );
 
       return [
         analyzer.analyzeAsync({

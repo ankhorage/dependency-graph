@@ -1,0 +1,3123 @@
+{
+  "packageName": "@ankhorage/dependency-graph",
+  "packageId": "@ankhorage/dependency-graph",
+  "description": "Project-aware dependency analysis that produces canonical Ankhorage graphs.",
+  "collaborators": null,
+  "donation": null,
+  "badges": [
+    {
+      "id": "license",
+      "label": "license",
+      "value": "MIT",
+      "color": "2563eb"
+    },
+    {
+      "id": "npm",
+      "label": "npm",
+      "value": "v0.7.0",
+      "color": "cb3837"
+    },
+    {
+      "id": "runtime",
+      "label": "runtime",
+      "value": "bun",
+      "color": "f59e0b"
+    },
+    {
+      "id": "typescript",
+      "label": "typescript",
+      "value": "strict",
+      "color": "2563eb"
+    },
+    {
+      "id": "eslint",
+      "label": "eslint",
+      "value": "checked",
+      "color": "0a7f3f"
+    },
+    {
+      "id": "prettier",
+      "label": "prettier",
+      "value": "checked",
+      "color": "0a7f3f"
+    },
+    {
+      "id": "build",
+      "label": "build",
+      "value": "checked",
+      "color": "0a7f3f"
+    },
+    {
+      "id": "tests",
+      "label": "tests",
+      "value": "checked",
+      "color": "0a7f3f"
+    },
+    {
+      "id": "docs",
+      "label": "docs",
+      "value": "paradox",
+      "color": "0f766e"
+    }
+  ],
+  "usage": null,
+  "readmeUsageDescription": null,
+  "readmeUsage": [],
+  "readmeCli": null,
+  "readmeConfig": null,
+  "config": null,
+  "entrypoints": ["src/dependencyGraph.ts"],
+  "modules": [
+    {
+      "path": "examples/basic-usage/analyze.ts",
+      "isEntrypoint": false,
+      "dependencies": ["dist/dependencyGraph.d.ts"],
+      "exports": []
+    },
+    {
+      "path": "paradox.config.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": ["default"]
+    },
+    {
+      "path": "src/dependencyGraph.ts",
+      "isEntrypoint": true,
+      "dependencies": [],
+      "exports": [
+        "cppDependencyGraphAnalyzer",
+        "createDependencyGraphAsync",
+        "createDependencyGraphFromInspectionsAsync",
+        "CreateDependencyGraphFromInspectionsInput",
+        "CreateDependencyGraphInput",
+        "delphiDependencyGraphAnalyzer",
+        "DependencyDeclaration",
+        "DependencyDeclarationKind",
+        "DependencyGraph",
+        "DependencyGraphAnalyzer",
+        "DependencyGraphAnalyzerContext",
+        "DependencyGraphEdgeData",
+        "DependencyGraphFragment",
+        "DependencyGraphInspectionProjectInput",
+        "DependencyGraphNodeData",
+        "DependencyGraphPackage",
+        "DependencyGraphProjectInput",
+        "DependencyImportEvidence",
+        "DependencyNodeClassification",
+        "DependencyNodeKind",
+        "DependencyReferenceClassification",
+        "javaDependencyGraphAnalyzer",
+        "kotlinDependencyGraphAnalyzer",
+        "pythonDependencyGraphAnalyzer",
+        "typescriptDependencyGraphAnalyzer"
+      ]
+    },
+    {
+      "path": "src/features/dependency-analysis/adapters/outbound/cpp/analyzeCppProjectAsync.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/dependency-analysis/adapters/outbound/cpp/extractCppDependencies.ts",
+        "src/features/dependency-analysis/adapters/outbound/cpp/extractCppPackageFromInclude.ts",
+        "src/features/dependency-analysis/utils/collectInspectedSourceFiles.ts",
+        "src/types/dependencyGraph.ts"
+      ],
+      "exports": ["analyzeCppProjectAsync"]
+    },
+    {
+      "path": "src/features/dependency-analysis/adapters/outbound/cpp/cppDependencyGraphAnalyzer.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/dependency-analysis/adapters/outbound/cpp/analyzeCppProjectAsync.ts",
+        "src/types/dependencyGraph.ts"
+      ],
+      "exports": ["cppDependencyGraphAnalyzer"]
+    },
+    {
+      "path": "src/features/dependency-analysis/adapters/outbound/cpp/extractCppDependencies.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": ["CppDependencies", "CppInclude", "extractCppDependencies"]
+    },
+    {
+      "path": "src/features/dependency-analysis/adapters/outbound/cpp/extractCppPackageFromInclude.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": ["extractCppPackageFromInclude"]
+    },
+    {
+      "path": "src/features/dependency-analysis/adapters/outbound/delphi/analyzeDelphiProjectAsync.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/dependency-analysis/adapters/outbound/delphi/delphiPackageForFile.ts",
+        "src/features/dependency-analysis/adapters/outbound/delphi/extractDelphiDependencies.ts",
+        "src/features/dependency-analysis/adapters/outbound/delphi/extractDelphiPackageFromImport.ts",
+        "src/features/dependency-analysis/utils/collectInspectedSourceFiles.ts",
+        "src/types/dependencyGraph.ts"
+      ],
+      "exports": ["analyzeDelphiProjectAsync"]
+    },
+    {
+      "path": "src/features/dependency-analysis/adapters/outbound/delphi/delphiDependencyGraphAnalyzer.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/dependency-analysis/adapters/outbound/delphi/analyzeDelphiProjectAsync.ts",
+        "src/types/dependencyGraph.ts"
+      ],
+      "exports": ["delphiDependencyGraphAnalyzer"]
+    },
+    {
+      "path": "src/features/dependency-analysis/adapters/outbound/delphi/delphiPackageForFile.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": ["delphiPackageForFile"]
+    },
+    {
+      "path": "src/features/dependency-analysis/adapters/outbound/delphi/extractDelphiDependencies.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": ["DelphiDependencies", "extractDelphiDependencies"]
+    },
+    {
+      "path": "src/features/dependency-analysis/adapters/outbound/delphi/extractDelphiPackageFromImport.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": ["extractDelphiPackageFromImport"]
+    },
+    {
+      "path": "src/features/dependency-analysis/adapters/outbound/java/analyzeJavaProjectAsync.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/dependency-analysis/adapters/outbound/java/extractJavaDependencies.ts",
+        "src/features/dependency-analysis/adapters/outbound/java/extractJavaPackageFromImport.ts",
+        "src/features/dependency-analysis/utils/collectInspectedSourceFiles.ts",
+        "src/types/dependencyGraph.ts"
+      ],
+      "exports": ["analyzeJavaProjectAsync"]
+    },
+    {
+      "path": "src/features/dependency-analysis/adapters/outbound/java/extractJavaDependencies.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": ["extractJavaDependencies", "JavaDependencies"]
+    },
+    {
+      "path": "src/features/dependency-analysis/adapters/outbound/java/extractJavaPackageFromImport.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": ["extractJavaPackageFromImport"]
+    },
+    {
+      "path": "src/features/dependency-analysis/adapters/outbound/java/javaDependencyGraphAnalyzer.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/dependency-analysis/adapters/outbound/java/analyzeJavaProjectAsync.ts",
+        "src/types/dependencyGraph.ts"
+      ],
+      "exports": ["javaDependencyGraphAnalyzer"]
+    },
+    {
+      "path": "src/features/dependency-analysis/adapters/outbound/kotlin/analyzeKotlinProjectAsync.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/dependency-analysis/adapters/outbound/kotlin/extractKotlinDependencies.ts",
+        "src/features/dependency-analysis/adapters/outbound/kotlin/extractKotlinPackageFromImport.ts",
+        "src/features/dependency-analysis/utils/collectInspectedSourceFiles.ts",
+        "src/types/dependencyGraph.ts"
+      ],
+      "exports": ["analyzeKotlinProjectAsync"]
+    },
+    {
+      "path": "src/features/dependency-analysis/adapters/outbound/kotlin/extractKotlinDependencies.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": ["extractKotlinDependencies", "KotlinDependencies"]
+    },
+    {
+      "path": "src/features/dependency-analysis/adapters/outbound/kotlin/extractKotlinPackageFromImport.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": ["extractKotlinPackageFromImport"]
+    },
+    {
+      "path": "src/features/dependency-analysis/adapters/outbound/kotlin/kotlinDependencyGraphAnalyzer.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/dependency-analysis/adapters/outbound/kotlin/analyzeKotlinProjectAsync.ts",
+        "src/types/dependencyGraph.ts"
+      ],
+      "exports": ["kotlinDependencyGraphAnalyzer"]
+    },
+    {
+      "path": "src/features/dependency-analysis/adapters/outbound/python/analyzePythonProjectAsync.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/dependency-analysis/adapters/outbound/python/extractPythonDependencies.ts",
+        "src/features/dependency-analysis/adapters/outbound/python/extractPythonPackageFromImport.ts",
+        "src/features/dependency-analysis/adapters/outbound/python/pythonPackageForFile.ts",
+        "src/features/dependency-analysis/utils/collectInspectedSourceFiles.ts",
+        "src/types/dependencyGraph.ts"
+      ],
+      "exports": ["analyzePythonProjectAsync"]
+    },
+    {
+      "path": "src/features/dependency-analysis/adapters/outbound/python/extractPythonDependencies.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": ["extractPythonDependencies", "PythonDependencies"]
+    },
+    {
+      "path": "src/features/dependency-analysis/adapters/outbound/python/extractPythonPackageFromImport.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": ["extractPythonPackageFromImport"]
+    },
+    {
+      "path": "src/features/dependency-analysis/adapters/outbound/python/pythonDependencyGraphAnalyzer.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/dependency-analysis/adapters/outbound/python/analyzePythonProjectAsync.ts",
+        "src/types/dependencyGraph.ts"
+      ],
+      "exports": ["pythonDependencyGraphAnalyzer"]
+    },
+    {
+      "path": "src/features/dependency-analysis/adapters/outbound/python/pythonPackageForFile.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": ["pythonPackageForFile"]
+    },
+    {
+      "path": "src/features/dependency-analysis/adapters/outbound/typescript/analyzeTypeScriptProjectAsync.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/dependency-analysis/adapters/outbound/typescript/createTypeScriptModuleNodes.ts",
+        "src/features/dependency-analysis/adapters/outbound/typescript/extractTypeScriptImports.ts",
+        "src/features/dependency-analysis/adapters/outbound/typescript/modulePathForFile.ts",
+        "src/features/dependency-analysis/adapters/outbound/typescript/resolveTypeScriptImport.ts",
+        "src/features/dependency-analysis/utils/collectInspectedSourceFiles.ts",
+        "src/types/dependencyGraph.ts"
+      ],
+      "exports": ["analyzeTypeScriptProjectAsync"]
+    },
+    {
+      "path": "src/features/dependency-analysis/adapters/outbound/typescript/createTypeScriptModuleNodes.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/dependency-analysis/adapters/outbound/typescript/modulePathForFile.ts",
+        "src/types/dependencyGraph.ts"
+      ],
+      "exports": ["createTypeScriptModuleNodes"]
+    },
+    {
+      "path": "src/features/dependency-analysis/adapters/outbound/typescript/extractTypeScriptImports.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": ["extractTypeScriptImports"]
+    },
+    {
+      "path": "src/features/dependency-analysis/adapters/outbound/typescript/modulePathForFile.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": ["modulePathForFile"]
+    },
+    {
+      "path": "src/features/dependency-analysis/adapters/outbound/typescript/resolveTypeScriptImport.ts",
+      "isEntrypoint": false,
+      "dependencies": ["src/types/dependencyGraph.ts"],
+      "exports": ["ResolvedTypeScriptImport", "resolveTypeScriptImport"]
+    },
+    {
+      "path": "src/features/dependency-analysis/adapters/outbound/typescript/typescriptDependencyGraphAnalyzer.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/dependency-analysis/adapters/outbound/typescript/analyzeTypeScriptProjectAsync.ts",
+        "src/types/dependencyGraph.ts"
+      ],
+      "exports": ["typescriptDependencyGraphAnalyzer"]
+    },
+    {
+      "path": "src/features/dependency-analysis/application/assertDependencyGraphProjectIds.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": ["assertDependencyGraphProjectIds"]
+    },
+    {
+      "path": "src/features/dependency-analysis/application/createDependencyGraphAsync.materialization.test.ts",
+      "isEntrypoint": false,
+      "dependencies": ["src/dependencyGraph.ts"],
+      "exports": []
+    },
+    {
+      "path": "src/features/dependency-analysis/application/createDependencyGraphAsync.test.ts",
+      "isEntrypoint": false,
+      "dependencies": ["src/dependencyGraph.ts"],
+      "exports": []
+    },
+    {
+      "path": "src/features/dependency-analysis/application/createDependencyGraphAsync.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/dependency-analysis/application/assertDependencyGraphProjectIds.ts",
+        "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.ts",
+        "src/types/dependencyGraph.ts"
+      ],
+      "exports": ["createDependencyGraphAsync"]
+    },
+    {
+      "path": "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.test.ts",
+      "isEntrypoint": false,
+      "dependencies": ["src/dependencyGraph.ts"],
+      "exports": []
+    },
+    {
+      "path": "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/dependency-analysis/adapters/outbound/cpp/cppDependencyGraphAnalyzer.ts",
+        "src/features/dependency-analysis/adapters/outbound/delphi/delphiDependencyGraphAnalyzer.ts",
+        "src/features/dependency-analysis/adapters/outbound/java/javaDependencyGraphAnalyzer.ts",
+        "src/features/dependency-analysis/adapters/outbound/kotlin/kotlinDependencyGraphAnalyzer.ts",
+        "src/features/dependency-analysis/adapters/outbound/python/pythonDependencyGraphAnalyzer.ts",
+        "src/features/dependency-analysis/adapters/outbound/typescript/typescriptDependencyGraphAnalyzer.ts",
+        "src/features/dependency-analysis/application/assertDependencyGraphProjectIds.ts",
+        "src/features/dependency-analysis/domain/createFocusPackageNode.ts",
+        "src/features/dependency-analysis/domain/readDependencyDeclarationsAsync.ts",
+        "src/types/dependencyGraph.ts"
+      ],
+      "exports": ["createDependencyGraphFromInspectionsAsync"]
+    },
+    {
+      "path": "src/features/dependency-analysis/domain/createFocusPackageNode.ts",
+      "isEntrypoint": false,
+      "dependencies": ["src/types/dependencyGraph.ts"],
+      "exports": ["createFocusPackageNode"]
+    },
+    {
+      "path": "src/features/dependency-analysis/domain/readDependencyDeclarationsAsync.ts",
+      "isEntrypoint": false,
+      "dependencies": ["src/types/dependencyGraph.ts"],
+      "exports": ["readDependencyDeclarationsAsync"]
+    },
+    {
+      "path": "src/features/dependency-analysis/utils/collectInspectedSourceFiles.ts",
+      "isEntrypoint": false,
+      "dependencies": ["src/types/dependencyGraph.ts"],
+      "exports": ["collectInspectedSourceFiles"]
+    },
+    {
+      "path": "src/types/dependencyGraph.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": [
+        "CreateDependencyGraphFromInspectionsInput",
+        "CreateDependencyGraphInput",
+        "DependencyDeclaration",
+        "DependencyDeclarationKind",
+        "DependencyGraph",
+        "DependencyGraphAnalyzer",
+        "DependencyGraphAnalyzerContext",
+        "DependencyGraphEdgeData",
+        "DependencyGraphFragment",
+        "DependencyGraphInspectionProjectInput",
+        "DependencyGraphNodeData",
+        "DependencyGraphPackage",
+        "DependencyGraphProjectInput",
+        "DependencyImportEvidence",
+        "DependencyNodeClassification",
+        "DependencyNodeKind",
+        "DependencyReferenceClassification"
+      ]
+    }
+  ],
+  "exports": [
+    {
+      "name": "cppDependencyGraphAnalyzer",
+      "description": "C++ analyzer adapter selected from project-detector language evidence.",
+      "isReadme": false,
+      "examples": [],
+      "kind": "value",
+      "modulePath": "src/features/dependency-analysis/adapters/outbound/cpp/cppDependencyGraphAnalyzer.ts",
+      "sourceLocation": {
+        "filePath": "src/features/dependency-analysis/adapters/outbound/cpp/cppDependencyGraphAnalyzer.ts",
+        "line": 5,
+        "column": 14
+      },
+      "exportPaths": ["src/dependencyGraph.ts"],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "createDependencyGraphAsync",
+      "description": "Inspect project roots, then delegate dependency topology construction to the inspection API.",
+      "isReadme": false,
+      "examples": [],
+      "kind": "function",
+      "modulePath": "src/features/dependency-analysis/application/createDependencyGraphAsync.ts",
+      "sourceLocation": {
+        "filePath": "src/features/dependency-analysis/application/createDependencyGraphAsync.ts",
+        "line": 11,
+        "column": 1
+      },
+      "exportPaths": ["src/dependencyGraph.ts"],
+      "relatedSymbols": ["CreateDependencyGraphInput", "DependencyGraph"],
+      "signatures": [
+        {
+          "label": "(input: CreateDependencyGraphInput) => Promise<DependencyGraph>",
+          "parameters": [
+            {
+              "name": "input",
+              "type": "CreateDependencyGraphInput",
+              "required": true,
+              "description": null
+            }
+          ],
+          "returnType": "Promise<DependencyGraph>",
+          "returnDescription": null
+        }
+      ],
+      "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "createDependencyGraphFromInspectionsAsync",
+      "description": "Build one canonical dependency graph from already-inspected projects without rescanning them.",
+      "isReadme": false,
+      "examples": [],
+      "kind": "function",
+      "modulePath": "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.ts",
+      "sourceLocation": {
+        "filePath": "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.ts",
+        "line": 27,
+        "column": 1
+      },
+      "exportPaths": ["src/dependencyGraph.ts"],
+      "relatedSymbols": ["CreateDependencyGraphFromInspectionsInput", "DependencyGraph"],
+      "signatures": [
+        {
+          "label": "(input: CreateDependencyGraphFromInspectionsInput) => Promise<DependencyGraph>",
+          "parameters": [
+            {
+              "name": "input",
+              "type": "CreateDependencyGraphFromInspectionsInput",
+              "required": true,
+              "description": null
+            }
+          ],
+          "returnType": "Promise<DependencyGraph>",
+          "returnDescription": null
+        }
+      ],
+      "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "CreateDependencyGraphFromInspectionsInput",
+      "description": null,
+      "isReadme": false,
+      "examples": [],
+      "kind": "type",
+      "modulePath": "src/types/dependencyGraph.ts",
+      "sourceLocation": {
+        "filePath": "src/types/dependencyGraph.ts",
+        "line": 90,
+        "column": 1
+      },
+      "exportPaths": ["src/dependencyGraph.ts"],
+      "relatedSymbols": ["DependencyGraphAnalyzer", "DependencyGraphInspectionProjectInput"],
+      "signatures": [],
+      "members": [
+        {
+          "name": "analyzers",
+          "kind": "property",
+          "type": "readonly DependencyGraphAnalyzer[]",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "projects",
+          "kind": "property",
+          "type": "readonly DependencyGraphInspectionProjectInput[]",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "signal",
+          "kind": "property",
+          "type": "AbortSignal",
+          "required": false,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
+      "name": "CreateDependencyGraphInput",
+      "description": null,
+      "isReadme": false,
+      "examples": [],
+      "kind": "type",
+      "modulePath": "src/types/dependencyGraph.ts",
+      "sourceLocation": {
+        "filePath": "src/types/dependencyGraph.ts",
+        "line": 84,
+        "column": 1
+      },
+      "exportPaths": ["src/dependencyGraph.ts"],
+      "relatedSymbols": ["DependencyGraphAnalyzer", "DependencyGraphProjectInput"],
+      "signatures": [],
+      "members": [
+        {
+          "name": "analyzers",
+          "kind": "property",
+          "type": "readonly DependencyGraphAnalyzer[]",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "projects",
+          "kind": "property",
+          "type": "readonly DependencyGraphProjectInput[]",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "signal",
+          "kind": "property",
+          "type": "AbortSignal",
+          "required": false,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
+      "name": "delphiDependencyGraphAnalyzer",
+      "description": "Delphi analyzer adapter selected from project-detector language evidence.",
+      "isReadme": false,
+      "examples": [],
+      "kind": "value",
+      "modulePath": "src/features/dependency-analysis/adapters/outbound/delphi/delphiDependencyGraphAnalyzer.ts",
+      "sourceLocation": {
+        "filePath": "src/features/dependency-analysis/adapters/outbound/delphi/delphiDependencyGraphAnalyzer.ts",
+        "line": 5,
+        "column": 14
+      },
+      "exportPaths": ["src/dependencyGraph.ts"],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "DependencyDeclaration",
+      "description": null,
+      "isReadme": false,
+      "examples": [],
+      "kind": "type",
+      "modulePath": "src/types/dependencyGraph.ts",
+      "sourceLocation": {
+        "filePath": "src/types/dependencyGraph.ts",
+        "line": 10,
+        "column": 1
+      },
+      "exportPaths": ["src/dependencyGraph.ts"],
+      "relatedSymbols": ["DependencyDeclarationKind"],
+      "signatures": [],
+      "members": [
+        {
+          "name": "kind",
+          "kind": "property",
+          "type": "DependencyDeclarationKind",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "range",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
+      "name": "DependencyDeclarationKind",
+      "description": null,
+      "isReadme": false,
+      "examples": [],
+      "kind": "unknown",
+      "modulePath": "src/types/dependencyGraph.ts",
+      "sourceLocation": {
+        "filePath": "src/types/dependencyGraph.ts",
+        "line": 7,
+        "column": 1
+      },
+      "exportPaths": ["src/dependencyGraph.ts"],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "DependencyGraph",
+      "description": null,
+      "isReadme": false,
+      "examples": [],
+      "kind": "unknown",
+      "modulePath": "src/types/dependencyGraph.ts",
+      "sourceLocation": {
+        "filePath": "src/types/dependencyGraph.ts",
+        "line": 40,
+        "column": 1
+      },
+      "exportPaths": ["src/dependencyGraph.ts"],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "DependencyGraphAnalyzer",
+      "description": null,
+      "isReadme": false,
+      "examples": [],
+      "kind": "type",
+      "modulePath": "src/types/dependencyGraph.ts",
+      "sourceLocation": {
+        "filePath": "src/types/dependencyGraph.ts",
+        "line": 76,
+        "column": 1
+      },
+      "exportPaths": ["src/dependencyGraph.ts"],
+      "relatedSymbols": ["DependencyGraphAnalyzerContext", "DependencyGraphFragment"],
+      "signatures": [],
+      "members": [
+        {
+          "name": "analyzeAsync",
+          "kind": "property",
+          "type": "(context: DependencyGraphAnalyzerContext) => Promise<DependencyGraphFragment>",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "id",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "supports",
+          "kind": "property",
+          "type": "(detection: ProjectDetection) => boolean",
+          "required": true,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
+      "name": "DependencyGraphAnalyzerContext",
+      "description": null,
+      "isReadme": false,
+      "examples": [],
+      "kind": "type",
+      "modulePath": "src/types/dependencyGraph.ts",
+      "sourceLocation": {
+        "filePath": "src/types/dependencyGraph.ts",
+        "line": 68,
+        "column": 1
+      },
+      "exportPaths": ["src/dependencyGraph.ts"],
+      "relatedSymbols": ["DependencyGraphPackage"],
+      "signatures": [],
+      "members": [
+        {
+          "name": "excludedRoots",
+          "kind": "property",
+          "type": "readonly string[]",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "focusPackages",
+          "kind": "property",
+          "type": "ReadonlyMap<string, string>",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "inspection",
+          "kind": "property",
+          "type": "ProjectInspection",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "package",
+          "kind": "property",
+          "type": "DependencyGraphPackage",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "signal",
+          "kind": "property",
+          "type": "AbortSignal",
+          "required": false,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
+      "name": "DependencyGraphEdgeData",
+      "description": null,
+      "isReadme": false,
+      "examples": [],
+      "kind": "type",
+      "modulePath": "src/types/dependencyGraph.ts",
+      "sourceLocation": {
+        "filePath": "src/types/dependencyGraph.ts",
+        "line": 33,
+        "column": 1
+      },
+      "exportPaths": ["src/dependencyGraph.ts"],
+      "relatedSymbols": ["DependencyImportEvidence"],
+      "signatures": [],
+      "members": [
+        {
+          "name": "analyzerId",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "evidence",
+          "kind": "property",
+          "type": "readonly DependencyImportEvidence[]",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "kind",
+          "kind": "property",
+          "type": "\"import\"",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "weight",
+          "kind": "property",
+          "type": "number",
+          "required": true,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
+      "name": "DependencyGraphFragment",
+      "description": null,
+      "isReadme": false,
+      "examples": [],
+      "kind": "type",
+      "modulePath": "src/types/dependencyGraph.ts",
+      "sourceLocation": {
+        "filePath": "src/types/dependencyGraph.ts",
+        "line": 63,
+        "column": 1
+      },
+      "exportPaths": ["src/dependencyGraph.ts"],
+      "relatedSymbols": ["DependencyGraphEdgeData", "DependencyGraphNodeData"],
+      "signatures": [],
+      "members": [
+        {
+          "name": "edges",
+          "kind": "property",
+          "type": "readonly GraphEdge<DependencyGraphEdgeData>[]",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "nodes",
+          "kind": "property",
+          "type": "readonly GraphNode<DependencyGraphNodeData>[]",
+          "required": true,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
+      "name": "DependencyGraphInspectionProjectInput",
+      "description": null,
+      "isReadme": false,
+      "examples": [],
+      "kind": "type",
+      "modulePath": "src/types/dependencyGraph.ts",
+      "sourceLocation": {
+        "filePath": "src/types/dependencyGraph.ts",
+        "line": 47,
+        "column": 1
+      },
+      "exportPaths": ["src/dependencyGraph.ts"],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [
+        {
+          "name": "id",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "inspection",
+          "kind": "property",
+          "type": "ProjectInspection",
+          "required": true,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
+      "name": "DependencyGraphNodeData",
+      "description": null,
+      "isReadme": false,
+      "examples": [],
+      "kind": "type",
+      "modulePath": "src/types/dependencyGraph.ts",
+      "sourceLocation": {
+        "filePath": "src/types/dependencyGraph.ts",
+        "line": 22,
+        "column": 1
+      },
+      "exportPaths": ["src/dependencyGraph.ts"],
+      "relatedSymbols": ["DependencyNodeClassification", "DependencyNodeKind"],
+      "signatures": [],
+      "members": [
+        {
+          "name": "classification",
+          "kind": "property",
+          "type": "DependencyNodeClassification",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "focus",
+          "kind": "property",
+          "type": "boolean",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "kind",
+          "kind": "property",
+          "type": "DependencyNodeKind",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "label",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "packageName",
+          "kind": "property",
+          "type": "string",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "parentPath",
+          "kind": "property",
+          "type": "string",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "path",
+          "kind": "property",
+          "type": "string",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "projectId",
+          "kind": "property",
+          "type": "string",
+          "required": false,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
+      "name": "DependencyGraphPackage",
+      "description": null,
+      "isReadme": false,
+      "examples": [],
+      "kind": "type",
+      "modulePath": "src/types/dependencyGraph.ts",
+      "sourceLocation": {
+        "filePath": "src/types/dependencyGraph.ts",
+        "line": 52,
+        "column": 1
+      },
+      "exportPaths": ["src/dependencyGraph.ts"],
+      "relatedSymbols": ["DependencyDeclaration"],
+      "signatures": [],
+      "members": [
+        {
+          "name": "declarations",
+          "kind": "property",
+          "type": "Readonly<Record<string, readonly DependencyDeclaration[]>>",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "detection",
+          "kind": "property",
+          "type": "ProjectDetection",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "id",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "name",
+          "kind": "property",
+          "type": "string",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "nodeId",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "projectId",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "relativeRoot",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "rootPath",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
+      "name": "DependencyGraphProjectInput",
+      "description": null,
+      "isReadme": false,
+      "examples": [],
+      "kind": "type",
+      "modulePath": "src/types/dependencyGraph.ts",
+      "sourceLocation": {
+        "filePath": "src/types/dependencyGraph.ts",
+        "line": 42,
+        "column": 1
+      },
+      "exportPaths": ["src/dependencyGraph.ts"],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [
+        {
+          "name": "id",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "rootPath",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
+      "name": "DependencyImportEvidence",
+      "description": null,
+      "isReadme": false,
+      "examples": [],
+      "kind": "type",
+      "modulePath": "src/types/dependencyGraph.ts",
+      "sourceLocation": {
+        "filePath": "src/types/dependencyGraph.ts",
+        "line": 15,
+        "column": 1
+      },
+      "exportPaths": ["src/dependencyGraph.ts"],
+      "relatedSymbols": ["DependencyDeclaration", "DependencyReferenceClassification"],
+      "signatures": [],
+      "members": [
+        {
+          "name": "classification",
+          "kind": "property",
+          "type": "DependencyReferenceClassification",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "declarations",
+          "kind": "property",
+          "type": "readonly DependencyDeclaration[]",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "sourceFile",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "specifier",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
+      "name": "DependencyNodeClassification",
+      "description": null,
+      "isReadme": false,
+      "examples": [],
+      "kind": "unknown",
+      "modulePath": "src/types/dependencyGraph.ts",
+      "sourceLocation": {
+        "filePath": "src/types/dependencyGraph.ts",
+        "line": 4,
+        "column": 1
+      },
+      "exportPaths": ["src/dependencyGraph.ts"],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "DependencyNodeKind",
+      "description": null,
+      "isReadme": false,
+      "examples": [],
+      "kind": "unknown",
+      "modulePath": "src/types/dependencyGraph.ts",
+      "sourceLocation": {
+        "filePath": "src/types/dependencyGraph.ts",
+        "line": 6,
+        "column": 1
+      },
+      "exportPaths": ["src/dependencyGraph.ts"],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "DependencyReferenceClassification",
+      "description": null,
+      "isReadme": false,
+      "examples": [],
+      "kind": "unknown",
+      "modulePath": "src/types/dependencyGraph.ts",
+      "sourceLocation": {
+        "filePath": "src/types/dependencyGraph.ts",
+        "line": 5,
+        "column": 1
+      },
+      "exportPaths": ["src/dependencyGraph.ts"],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "javaDependencyGraphAnalyzer",
+      "description": "Java analyzer adapter selected from project-detector language evidence.",
+      "isReadme": false,
+      "examples": [],
+      "kind": "value",
+      "modulePath": "src/features/dependency-analysis/adapters/outbound/java/javaDependencyGraphAnalyzer.ts",
+      "sourceLocation": {
+        "filePath": "src/features/dependency-analysis/adapters/outbound/java/javaDependencyGraphAnalyzer.ts",
+        "line": 5,
+        "column": 14
+      },
+      "exportPaths": ["src/dependencyGraph.ts"],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "kotlinDependencyGraphAnalyzer",
+      "description": "Kotlin analyzer adapter selected from project-detector language evidence.",
+      "isReadme": false,
+      "examples": [],
+      "kind": "value",
+      "modulePath": "src/features/dependency-analysis/adapters/outbound/kotlin/kotlinDependencyGraphAnalyzer.ts",
+      "sourceLocation": {
+        "filePath": "src/features/dependency-analysis/adapters/outbound/kotlin/kotlinDependencyGraphAnalyzer.ts",
+        "line": 5,
+        "column": 14
+      },
+      "exportPaths": ["src/dependencyGraph.ts"],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "pythonDependencyGraphAnalyzer",
+      "description": "Python analyzer adapter selected from project-detector language evidence.",
+      "isReadme": false,
+      "examples": [],
+      "kind": "value",
+      "modulePath": "src/features/dependency-analysis/adapters/outbound/python/pythonDependencyGraphAnalyzer.ts",
+      "sourceLocation": {
+        "filePath": "src/features/dependency-analysis/adapters/outbound/python/pythonDependencyGraphAnalyzer.ts",
+        "line": 5,
+        "column": 14
+      },
+      "exportPaths": ["src/dependencyGraph.ts"],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "typescriptDependencyGraphAnalyzer",
+      "description": "TypeScript analyzer adapter selected from project-detector language evidence.",
+      "isReadme": false,
+      "examples": [],
+      "kind": "value",
+      "modulePath": "src/features/dependency-analysis/adapters/outbound/typescript/typescriptDependencyGraphAnalyzer.ts",
+      "sourceLocation": {
+        "filePath": "src/features/dependency-analysis/adapters/outbound/typescript/typescriptDependencyGraphAnalyzer.ts",
+        "line": 5,
+        "column": 14
+      },
+      "exportPaths": ["src/dependencyGraph.ts"],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [],
+      "structuredRows": []
+    }
+  ],
+  "components": [],
+  "sourceFunctions": [
+    {
+      "name": "analyzeCppProjectAsync",
+      "description": "Analyze one detected C++ package into namespace/include dependency evidence.",
+      "sourceLocation": {
+        "filePath": "src/features/dependency-analysis/adapters/outbound/cpp/analyzeCppProjectAsync.ts",
+        "line": 20,
+        "column": 1
+      }
+    },
+    {
+      "name": "addInclude",
+      "description": "Aggregate one C++ include into stable target nodes and weighted evidence.",
+      "sourceLocation": {
+        "filePath": "src/features/dependency-analysis/adapters/outbound/cpp/analyzeCppProjectAsync.ts",
+        "line": 57,
+        "column": 1
+      }
+    },
+    {
+      "name": "addIntrinsicHierarchy",
+      "description": "Materialize a C++ namespace/package and all ancestor nodes.",
+      "sourceLocation": {
+        "filePath": "src/features/dependency-analysis/adapters/outbound/cpp/analyzeCppProjectAsync.ts",
+        "line": 109,
+        "column": 1
+      }
+    },
+    {
+      "name": "nodeIdForNamespace",
+      "description": "Resolve a C++ namespace/package node inside the current focus package.",
+      "sourceLocation": {
+        "filePath": "src/features/dependency-analysis/adapters/outbound/cpp/analyzeCppProjectAsync.ts",
+        "line": 136,
+        "column": 1
+      }
+    },
+    {
+      "name": "extractCppDependencies",
+      "description": "Extract C++ namespace and include directives from source text.",
+      "sourceLocation": {
+        "filePath": "src/features/dependency-analysis/adapters/outbound/cpp/extractCppDependencies.ts",
+        "line": 12,
+        "column": 1
+      }
+    },
+    {
+      "name": "extractCppPackageFromInclude",
+      "description": "Reduce a C++ include path to PKGViz-compatible package notation.",
+      "sourceLocation": {
+        "filePath": "src/features/dependency-analysis/adapters/outbound/cpp/extractCppPackageFromInclude.ts",
+        "line": 2,
+        "column": 1
+      }
+    },
+    {
+      "name": "analyzeDelphiProjectAsync",
+      "description": "Analyze one detected Delphi package into unit/import dependency evidence.",
+      "sourceLocation": {
+        "filePath": "src/features/dependency-analysis/adapters/outbound/delphi/analyzeDelphiProjectAsync.ts",
+        "line": 20,
+        "column": 1
+      }
+    },
+    {
+      "name": "addImport",
+      "description": "Aggregate one Delphi uses-clause import into stable target nodes and weighted evidence.",
+      "sourceLocation": {
+        "filePath": "src/features/dependency-analysis/adapters/outbound/delphi/analyzeDelphiProjectAsync.ts",
+        "line": 64,
+        "column": 1
+      }
+    },
+    {
+      "name": "addIntrinsicHierarchy",
+      "description": "Materialize a Delphi package and all ancestor package nodes.",
+      "sourceLocation": {
+        "filePath": "src/features/dependency-analysis/adapters/outbound/delphi/analyzeDelphiProjectAsync.ts",
+        "line": 114,
+        "column": 1
+      }
+    },
+    {
+      "name": "nodeIdForPackage",
+      "description": "Resolve a Delphi package node inside the current focus package.",
+      "sourceLocation": {
+        "filePath": "src/features/dependency-analysis/adapters/outbound/delphi/analyzeDelphiProjectAsync.ts",
+        "line": 141,
+        "column": 1
+      }
+    },
+    {
+      "name": "delphiPackageForFile",
+      "description": "Derive a Delphi package path from unit namespace or the owning source directory.",
+      "sourceLocation": {
+        "filePath": "src/features/dependency-analysis/adapters/outbound/delphi/delphiPackageForFile.ts",
+        "line": 6,
+        "column": 1
+      }
+    },
+    {
+      "name": "extractDelphiDependencies",
+      "description": "Extract a Delphi unit declaration and uses-clause dependencies.",
+      "sourceLocation": {
+        "filePath": "src/features/dependency-analysis/adapters/outbound/delphi/extractDelphiDependencies.ts",
+        "line": 7,
+        "column": 1
+      }
+    },
+    {
+      "name": "extractDelphiPackageFromImport",
+      "description": "Reduce a Delphi unit import to its PKGViz-compatible package target.",
+      "sourceLocation": {
+        "filePath": "src/features/dependency-analysis/adapters/outbound/delphi/extractDelphiPackageFromImport.ts",
+        "line": 2,
+        "column": 1
+      }
+    },
+    {
+      "name": "analyzeJavaProjectAsync",
+      "description": "Analyze one detected Java package into package/import dependency evidence.",
+      "sourceLocation": {
+        "filePath": "src/features/dependency-analysis/adapters/outbound/java/analyzeJavaProjectAsync.ts",
+        "line": 19,
+        "column": 1
+      }
+    },
+    {
+      "name": "addImport",
+      "description": "Aggregate one Java import into stable target nodes and weighted evidence.",
+      "sourceLocation": {
+        "filePath": "src/features/dependency-analysis/adapters/outbound/java/analyzeJavaProjectAsync.ts",
+        "line": 55,
+        "column": 1
+      }
+    },
+    {
+      "name": "addIntrinsicHierarchy",
+      "description": "Materialize a Java package and all ancestor package nodes.",
+      "sourceLocation": {
+        "filePath": "src/features/dependency-analysis/adapters/outbound/java/analyzeJavaProjectAsync.ts",
+        "line": 105,
+        "column": 1
+      }
+    },
+    {
+      "name": "nodeIdForPackage",
+      "description": "Resolve a Java package node inside the current focus package.",
+      "sourceLocation": {
+        "filePath": "src/features/dependency-analysis/adapters/outbound/java/analyzeJavaProjectAsync.ts",
+        "line": 132,
+        "column": 1
+      }
+    },
+    {
+      "name": "extractJavaDependencies",
+      "description": "Extract a Java package declaration and static import specifiers from source text.",
+      "sourceLocation": {
+        "filePath": "src/features/dependency-analysis/adapters/outbound/java/extractJavaDependencies.ts",
+        "line": 7,
+        "column": 1
+      }
+    },
+    {
+      "name": "extractJavaPackageFromImport",
+      "description": "Reduce a Java import specifier to its package path using PKGViz-compatible semantics.",
+      "sourceLocation": {
+        "filePath": "src/features/dependency-analysis/adapters/outbound/java/extractJavaPackageFromImport.ts",
+        "line": 2,
+        "column": 1
+      }
+    },
+    {
+      "name": "analyzeKotlinProjectAsync",
+      "description": "Analyze one detected Kotlin package into package/import dependency evidence.",
+      "sourceLocation": {
+        "filePath": "src/features/dependency-analysis/adapters/outbound/kotlin/analyzeKotlinProjectAsync.ts",
+        "line": 19,
+        "column": 1
+      }
+    },
+    {
+      "name": "addImport",
+      "description": "Aggregate one Kotlin import into stable target nodes and weighted evidence.",
+      "sourceLocation": {
+        "filePath": "src/features/dependency-analysis/adapters/outbound/kotlin/analyzeKotlinProjectAsync.ts",
+        "line": 55,
+        "column": 1
+      }
+    },
+    {
+      "name": "addIntrinsicHierarchy",
+      "description": "Materialize a Kotlin package and all ancestor package nodes.",
+      "sourceLocation": {
+        "filePath": "src/features/dependency-analysis/adapters/outbound/kotlin/analyzeKotlinProjectAsync.ts",
+        "line": 105,
+        "column": 1
+      }
+    },
+    {
+      "name": "nodeIdForPackage",
+      "description": "Resolve a Kotlin package node inside the current focus package.",
+      "sourceLocation": {
+        "filePath": "src/features/dependency-analysis/adapters/outbound/kotlin/analyzeKotlinProjectAsync.ts",
+        "line": 132,
+        "column": 1
+      }
+    },
+    {
+      "name": "extractKotlinDependencies",
+      "description": "Extract a Kotlin package declaration and import specifiers from source text.",
+      "sourceLocation": {
+        "filePath": "src/features/dependency-analysis/adapters/outbound/kotlin/extractKotlinDependencies.ts",
+        "line": 7,
+        "column": 1
+      }
+    },
+    {
+      "name": "extractKotlinPackageFromImport",
+      "description": "Reduce a Kotlin import specifier to its package path using PKGViz-compatible semantics.",
+      "sourceLocation": {
+        "filePath": "src/features/dependency-analysis/adapters/outbound/kotlin/extractKotlinPackageFromImport.ts",
+        "line": 2,
+        "column": 1
+      }
+    },
+    {
+      "name": "analyzePythonProjectAsync",
+      "description": "Analyze one detected Python package into package/import dependency evidence.",
+      "sourceLocation": {
+        "filePath": "src/features/dependency-analysis/adapters/outbound/python/analyzePythonProjectAsync.ts",
+        "line": 20,
+        "column": 1
+      }
+    },
+    {
+      "name": "addImport",
+      "description": "Aggregate one Python import into stable target nodes and weighted evidence.",
+      "sourceLocation": {
+        "filePath": "src/features/dependency-analysis/adapters/outbound/python/analyzePythonProjectAsync.ts",
+        "line": 59,
+        "column": 1
+      }
+    },
+    {
+      "name": "addIntrinsicHierarchy",
+      "description": "Materialize a Python package and all ancestor package nodes.",
+      "sourceLocation": {
+        "filePath": "src/features/dependency-analysis/adapters/outbound/python/analyzePythonProjectAsync.ts",
+        "line": 109,
+        "column": 1
+      }
+    },
+    {
+      "name": "nodeIdForPackage",
+      "description": "Resolve a Python package node inside the current focus package.",
+      "sourceLocation": {
+        "filePath": "src/features/dependency-analysis/adapters/outbound/python/analyzePythonProjectAsync.ts",
+        "line": 136,
+        "column": 1
+      }
+    },
+    {
+      "name": "extractPythonDependencies",
+      "description": "Extract Python import specifiers from import and from-import statements.",
+      "sourceLocation": {
+        "filePath": "src/features/dependency-analysis/adapters/outbound/python/extractPythonDependencies.ts",
+        "line": 6,
+        "column": 1
+      }
+    },
+    {
+      "name": "extractPythonPackageFromImport",
+      "description": "Reduce a Python import specifier to its PKGViz-compatible package target.",
+      "sourceLocation": {
+        "filePath": "src/features/dependency-analysis/adapters/outbound/python/extractPythonPackageFromImport.ts",
+        "line": 2,
+        "column": 1
+      }
+    },
+    {
+      "name": "pythonPackageForFile",
+      "description": "Derive the PKGViz-compatible Python package path for a source file.",
+      "sourceLocation": {
+        "filePath": "src/features/dependency-analysis/adapters/outbound/python/pythonPackageForFile.ts",
+        "line": 6,
+        "column": 1
+      }
+    },
+    {
+      "name": "analyzeTypeScriptProjectAsync",
+      "description": "Analyze one detected TypeScript package into module/import dependency evidence.",
+      "sourceLocation": {
+        "filePath": "src/features/dependency-analysis/adapters/outbound/typescript/analyzeTypeScriptProjectAsync.ts",
+        "line": 21,
+        "column": 1
+      }
+    },
+    {
+      "name": "addImport",
+      "description": "Aggregate one import into stable target nodes and weighted evidence.",
+      "sourceLocation": {
+        "filePath": "src/features/dependency-analysis/adapters/outbound/typescript/analyzeTypeScriptProjectAsync.ts",
+        "line": 50,
+        "column": 1
+      }
+    },
+    {
+      "name": "addTargetNode",
+      "description": "Materialize intrinsic, vendor and unknown targets while focus targets are globally owned.",
+      "sourceLocation": {
+        "filePath": "src/features/dependency-analysis/adapters/outbound/typescript/analyzeTypeScriptProjectAsync.ts",
+        "line": 90,
+        "column": 1
+      }
+    },
+    {
+      "name": "nodeIdForFile",
+      "description": "Resolve the source node at package granularity, using the package root for root-level files.",
+      "sourceLocation": {
+        "filePath": "src/features/dependency-analysis/adapters/outbound/typescript/analyzeTypeScriptProjectAsync.ts",
+        "line": 129,
+        "column": 1
+      }
+    },
+    {
+      "name": "createTypeScriptModuleNodes",
+      "description": "Create intrinsic module nodes, including ancestor directories, for TypeScript source files.",
+      "sourceLocation": {
+        "filePath": "src/features/dependency-analysis/adapters/outbound/typescript/createTypeScriptModuleNodes.ts",
+        "line": 10,
+        "column": 1
+      }
+    },
+    {
+      "name": "ancestorModulePaths",
+      "description": "Expand a module path into the hierarchy required for package-level graph projections.",
+      "sourceLocation": {
+        "filePath": "src/features/dependency-analysis/adapters/outbound/typescript/createTypeScriptModuleNodes.ts",
+        "line": 36,
+        "column": 1
+      }
+    },
+    {
+      "name": "extractTypeScriptImports",
+      "description": "Extract static import module specifiers from TypeScript source text.",
+      "sourceLocation": {
+        "filePath": "src/features/dependency-analysis/adapters/outbound/typescript/extractTypeScriptImports.ts",
+        "line": 4,
+        "column": 1
+      }
+    },
+    {
+      "name": "modulePathForFile",
+      "description": "Return the package-level dotted path owning one source file.",
+      "sourceLocation": {
+        "filePath": "src/features/dependency-analysis/adapters/outbound/typescript/modulePathForFile.ts",
+        "line": 6,
+        "column": 1
+      }
+    },
+    {
+      "name": "resolveTypeScriptImport",
+      "description": "Resolve one TypeScript import to an intrinsic module, focus package, vendor or unknown node.",
+      "sourceLocation": {
+        "filePath": "src/features/dependency-analysis/adapters/outbound/typescript/resolveTypeScriptImport.ts",
+        "line": 20,
+        "column": 1
+      }
+    },
+    {
+      "name": "resolveIntrinsic",
+      "description": "Resolve a source-like path to the containing intrinsic package module.",
+      "sourceLocation": {
+        "filePath": "src/features/dependency-analysis/adapters/outbound/typescript/resolveTypeScriptImport.ts",
+        "line": 61,
+        "column": 1
+      }
+    },
+    {
+      "name": "declarationsFor",
+      "description": "Read dependency declarations without dynamic object-key access.",
+      "sourceLocation": {
+        "filePath": "src/features/dependency-analysis/adapters/outbound/typescript/resolveTypeScriptImport.ts",
+        "line": 91,
+        "column": 1
+      }
+    },
+    {
+      "name": "sourceCandidates",
+      "description": "Generate deterministic TypeScript module resolution candidates without executing project config.",
+      "sourceLocation": {
+        "filePath": "src/features/dependency-analysis/adapters/outbound/typescript/resolveTypeScriptImport.ts",
+        "line": 100,
+        "column": 1
+      }
+    },
+    {
+      "name": "barePackageName",
+      "description": "Extract the npm package identity from a bare module specifier.",
+      "sourceLocation": {
+        "filePath": "src/features/dependency-analysis/adapters/outbound/typescript/resolveTypeScriptImport.ts",
+        "line": 110,
+        "column": 1
+      }
+    },
+    {
+      "name": "assertDependencyGraphProjectIds",
+      "description": "Reject empty or duplicate dependency-graph project IDs before analysis.",
+      "sourceLocation": {
+        "filePath": "src/features/dependency-analysis/application/assertDependencyGraphProjectIds.ts",
+        "line": 2,
+        "column": 1
+      }
+    },
+    {
+      "name": "createFixtureAsync",
+      "description": "Create an isolated fixture for public dependency graph inspection tests.",
+      "sourceLocation": {
+        "filePath": "src/features/dependency-analysis/application/createDependencyGraphAsync.materialization.test.ts",
+        "line": 104,
+        "column": 1
+      }
+    },
+    {
+      "name": "createFixtureAsync",
+      "description": "Create an isolated filesystem fixture for dependency graph integration tests.",
+      "sourceLocation": {
+        "filePath": "src/features/dependency-analysis/application/createDependencyGraphAsync.test.ts",
+        "line": 283,
+        "column": 1
+      }
+    },
+    {
+      "name": "createDependencyGraphAsync",
+      "description": "Inspect project roots, then delegate dependency topology construction to the inspection API.",
+      "sourceLocation": {
+        "filePath": "src/features/dependency-analysis/application/createDependencyGraphAsync.ts",
+        "line": 11,
+        "column": 1
+      }
+    },
+    {
+      "name": "expectEquivalentGraphsAsync",
+      "description": "Compare path-based and pre-inspected analysis through the public package API.",
+      "sourceLocation": {
+        "filePath": "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.test.ts",
+        "line": 136,
+        "column": 1
+      }
+    },
+    {
+      "name": "virtualInspection",
+      "description": "Build a complete inspection whose root deliberately does not exist on disk.",
+      "sourceLocation": {
+        "filePath": "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.test.ts",
+        "line": 147,
+        "column": 1
+      }
+    },
+    {
+      "name": "createFixtureAsync",
+      "description": "Create an isolated filesystem fixture for inspection API tests.",
+      "sourceLocation": {
+        "filePath": "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.test.ts",
+        "line": 169,
+        "column": 1
+      }
+    },
+    {
+      "name": "createDependencyGraphFromInspectionsAsync",
+      "description": "Build one canonical dependency graph from already-inspected projects without rescanning them.",
+      "sourceLocation": {
+        "filePath": "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.ts",
+        "line": 27,
+        "column": 1
+      }
+    },
+    {
+      "name": "createInspectedInputAsync",
+      "description": "Normalize one supplied inspection into dependency-analysis package contexts.",
+      "sourceLocation": {
+        "filePath": "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.ts",
+        "line": 65,
+        "column": 1
+      }
+    },
+    {
+      "name": "selectFocusPackages",
+      "description": "Select the repository root plus packages declared by root workspace metadata as graph focus.",
+      "sourceLocation": {
+        "filePath": "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.ts",
+        "line": 108,
+        "column": 1
+      }
+    },
+    {
+      "name": "analyzePackagesAsync",
+      "description": "Analyze each package with the first compatible analyzer while preserving mixed-language inputs.",
+      "sourceLocation": {
+        "filePath": "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.ts",
+        "line": 123,
+        "column": 1
+      }
+    },
+    {
+      "name": "createFocusPackageMap",
+      "description": "Build a unique package-name map for focus routing across repositories and workspaces.",
+      "sourceLocation": {
+        "filePath": "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.ts",
+        "line": 159,
+        "column": 1
+      }
+    },
+    {
+      "name": "createFocusPackageNode",
+      "description": "Create the focus package node representing one inspected package root.",
+      "sourceLocation": {
+        "filePath": "src/features/dependency-analysis/domain/createFocusPackageNode.ts",
+        "line": 9,
+        "column": 1
+      }
+    },
+    {
+      "name": "readDependencyDeclarationsAsync",
+      "description": "Read dependency declarations from one already-inspected package manifest.",
+      "sourceLocation": {
+        "filePath": "src/features/dependency-analysis/domain/readDependencyDeclarationsAsync.ts",
+        "line": 11,
+        "column": 1
+      }
+    },
+    {
+      "name": "declarationsFor",
+      "description": "Normalize one package.json dependency section into named declarations.",
+      "sourceLocation": {
+        "filePath": "src/features/dependency-analysis/domain/readDependencyDeclarationsAsync.ts",
+        "line": 33,
+        "column": 1
+      }
+    },
+    {
+      "name": "collectInspectedSourceFiles",
+      "description": "Select source files from Project Detector's pruned scan without traversing the filesystem again.",
+      "sourceLocation": {
+        "filePath": "src/features/dependency-analysis/utils/collectInspectedSourceFiles.ts",
+        "line": 8,
+        "column": 1
+      }
+    },
+    {
+      "name": "isWithinSourceRoot",
+      "description": "Apply an analyzer's source-root and ignored-directory rules to one inspected file.",
+      "sourceLocation": {
+        "filePath": "src/features/dependency-analysis/utils/collectInspectedSourceFiles.ts",
+        "line": 35,
+        "column": 1
+      }
+    }
+  ],
+  "sequenceScenarios": [
+    {
+      "kind": "export",
+      "name": "createDependencyGraphAsync",
+      "sourcePath": "src/features/dependency-analysis/application/createDependencyGraphAsync.ts",
+      "symbolName": "createDependencyGraphAsync",
+      "description": "Inspect project roots, then delegate dependency topology construction to the inspection API.",
+      "isReadme": false
+    },
+    {
+      "kind": "export",
+      "name": "createDependencyGraphFromInspectionsAsync",
+      "sourcePath": "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.ts",
+      "symbolName": "createDependencyGraphFromInspectionsAsync",
+      "description": "Build one canonical dependency graph from already-inspected projects without rescanning them.",
+      "isReadme": false
+    }
+  ],
+  "graphs": {
+    "imports": [
+      {
+        "fromPath": "src/dependencyGraph.ts",
+        "toPath": "src/features/dependency-analysis/adapters/outbound/cpp/cppDependencyGraphAnalyzer.ts",
+        "sourcePath": "src/dependencyGraph.ts"
+      },
+      {
+        "fromPath": "src/dependencyGraph.ts",
+        "toPath": "src/features/dependency-analysis/adapters/outbound/delphi/delphiDependencyGraphAnalyzer.ts",
+        "sourcePath": "src/dependencyGraph.ts"
+      },
+      {
+        "fromPath": "src/dependencyGraph.ts",
+        "toPath": "src/features/dependency-analysis/adapters/outbound/java/javaDependencyGraphAnalyzer.ts",
+        "sourcePath": "src/dependencyGraph.ts"
+      },
+      {
+        "fromPath": "src/dependencyGraph.ts",
+        "toPath": "src/features/dependency-analysis/adapters/outbound/kotlin/kotlinDependencyGraphAnalyzer.ts",
+        "sourcePath": "src/dependencyGraph.ts"
+      },
+      {
+        "fromPath": "src/dependencyGraph.ts",
+        "toPath": "src/features/dependency-analysis/adapters/outbound/python/pythonDependencyGraphAnalyzer.ts",
+        "sourcePath": "src/dependencyGraph.ts"
+      },
+      {
+        "fromPath": "src/dependencyGraph.ts",
+        "toPath": "src/features/dependency-analysis/adapters/outbound/typescript/typescriptDependencyGraphAnalyzer.ts",
+        "sourcePath": "src/dependencyGraph.ts"
+      },
+      {
+        "fromPath": "src/dependencyGraph.ts",
+        "toPath": "src/features/dependency-analysis/application/createDependencyGraphAsync.ts",
+        "sourcePath": "src/dependencyGraph.ts"
+      },
+      {
+        "fromPath": "src/dependencyGraph.ts",
+        "toPath": "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.ts",
+        "sourcePath": "src/dependencyGraph.ts"
+      },
+      {
+        "fromPath": "src/dependencyGraph.ts",
+        "toPath": "src/types/dependencyGraph.ts",
+        "sourcePath": "src/dependencyGraph.ts"
+      },
+      {
+        "fromPath": "examples/basic-usage/analyze.ts",
+        "toPath": "dist/dependencyGraph.d.ts",
+        "sourcePath": "examples/basic-usage/analyze.ts"
+      },
+      {
+        "fromPath": "src/features/dependency-analysis/application/createDependencyGraphAsync.materialization.test.ts",
+        "toPath": "src/dependencyGraph.ts",
+        "sourcePath": "src/features/dependency-analysis/application/createDependencyGraphAsync.materialization.test.ts"
+      },
+      {
+        "fromPath": "src/features/dependency-analysis/application/createDependencyGraphAsync.test.ts",
+        "toPath": "src/dependencyGraph.ts",
+        "sourcePath": "src/features/dependency-analysis/application/createDependencyGraphAsync.test.ts"
+      },
+      {
+        "fromPath": "src/features/dependency-analysis/application/createDependencyGraphAsync.ts",
+        "toPath": "src/types/dependencyGraph.ts",
+        "sourcePath": "src/features/dependency-analysis/application/createDependencyGraphAsync.ts"
+      },
+      {
+        "fromPath": "src/features/dependency-analysis/application/createDependencyGraphAsync.ts",
+        "toPath": "src/features/dependency-analysis/application/assertDependencyGraphProjectIds.ts",
+        "sourcePath": "src/features/dependency-analysis/application/createDependencyGraphAsync.ts"
+      },
+      {
+        "fromPath": "src/features/dependency-analysis/application/createDependencyGraphAsync.ts",
+        "toPath": "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.ts",
+        "sourcePath": "src/features/dependency-analysis/application/createDependencyGraphAsync.ts"
+      },
+      {
+        "fromPath": "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.test.ts",
+        "toPath": "src/dependencyGraph.ts",
+        "sourcePath": "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.test.ts"
+      },
+      {
+        "fromPath": "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.ts",
+        "toPath": "src/types/dependencyGraph.ts",
+        "sourcePath": "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.ts"
+      },
+      {
+        "fromPath": "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.ts",
+        "toPath": "src/features/dependency-analysis/adapters/outbound/cpp/cppDependencyGraphAnalyzer.ts",
+        "sourcePath": "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.ts"
+      },
+      {
+        "fromPath": "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.ts",
+        "toPath": "src/features/dependency-analysis/adapters/outbound/delphi/delphiDependencyGraphAnalyzer.ts",
+        "sourcePath": "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.ts"
+      },
+      {
+        "fromPath": "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.ts",
+        "toPath": "src/features/dependency-analysis/adapters/outbound/java/javaDependencyGraphAnalyzer.ts",
+        "sourcePath": "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.ts"
+      },
+      {
+        "fromPath": "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.ts",
+        "toPath": "src/features/dependency-analysis/adapters/outbound/kotlin/kotlinDependencyGraphAnalyzer.ts",
+        "sourcePath": "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.ts"
+      },
+      {
+        "fromPath": "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.ts",
+        "toPath": "src/features/dependency-analysis/adapters/outbound/python/pythonDependencyGraphAnalyzer.ts",
+        "sourcePath": "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.ts"
+      },
+      {
+        "fromPath": "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.ts",
+        "toPath": "src/features/dependency-analysis/adapters/outbound/typescript/typescriptDependencyGraphAnalyzer.ts",
+        "sourcePath": "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.ts"
+      },
+      {
+        "fromPath": "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.ts",
+        "toPath": "src/features/dependency-analysis/domain/createFocusPackageNode.ts",
+        "sourcePath": "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.ts"
+      },
+      {
+        "fromPath": "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.ts",
+        "toPath": "src/features/dependency-analysis/domain/readDependencyDeclarationsAsync.ts",
+        "sourcePath": "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.ts"
+      },
+      {
+        "fromPath": "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.ts",
+        "toPath": "src/features/dependency-analysis/application/assertDependencyGraphProjectIds.ts",
+        "sourcePath": "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.ts"
+      },
+      {
+        "fromPath": "src/features/dependency-analysis/domain/createFocusPackageNode.ts",
+        "toPath": "src/types/dependencyGraph.ts",
+        "sourcePath": "src/features/dependency-analysis/domain/createFocusPackageNode.ts"
+      },
+      {
+        "fromPath": "src/features/dependency-analysis/domain/readDependencyDeclarationsAsync.ts",
+        "toPath": "src/types/dependencyGraph.ts",
+        "sourcePath": "src/features/dependency-analysis/domain/readDependencyDeclarationsAsync.ts"
+      },
+      {
+        "fromPath": "src/features/dependency-analysis/utils/collectInspectedSourceFiles.ts",
+        "toPath": "src/types/dependencyGraph.ts",
+        "sourcePath": "src/features/dependency-analysis/utils/collectInspectedSourceFiles.ts"
+      },
+      {
+        "fromPath": "src/features/dependency-analysis/adapters/outbound/cpp/analyzeCppProjectAsync.ts",
+        "toPath": "src/types/dependencyGraph.ts",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/cpp/analyzeCppProjectAsync.ts"
+      },
+      {
+        "fromPath": "src/features/dependency-analysis/adapters/outbound/cpp/analyzeCppProjectAsync.ts",
+        "toPath": "src/features/dependency-analysis/utils/collectInspectedSourceFiles.ts",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/cpp/analyzeCppProjectAsync.ts"
+      },
+      {
+        "fromPath": "src/features/dependency-analysis/adapters/outbound/cpp/analyzeCppProjectAsync.ts",
+        "toPath": "src/features/dependency-analysis/adapters/outbound/cpp/extractCppDependencies.ts",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/cpp/analyzeCppProjectAsync.ts"
+      },
+      {
+        "fromPath": "src/features/dependency-analysis/adapters/outbound/cpp/analyzeCppProjectAsync.ts",
+        "toPath": "src/features/dependency-analysis/adapters/outbound/cpp/extractCppPackageFromInclude.ts",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/cpp/analyzeCppProjectAsync.ts"
+      },
+      {
+        "fromPath": "src/features/dependency-analysis/adapters/outbound/cpp/cppDependencyGraphAnalyzer.ts",
+        "toPath": "src/types/dependencyGraph.ts",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/cpp/cppDependencyGraphAnalyzer.ts"
+      },
+      {
+        "fromPath": "src/features/dependency-analysis/adapters/outbound/cpp/cppDependencyGraphAnalyzer.ts",
+        "toPath": "src/features/dependency-analysis/adapters/outbound/cpp/analyzeCppProjectAsync.ts",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/cpp/cppDependencyGraphAnalyzer.ts"
+      },
+      {
+        "fromPath": "src/features/dependency-analysis/adapters/outbound/delphi/analyzeDelphiProjectAsync.ts",
+        "toPath": "src/types/dependencyGraph.ts",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/delphi/analyzeDelphiProjectAsync.ts"
+      },
+      {
+        "fromPath": "src/features/dependency-analysis/adapters/outbound/delphi/analyzeDelphiProjectAsync.ts",
+        "toPath": "src/features/dependency-analysis/utils/collectInspectedSourceFiles.ts",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/delphi/analyzeDelphiProjectAsync.ts"
+      },
+      {
+        "fromPath": "src/features/dependency-analysis/adapters/outbound/delphi/analyzeDelphiProjectAsync.ts",
+        "toPath": "src/features/dependency-analysis/adapters/outbound/delphi/delphiPackageForFile.ts",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/delphi/analyzeDelphiProjectAsync.ts"
+      },
+      {
+        "fromPath": "src/features/dependency-analysis/adapters/outbound/delphi/analyzeDelphiProjectAsync.ts",
+        "toPath": "src/features/dependency-analysis/adapters/outbound/delphi/extractDelphiDependencies.ts",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/delphi/analyzeDelphiProjectAsync.ts"
+      },
+      {
+        "fromPath": "src/features/dependency-analysis/adapters/outbound/delphi/analyzeDelphiProjectAsync.ts",
+        "toPath": "src/features/dependency-analysis/adapters/outbound/delphi/extractDelphiPackageFromImport.ts",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/delphi/analyzeDelphiProjectAsync.ts"
+      },
+      {
+        "fromPath": "src/features/dependency-analysis/adapters/outbound/delphi/delphiDependencyGraphAnalyzer.ts",
+        "toPath": "src/types/dependencyGraph.ts",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/delphi/delphiDependencyGraphAnalyzer.ts"
+      },
+      {
+        "fromPath": "src/features/dependency-analysis/adapters/outbound/delphi/delphiDependencyGraphAnalyzer.ts",
+        "toPath": "src/features/dependency-analysis/adapters/outbound/delphi/analyzeDelphiProjectAsync.ts",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/delphi/delphiDependencyGraphAnalyzer.ts"
+      },
+      {
+        "fromPath": "src/features/dependency-analysis/adapters/outbound/java/analyzeJavaProjectAsync.ts",
+        "toPath": "src/types/dependencyGraph.ts",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/java/analyzeJavaProjectAsync.ts"
+      },
+      {
+        "fromPath": "src/features/dependency-analysis/adapters/outbound/java/analyzeJavaProjectAsync.ts",
+        "toPath": "src/features/dependency-analysis/utils/collectInspectedSourceFiles.ts",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/java/analyzeJavaProjectAsync.ts"
+      },
+      {
+        "fromPath": "src/features/dependency-analysis/adapters/outbound/java/analyzeJavaProjectAsync.ts",
+        "toPath": "src/features/dependency-analysis/adapters/outbound/java/extractJavaDependencies.ts",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/java/analyzeJavaProjectAsync.ts"
+      },
+      {
+        "fromPath": "src/features/dependency-analysis/adapters/outbound/java/analyzeJavaProjectAsync.ts",
+        "toPath": "src/features/dependency-analysis/adapters/outbound/java/extractJavaPackageFromImport.ts",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/java/analyzeJavaProjectAsync.ts"
+      },
+      {
+        "fromPath": "src/features/dependency-analysis/adapters/outbound/java/javaDependencyGraphAnalyzer.ts",
+        "toPath": "src/types/dependencyGraph.ts",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/java/javaDependencyGraphAnalyzer.ts"
+      },
+      {
+        "fromPath": "src/features/dependency-analysis/adapters/outbound/java/javaDependencyGraphAnalyzer.ts",
+        "toPath": "src/features/dependency-analysis/adapters/outbound/java/analyzeJavaProjectAsync.ts",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/java/javaDependencyGraphAnalyzer.ts"
+      },
+      {
+        "fromPath": "src/features/dependency-analysis/adapters/outbound/kotlin/analyzeKotlinProjectAsync.ts",
+        "toPath": "src/types/dependencyGraph.ts",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/kotlin/analyzeKotlinProjectAsync.ts"
+      },
+      {
+        "fromPath": "src/features/dependency-analysis/adapters/outbound/kotlin/analyzeKotlinProjectAsync.ts",
+        "toPath": "src/features/dependency-analysis/utils/collectInspectedSourceFiles.ts",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/kotlin/analyzeKotlinProjectAsync.ts"
+      },
+      {
+        "fromPath": "src/features/dependency-analysis/adapters/outbound/kotlin/analyzeKotlinProjectAsync.ts",
+        "toPath": "src/features/dependency-analysis/adapters/outbound/kotlin/extractKotlinDependencies.ts",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/kotlin/analyzeKotlinProjectAsync.ts"
+      },
+      {
+        "fromPath": "src/features/dependency-analysis/adapters/outbound/kotlin/analyzeKotlinProjectAsync.ts",
+        "toPath": "src/features/dependency-analysis/adapters/outbound/kotlin/extractKotlinPackageFromImport.ts",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/kotlin/analyzeKotlinProjectAsync.ts"
+      },
+      {
+        "fromPath": "src/features/dependency-analysis/adapters/outbound/kotlin/kotlinDependencyGraphAnalyzer.ts",
+        "toPath": "src/types/dependencyGraph.ts",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/kotlin/kotlinDependencyGraphAnalyzer.ts"
+      },
+      {
+        "fromPath": "src/features/dependency-analysis/adapters/outbound/kotlin/kotlinDependencyGraphAnalyzer.ts",
+        "toPath": "src/features/dependency-analysis/adapters/outbound/kotlin/analyzeKotlinProjectAsync.ts",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/kotlin/kotlinDependencyGraphAnalyzer.ts"
+      },
+      {
+        "fromPath": "src/features/dependency-analysis/adapters/outbound/python/analyzePythonProjectAsync.ts",
+        "toPath": "src/types/dependencyGraph.ts",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/python/analyzePythonProjectAsync.ts"
+      },
+      {
+        "fromPath": "src/features/dependency-analysis/adapters/outbound/python/analyzePythonProjectAsync.ts",
+        "toPath": "src/features/dependency-analysis/utils/collectInspectedSourceFiles.ts",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/python/analyzePythonProjectAsync.ts"
+      },
+      {
+        "fromPath": "src/features/dependency-analysis/adapters/outbound/python/analyzePythonProjectAsync.ts",
+        "toPath": "src/features/dependency-analysis/adapters/outbound/python/extractPythonDependencies.ts",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/python/analyzePythonProjectAsync.ts"
+      },
+      {
+        "fromPath": "src/features/dependency-analysis/adapters/outbound/python/analyzePythonProjectAsync.ts",
+        "toPath": "src/features/dependency-analysis/adapters/outbound/python/extractPythonPackageFromImport.ts",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/python/analyzePythonProjectAsync.ts"
+      },
+      {
+        "fromPath": "src/features/dependency-analysis/adapters/outbound/python/analyzePythonProjectAsync.ts",
+        "toPath": "src/features/dependency-analysis/adapters/outbound/python/pythonPackageForFile.ts",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/python/analyzePythonProjectAsync.ts"
+      },
+      {
+        "fromPath": "src/features/dependency-analysis/adapters/outbound/python/pythonDependencyGraphAnalyzer.ts",
+        "toPath": "src/types/dependencyGraph.ts",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/python/pythonDependencyGraphAnalyzer.ts"
+      },
+      {
+        "fromPath": "src/features/dependency-analysis/adapters/outbound/python/pythonDependencyGraphAnalyzer.ts",
+        "toPath": "src/features/dependency-analysis/adapters/outbound/python/analyzePythonProjectAsync.ts",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/python/pythonDependencyGraphAnalyzer.ts"
+      },
+      {
+        "fromPath": "src/features/dependency-analysis/adapters/outbound/typescript/analyzeTypeScriptProjectAsync.ts",
+        "toPath": "src/types/dependencyGraph.ts",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/typescript/analyzeTypeScriptProjectAsync.ts"
+      },
+      {
+        "fromPath": "src/features/dependency-analysis/adapters/outbound/typescript/analyzeTypeScriptProjectAsync.ts",
+        "toPath": "src/features/dependency-analysis/utils/collectInspectedSourceFiles.ts",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/typescript/analyzeTypeScriptProjectAsync.ts"
+      },
+      {
+        "fromPath": "src/features/dependency-analysis/adapters/outbound/typescript/analyzeTypeScriptProjectAsync.ts",
+        "toPath": "src/features/dependency-analysis/adapters/outbound/typescript/createTypeScriptModuleNodes.ts",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/typescript/analyzeTypeScriptProjectAsync.ts"
+      },
+      {
+        "fromPath": "src/features/dependency-analysis/adapters/outbound/typescript/analyzeTypeScriptProjectAsync.ts",
+        "toPath": "src/features/dependency-analysis/adapters/outbound/typescript/extractTypeScriptImports.ts",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/typescript/analyzeTypeScriptProjectAsync.ts"
+      },
+      {
+        "fromPath": "src/features/dependency-analysis/adapters/outbound/typescript/analyzeTypeScriptProjectAsync.ts",
+        "toPath": "src/features/dependency-analysis/adapters/outbound/typescript/modulePathForFile.ts",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/typescript/analyzeTypeScriptProjectAsync.ts"
+      },
+      {
+        "fromPath": "src/features/dependency-analysis/adapters/outbound/typescript/analyzeTypeScriptProjectAsync.ts",
+        "toPath": "src/features/dependency-analysis/adapters/outbound/typescript/resolveTypeScriptImport.ts",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/typescript/analyzeTypeScriptProjectAsync.ts"
+      },
+      {
+        "fromPath": "src/features/dependency-analysis/adapters/outbound/typescript/createTypeScriptModuleNodes.ts",
+        "toPath": "src/types/dependencyGraph.ts",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/typescript/createTypeScriptModuleNodes.ts"
+      },
+      {
+        "fromPath": "src/features/dependency-analysis/adapters/outbound/typescript/createTypeScriptModuleNodes.ts",
+        "toPath": "src/features/dependency-analysis/adapters/outbound/typescript/modulePathForFile.ts",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/typescript/createTypeScriptModuleNodes.ts"
+      },
+      {
+        "fromPath": "src/features/dependency-analysis/adapters/outbound/typescript/resolveTypeScriptImport.ts",
+        "toPath": "src/types/dependencyGraph.ts",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/typescript/resolveTypeScriptImport.ts"
+      },
+      {
+        "fromPath": "src/features/dependency-analysis/adapters/outbound/typescript/typescriptDependencyGraphAnalyzer.ts",
+        "toPath": "src/types/dependencyGraph.ts",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/typescript/typescriptDependencyGraphAnalyzer.ts"
+      },
+      {
+        "fromPath": "src/features/dependency-analysis/adapters/outbound/typescript/typescriptDependencyGraphAnalyzer.ts",
+        "toPath": "src/features/dependency-analysis/adapters/outbound/typescript/analyzeTypeScriptProjectAsync.ts",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/typescript/typescriptDependencyGraphAnalyzer.ts"
+      }
+    ],
+    "calls": [
+      {
+        "fromSymbol": "paradox.config.ts",
+        "toSymbol": "defineParadoxConfig",
+        "callExpression": "defineParadoxConfig",
+        "sourcePath": "paradox.config.ts"
+      },
+      {
+        "fromSymbol": "examples/basic-usage/analyze.ts",
+        "toSymbol": "createDependencyGraphAsync",
+        "callExpression": "createDependencyGraphAsync",
+        "sourcePath": "examples/basic-usage/analyze.ts"
+      },
+      {
+        "fromSymbol": "src/features/dependency-analysis/application/createDependencyGraphAsync.materialization.test.ts",
+        "toSymbol": "test",
+        "callExpression": "test",
+        "sourcePath": "src/features/dependency-analysis/application/createDependencyGraphAsync.materialization.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/dependency-analysis/application/createDependencyGraphAsync.materialization.test.ts",
+        "toSymbol": "createFixtureAsync",
+        "callExpression": "createFixtureAsync",
+        "sourcePath": "src/features/dependency-analysis/application/createDependencyGraphAsync.materialization.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/dependency-analysis/application/createDependencyGraphAsync.materialization.test.ts",
+        "toSymbol": "symlink",
+        "callExpression": "symlink",
+        "sourcePath": "src/features/dependency-analysis/application/createDependencyGraphAsync.materialization.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/dependency-analysis/application/createDependencyGraphAsync.materialization.test.ts",
+        "toSymbol": "createDependencyGraphAsync",
+        "callExpression": "createDependencyGraphAsync",
+        "sourcePath": "src/features/dependency-analysis/application/createDependencyGraphAsync.materialization.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/dependency-analysis/application/createDependencyGraphAsync.materialization.test.ts",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "src/features/dependency-analysis/application/createDependencyGraphAsync.materialization.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/dependency-analysis/application/createDependencyGraphAsync.materialization.test.ts",
+        "toSymbol": "rm",
+        "callExpression": "rm",
+        "sourcePath": "src/features/dependency-analysis/application/createDependencyGraphAsync.materialization.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/dependency-analysis/application/createDependencyGraphAsync.materialization.test.ts",
+        "toSymbol": "rejects",
+        "callExpression": "rejects",
+        "sourcePath": "src/features/dependency-analysis/application/createDependencyGraphAsync.materialization.test.ts"
+      },
+      {
+        "fromSymbol": "createFixtureAsync",
+        "toSymbol": "mkdtemp",
+        "callExpression": "mkdtemp",
+        "sourcePath": "src/features/dependency-analysis/application/createDependencyGraphAsync.materialization.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/dependency-analysis/application/createDependencyGraphAsync.materialization.test.ts",
+        "toSymbol": "mkdir",
+        "callExpression": "mkdir",
+        "sourcePath": "src/features/dependency-analysis/application/createDependencyGraphAsync.materialization.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/dependency-analysis/application/createDependencyGraphAsync.materialization.test.ts",
+        "toSymbol": "writeFile",
+        "callExpression": "writeFile",
+        "sourcePath": "src/features/dependency-analysis/application/createDependencyGraphAsync.materialization.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/dependency-analysis/application/createDependencyGraphAsync.test.ts",
+        "toSymbol": "test",
+        "callExpression": "test",
+        "sourcePath": "src/features/dependency-analysis/application/createDependencyGraphAsync.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/dependency-analysis/application/createDependencyGraphAsync.test.ts",
+        "toSymbol": "createFixtureAsync",
+        "callExpression": "createFixtureAsync",
+        "sourcePath": "src/features/dependency-analysis/application/createDependencyGraphAsync.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/dependency-analysis/application/createDependencyGraphAsync.test.ts",
+        "toSymbol": "createDependencyGraphAsync",
+        "callExpression": "createDependencyGraphAsync",
+        "sourcePath": "src/features/dependency-analysis/application/createDependencyGraphAsync.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/dependency-analysis/application/createDependencyGraphAsync.test.ts",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "src/features/dependency-analysis/application/createDependencyGraphAsync.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/dependency-analysis/application/createDependencyGraphAsync.test.ts",
+        "toSymbol": "rm",
+        "callExpression": "rm",
+        "sourcePath": "src/features/dependency-analysis/application/createDependencyGraphAsync.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/dependency-analysis/application/createDependencyGraphAsync.test.ts",
+        "toSymbol": "rejects",
+        "callExpression": "rejects",
+        "sourcePath": "src/features/dependency-analysis/application/createDependencyGraphAsync.test.ts"
+      },
+      {
+        "fromSymbol": "createFixtureAsync",
+        "toSymbol": "mkdtemp",
+        "callExpression": "mkdtemp",
+        "sourcePath": "src/features/dependency-analysis/application/createDependencyGraphAsync.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/dependency-analysis/application/createDependencyGraphAsync.test.ts",
+        "toSymbol": "mkdir",
+        "callExpression": "mkdir",
+        "sourcePath": "src/features/dependency-analysis/application/createDependencyGraphAsync.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/dependency-analysis/application/createDependencyGraphAsync.test.ts",
+        "toSymbol": "writeFile",
+        "callExpression": "writeFile",
+        "sourcePath": "src/features/dependency-analysis/application/createDependencyGraphAsync.test.ts"
+      },
+      {
+        "fromSymbol": "createDependencyGraphAsync",
+        "toSymbol": "assertDependencyGraphProjectIds",
+        "callExpression": "assertDependencyGraphProjectIds",
+        "sourcePath": "src/features/dependency-analysis/application/createDependencyGraphAsync.ts"
+      },
+      {
+        "fromSymbol": "src/features/dependency-analysis/application/createDependencyGraphAsync.ts",
+        "toSymbol": "inspectProjectAsync",
+        "callExpression": "inspectProjectAsync",
+        "sourcePath": "src/features/dependency-analysis/application/createDependencyGraphAsync.ts"
+      },
+      {
+        "fromSymbol": "createDependencyGraphAsync",
+        "toSymbol": "createDependencyGraphFromInspectionsAsync",
+        "callExpression": "createDependencyGraphFromInspectionsAsync",
+        "sourcePath": "src/features/dependency-analysis/application/createDependencyGraphAsync.ts"
+      },
+      {
+        "fromSymbol": "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.test.ts",
+        "toSymbol": "test",
+        "callExpression": "test",
+        "sourcePath": "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.test.ts",
+        "toSymbol": "createFixtureAsync",
+        "callExpression": "createFixtureAsync",
+        "sourcePath": "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.test.ts",
+        "toSymbol": "expectEquivalentGraphsAsync",
+        "callExpression": "expectEquivalentGraphsAsync",
+        "sourcePath": "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.test.ts",
+        "toSymbol": "rm",
+        "callExpression": "rm",
+        "sourcePath": "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.test.ts",
+        "toSymbol": "inspectProjectAsync",
+        "callExpression": "inspectProjectAsync",
+        "sourcePath": "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.test.ts",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.test.ts",
+        "toSymbol": "createDependencyGraphFromInspectionsAsync",
+        "callExpression": "createDependencyGraphFromInspectionsAsync",
+        "sourcePath": "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.test.ts",
+        "toSymbol": "virtualInspection",
+        "callExpression": "virtualInspection",
+        "sourcePath": "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.test.ts",
+        "toSymbol": "rejects",
+        "callExpression": "rejects",
+        "sourcePath": "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.test.ts"
+      },
+      {
+        "fromSymbol": "expectEquivalentGraphsAsync",
+        "toSymbol": "inspectProjectAsync",
+        "callExpression": "inspectProjectAsync",
+        "sourcePath": "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.test.ts"
+      },
+      {
+        "fromSymbol": "expectEquivalentGraphsAsync",
+        "toSymbol": "createDependencyGraphAsync",
+        "callExpression": "createDependencyGraphAsync",
+        "sourcePath": "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.test.ts"
+      },
+      {
+        "fromSymbol": "expectEquivalentGraphsAsync",
+        "toSymbol": "createDependencyGraphFromInspectionsAsync",
+        "callExpression": "createDependencyGraphFromInspectionsAsync",
+        "sourcePath": "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.test.ts"
+      },
+      {
+        "fromSymbol": "expectEquivalentGraphsAsync",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.test.ts"
+      },
+      {
+        "fromSymbol": "createFixtureAsync",
+        "toSymbol": "mkdtemp",
+        "callExpression": "mkdtemp",
+        "sourcePath": "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.test.ts",
+        "toSymbol": "mkdir",
+        "callExpression": "mkdir",
+        "sourcePath": "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.test.ts",
+        "toSymbol": "writeFile",
+        "callExpression": "writeFile",
+        "sourcePath": "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.test.ts"
+      },
+      {
+        "fromSymbol": "createDependencyGraphFromInspectionsAsync",
+        "toSymbol": "assertDependencyGraphProjectIds",
+        "callExpression": "assertDependencyGraphProjectIds",
+        "sourcePath": "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.ts"
+      },
+      {
+        "fromSymbol": "createDependencyGraphFromInspectionsAsync",
+        "toSymbol": "createFocusPackageMap",
+        "callExpression": "createFocusPackageMap",
+        "sourcePath": "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.ts"
+      },
+      {
+        "fromSymbol": "createDependencyGraphFromInspectionsAsync",
+        "toSymbol": "analyzePackagesAsync",
+        "callExpression": "analyzePackagesAsync",
+        "sourcePath": "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.ts"
+      },
+      {
+        "fromSymbol": "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.ts",
+        "toSymbol": "createFocusPackageNode",
+        "callExpression": "createFocusPackageNode",
+        "sourcePath": "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.ts"
+      },
+      {
+        "fromSymbol": "createDependencyGraphFromInspectionsAsync",
+        "toSymbol": "createGraph",
+        "callExpression": "createGraph",
+        "sourcePath": "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.ts"
+      },
+      {
+        "fromSymbol": "createInspectedInputAsync",
+        "toSymbol": "selectFocusPackages",
+        "callExpression": "selectFocusPackages",
+        "sourcePath": "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.ts"
+      },
+      {
+        "fromSymbol": "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.ts",
+        "toSymbol": "readDependencyDeclarationsAsync",
+        "callExpression": "readDependencyDeclarationsAsync",
+        "sourcePath": "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.ts"
+      },
+      {
+        "fromSymbol": "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.ts",
+        "toSymbol": "supports",
+        "callExpression": "supports",
+        "sourcePath": "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.ts"
+      },
+      {
+        "fromSymbol": "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.ts",
+        "toSymbol": "analyzeAsync",
+        "callExpression": "analyzer.analyzeAsync",
+        "sourcePath": "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.ts"
+      },
+      {
+        "fromSymbol": "readDependencyDeclarationsAsync",
+        "toSymbol": "readFile",
+        "callExpression": "readFile",
+        "sourcePath": "src/features/dependency-analysis/domain/readDependencyDeclarationsAsync.ts"
+      },
+      {
+        "fromSymbol": "readDependencyDeclarationsAsync",
+        "toSymbol": "isRecord",
+        "callExpression": "isRecord",
+        "sourcePath": "src/features/dependency-analysis/domain/readDependencyDeclarationsAsync.ts"
+      },
+      {
+        "fromSymbol": "readDependencyDeclarationsAsync",
+        "toSymbol": "declarationsFor",
+        "callExpression": "declarationsFor",
+        "sourcePath": "src/features/dependency-analysis/domain/readDependencyDeclarationsAsync.ts"
+      },
+      {
+        "fromSymbol": "declarationsFor",
+        "toSymbol": "isRecord",
+        "callExpression": "isRecord",
+        "sourcePath": "src/features/dependency-analysis/domain/readDependencyDeclarationsAsync.ts"
+      },
+      {
+        "fromSymbol": "src/features/dependency-analysis/utils/collectInspectedSourceFiles.ts",
+        "toSymbol": "toPortablePath",
+        "callExpression": "toPortablePath",
+        "sourcePath": "src/features/dependency-analysis/utils/collectInspectedSourceFiles.ts"
+      },
+      {
+        "fromSymbol": "src/features/dependency-analysis/utils/collectInspectedSourceFiles.ts",
+        "toSymbol": "isSourceFile",
+        "callExpression": "isSourceFile",
+        "sourcePath": "src/features/dependency-analysis/utils/collectInspectedSourceFiles.ts"
+      },
+      {
+        "fromSymbol": "src/features/dependency-analysis/utils/collectInspectedSourceFiles.ts",
+        "toSymbol": "isWithinSourceRoot",
+        "callExpression": "isWithinSourceRoot",
+        "sourcePath": "src/features/dependency-analysis/utils/collectInspectedSourceFiles.ts"
+      },
+      {
+        "fromSymbol": "analyzeCppProjectAsync",
+        "toSymbol": "collectInspectedSourceFiles",
+        "callExpression": "collectInspectedSourceFiles",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/cpp/analyzeCppProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "src/features/dependency-analysis/adapters/outbound/cpp/analyzeCppProjectAsync.ts",
+        "toSymbol": "extractCppDependencies",
+        "callExpression": "extractCppDependencies",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/cpp/analyzeCppProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "src/features/dependency-analysis/adapters/outbound/cpp/analyzeCppProjectAsync.ts",
+        "toSymbol": "readFile",
+        "callExpression": "readFile",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/cpp/analyzeCppProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "analyzeCppProjectAsync",
+        "toSymbol": "addIntrinsicHierarchy",
+        "callExpression": "addIntrinsicHierarchy",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/cpp/analyzeCppProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "analyzeCppProjectAsync",
+        "toSymbol": "nodeIdForNamespace",
+        "callExpression": "nodeIdForNamespace",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/cpp/analyzeCppProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "analyzeCppProjectAsync",
+        "toSymbol": "addInclude",
+        "callExpression": "addInclude",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/cpp/analyzeCppProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "addInclude",
+        "toSymbol": "extractCppPackageFromInclude",
+        "callExpression": "extractCppPackageFromInclude",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/cpp/analyzeCppProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "addInclude",
+        "toSymbol": "nodeIdForNamespace",
+        "callExpression": "nodeIdForNamespace",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/cpp/analyzeCppProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "addInclude",
+        "toSymbol": "addIntrinsicHierarchy",
+        "callExpression": "addIntrinsicHierarchy",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/cpp/analyzeCppProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "addInclude",
+        "toSymbol": "toPortablePath",
+        "callExpression": "toPortablePath",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/cpp/analyzeCppProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "src/features/dependency-analysis/adapters/outbound/cpp/analyzeCppProjectAsync.ts",
+        "toSymbol": "nodeIdForNamespace",
+        "callExpression": "nodeIdForNamespace",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/cpp/analyzeCppProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "analyzeDelphiProjectAsync",
+        "toSymbol": "collectInspectedSourceFiles",
+        "callExpression": "collectInspectedSourceFiles",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/delphi/analyzeDelphiProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "src/features/dependency-analysis/adapters/outbound/delphi/analyzeDelphiProjectAsync.ts",
+        "toSymbol": "extractDelphiDependencies",
+        "callExpression": "extractDelphiDependencies",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/delphi/analyzeDelphiProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "src/features/dependency-analysis/adapters/outbound/delphi/analyzeDelphiProjectAsync.ts",
+        "toSymbol": "readFile",
+        "callExpression": "readFile",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/delphi/analyzeDelphiProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "src/features/dependency-analysis/adapters/outbound/delphi/analyzeDelphiProjectAsync.ts",
+        "toSymbol": "delphiPackageForFile",
+        "callExpression": "delphiPackageForFile",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/delphi/analyzeDelphiProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "analyzeDelphiProjectAsync",
+        "toSymbol": "addIntrinsicHierarchy",
+        "callExpression": "addIntrinsicHierarchy",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/delphi/analyzeDelphiProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "analyzeDelphiProjectAsync",
+        "toSymbol": "nodeIdForPackage",
+        "callExpression": "nodeIdForPackage",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/delphi/analyzeDelphiProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "analyzeDelphiProjectAsync",
+        "toSymbol": "addImport",
+        "callExpression": "addImport",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/delphi/analyzeDelphiProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "addImport",
+        "toSymbol": "extractDelphiPackageFromImport",
+        "callExpression": "extractDelphiPackageFromImport",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/delphi/analyzeDelphiProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "addImport",
+        "toSymbol": "nodeIdForPackage",
+        "callExpression": "nodeIdForPackage",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/delphi/analyzeDelphiProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "addImport",
+        "toSymbol": "toPortablePath",
+        "callExpression": "toPortablePath",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/delphi/analyzeDelphiProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "src/features/dependency-analysis/adapters/outbound/delphi/analyzeDelphiProjectAsync.ts",
+        "toSymbol": "nodeIdForPackage",
+        "callExpression": "nodeIdForPackage",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/delphi/analyzeDelphiProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "delphiPackageForFile",
+        "toSymbol": "toPortablePath",
+        "callExpression": "toPortablePath",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/delphi/delphiPackageForFile.ts"
+      },
+      {
+        "fromSymbol": "analyzeJavaProjectAsync",
+        "toSymbol": "collectInspectedSourceFiles",
+        "callExpression": "collectInspectedSourceFiles",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/java/analyzeJavaProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "src/features/dependency-analysis/adapters/outbound/java/analyzeJavaProjectAsync.ts",
+        "toSymbol": "extractJavaDependencies",
+        "callExpression": "extractJavaDependencies",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/java/analyzeJavaProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "src/features/dependency-analysis/adapters/outbound/java/analyzeJavaProjectAsync.ts",
+        "toSymbol": "readFile",
+        "callExpression": "readFile",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/java/analyzeJavaProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "analyzeJavaProjectAsync",
+        "toSymbol": "addIntrinsicHierarchy",
+        "callExpression": "addIntrinsicHierarchy",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/java/analyzeJavaProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "analyzeJavaProjectAsync",
+        "toSymbol": "nodeIdForPackage",
+        "callExpression": "nodeIdForPackage",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/java/analyzeJavaProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "analyzeJavaProjectAsync",
+        "toSymbol": "addImport",
+        "callExpression": "addImport",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/java/analyzeJavaProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "addImport",
+        "toSymbol": "extractJavaPackageFromImport",
+        "callExpression": "extractJavaPackageFromImport",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/java/analyzeJavaProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "addImport",
+        "toSymbol": "nodeIdForPackage",
+        "callExpression": "nodeIdForPackage",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/java/analyzeJavaProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "addImport",
+        "toSymbol": "toPortablePath",
+        "callExpression": "toPortablePath",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/java/analyzeJavaProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "src/features/dependency-analysis/adapters/outbound/java/analyzeJavaProjectAsync.ts",
+        "toSymbol": "nodeIdForPackage",
+        "callExpression": "nodeIdForPackage",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/java/analyzeJavaProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "analyzeKotlinProjectAsync",
+        "toSymbol": "collectInspectedSourceFiles",
+        "callExpression": "collectInspectedSourceFiles",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/kotlin/analyzeKotlinProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "src/features/dependency-analysis/adapters/outbound/kotlin/analyzeKotlinProjectAsync.ts",
+        "toSymbol": "extractKotlinDependencies",
+        "callExpression": "extractKotlinDependencies",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/kotlin/analyzeKotlinProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "src/features/dependency-analysis/adapters/outbound/kotlin/analyzeKotlinProjectAsync.ts",
+        "toSymbol": "readFile",
+        "callExpression": "readFile",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/kotlin/analyzeKotlinProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "analyzeKotlinProjectAsync",
+        "toSymbol": "addIntrinsicHierarchy",
+        "callExpression": "addIntrinsicHierarchy",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/kotlin/analyzeKotlinProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "analyzeKotlinProjectAsync",
+        "toSymbol": "nodeIdForPackage",
+        "callExpression": "nodeIdForPackage",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/kotlin/analyzeKotlinProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "analyzeKotlinProjectAsync",
+        "toSymbol": "addImport",
+        "callExpression": "addImport",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/kotlin/analyzeKotlinProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "addImport",
+        "toSymbol": "extractKotlinPackageFromImport",
+        "callExpression": "extractKotlinPackageFromImport",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/kotlin/analyzeKotlinProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "addImport",
+        "toSymbol": "nodeIdForPackage",
+        "callExpression": "nodeIdForPackage",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/kotlin/analyzeKotlinProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "addImport",
+        "toSymbol": "toPortablePath",
+        "callExpression": "toPortablePath",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/kotlin/analyzeKotlinProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "src/features/dependency-analysis/adapters/outbound/kotlin/analyzeKotlinProjectAsync.ts",
+        "toSymbol": "nodeIdForPackage",
+        "callExpression": "nodeIdForPackage",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/kotlin/analyzeKotlinProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "analyzePythonProjectAsync",
+        "toSymbol": "collectInspectedSourceFiles",
+        "callExpression": "collectInspectedSourceFiles",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/python/analyzePythonProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "src/features/dependency-analysis/adapters/outbound/python/analyzePythonProjectAsync.ts",
+        "toSymbol": "pythonPackageForFile",
+        "callExpression": "pythonPackageForFile",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/python/analyzePythonProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "src/features/dependency-analysis/adapters/outbound/python/analyzePythonProjectAsync.ts",
+        "toSymbol": "extractPythonDependencies",
+        "callExpression": "extractPythonDependencies",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/python/analyzePythonProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "src/features/dependency-analysis/adapters/outbound/python/analyzePythonProjectAsync.ts",
+        "toSymbol": "readFile",
+        "callExpression": "readFile",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/python/analyzePythonProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "analyzePythonProjectAsync",
+        "toSymbol": "addIntrinsicHierarchy",
+        "callExpression": "addIntrinsicHierarchy",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/python/analyzePythonProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "analyzePythonProjectAsync",
+        "toSymbol": "nodeIdForPackage",
+        "callExpression": "nodeIdForPackage",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/python/analyzePythonProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "analyzePythonProjectAsync",
+        "toSymbol": "addImport",
+        "callExpression": "addImport",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/python/analyzePythonProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "addImport",
+        "toSymbol": "extractPythonPackageFromImport",
+        "callExpression": "extractPythonPackageFromImport",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/python/analyzePythonProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "addImport",
+        "toSymbol": "nodeIdForPackage",
+        "callExpression": "nodeIdForPackage",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/python/analyzePythonProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "addImport",
+        "toSymbol": "toPortablePath",
+        "callExpression": "toPortablePath",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/python/analyzePythonProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "src/features/dependency-analysis/adapters/outbound/python/analyzePythonProjectAsync.ts",
+        "toSymbol": "nodeIdForPackage",
+        "callExpression": "nodeIdForPackage",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/python/analyzePythonProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "pythonPackageForFile",
+        "toSymbol": "toPortablePath",
+        "callExpression": "toPortablePath",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/python/pythonPackageForFile.ts"
+      },
+      {
+        "fromSymbol": "analyzeTypeScriptProjectAsync",
+        "toSymbol": "collectInspectedSourceFiles",
+        "callExpression": "collectInspectedSourceFiles",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/typescript/analyzeTypeScriptProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "analyzeTypeScriptProjectAsync",
+        "toSymbol": "createTypeScriptModuleNodes",
+        "callExpression": "createTypeScriptModuleNodes",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/typescript/analyzeTypeScriptProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "analyzeTypeScriptProjectAsync",
+        "toSymbol": "nodeIdForFile",
+        "callExpression": "nodeIdForFile",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/typescript/analyzeTypeScriptProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "analyzeTypeScriptProjectAsync",
+        "toSymbol": "extractTypeScriptImports",
+        "callExpression": "extractTypeScriptImports",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/typescript/analyzeTypeScriptProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "analyzeTypeScriptProjectAsync",
+        "toSymbol": "readFile",
+        "callExpression": "readFile",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/typescript/analyzeTypeScriptProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "analyzeTypeScriptProjectAsync",
+        "toSymbol": "addImport",
+        "callExpression": "addImport",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/typescript/analyzeTypeScriptProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "addImport",
+        "toSymbol": "resolveTypeScriptImport",
+        "callExpression": "resolveTypeScriptImport",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/typescript/analyzeTypeScriptProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "addImport",
+        "toSymbol": "addTargetNode",
+        "callExpression": "addTargetNode",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/typescript/analyzeTypeScriptProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "addImport",
+        "toSymbol": "toPortablePath",
+        "callExpression": "toPortablePath",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/typescript/analyzeTypeScriptProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "nodeIdForFile",
+        "toSymbol": "modulePathForFile",
+        "callExpression": "modulePathForFile",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/typescript/analyzeTypeScriptProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "src/features/dependency-analysis/adapters/outbound/typescript/createTypeScriptModuleNodes.ts",
+        "toSymbol": "ancestorModulePaths",
+        "callExpression": "ancestorModulePaths",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/typescript/createTypeScriptModuleNodes.ts"
+      },
+      {
+        "fromSymbol": "src/features/dependency-analysis/adapters/outbound/typescript/createTypeScriptModuleNodes.ts",
+        "toSymbol": "modulePathForFile",
+        "callExpression": "modulePathForFile",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/typescript/createTypeScriptModuleNodes.ts"
+      },
+      {
+        "fromSymbol": "modulePathForFile",
+        "toSymbol": "toPortablePath",
+        "callExpression": "toPortablePath",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/typescript/modulePathForFile.ts"
+      },
+      {
+        "fromSymbol": "resolveTypeScriptImport",
+        "toSymbol": "resolveIntrinsic",
+        "callExpression": "resolveIntrinsic",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/typescript/resolveTypeScriptImport.ts"
+      },
+      {
+        "fromSymbol": "resolveTypeScriptImport",
+        "toSymbol": "barePackageName",
+        "callExpression": "barePackageName",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/typescript/resolveTypeScriptImport.ts"
+      },
+      {
+        "fromSymbol": "resolveTypeScriptImport",
+        "toSymbol": "declarationsFor",
+        "callExpression": "declarationsFor",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/typescript/resolveTypeScriptImport.ts"
+      },
+      {
+        "fromSymbol": "resolveIntrinsic",
+        "toSymbol": "sourceCandidates",
+        "callExpression": "sourceCandidates",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/typescript/resolveTypeScriptImport.ts"
+      },
+      {
+        "fromSymbol": "resolveIntrinsic",
+        "toSymbol": "toPortablePath",
+        "callExpression": "toPortablePath",
+        "sourcePath": "src/features/dependency-analysis/adapters/outbound/typescript/resolveTypeScriptImport.ts"
+      }
+    ],
+    "typeReferences": [
+      {
+        "fromSymbol": "createDependencyGraphAsync",
+        "toType": "CreateDependencyGraphInput",
+        "sourcePath": "src/features/dependency-analysis/application/createDependencyGraphAsync.ts"
+      },
+      {
+        "fromSymbol": "createDependencyGraphAsync",
+        "toType": "DependencyGraph",
+        "sourcePath": "src/features/dependency-analysis/application/createDependencyGraphAsync.ts"
+      },
+      {
+        "fromSymbol": "createDependencyGraphFromInspectionsAsync",
+        "toType": "CreateDependencyGraphFromInspectionsInput",
+        "sourcePath": "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.ts"
+      },
+      {
+        "fromSymbol": "createDependencyGraphFromInspectionsAsync",
+        "toType": "DependencyGraph",
+        "sourcePath": "src/features/dependency-analysis/application/createDependencyGraphFromInspectionsAsync.ts"
+      },
+      {
+        "fromSymbol": "CreateDependencyGraphFromInspectionsInput",
+        "toType": "AbortSignal",
+        "sourcePath": "src/types/dependencyGraph.ts"
+      },
+      {
+        "fromSymbol": "CreateDependencyGraphFromInspectionsInput",
+        "toType": "DependencyGraphAnalyzer",
+        "sourcePath": "src/types/dependencyGraph.ts"
+      },
+      {
+        "fromSymbol": "CreateDependencyGraphFromInspectionsInput",
+        "toType": "DependencyGraphInspectionProjectInput",
+        "sourcePath": "src/types/dependencyGraph.ts"
+      },
+      {
+        "fromSymbol": "CreateDependencyGraphInput",
+        "toType": "AbortSignal",
+        "sourcePath": "src/types/dependencyGraph.ts"
+      },
+      {
+        "fromSymbol": "CreateDependencyGraphInput",
+        "toType": "DependencyGraphAnalyzer",
+        "sourcePath": "src/types/dependencyGraph.ts"
+      },
+      {
+        "fromSymbol": "CreateDependencyGraphInput",
+        "toType": "DependencyGraphProjectInput",
+        "sourcePath": "src/types/dependencyGraph.ts"
+      },
+      {
+        "fromSymbol": "DependencyDeclaration",
+        "toType": "DependencyDeclarationKind",
+        "sourcePath": "src/types/dependencyGraph.ts"
+      },
+      {
+        "fromSymbol": "DependencyGraphAnalyzer",
+        "toType": "DependencyGraphAnalyzerContext",
+        "sourcePath": "src/types/dependencyGraph.ts"
+      },
+      {
+        "fromSymbol": "DependencyGraphAnalyzer",
+        "toType": "DependencyGraphFragment",
+        "sourcePath": "src/types/dependencyGraph.ts"
+      },
+      {
+        "fromSymbol": "DependencyGraphAnalyzer",
+        "toType": "ProjectDetection",
+        "sourcePath": "src/types/dependencyGraph.ts"
+      },
+      {
+        "fromSymbol": "DependencyGraphAnalyzerContext",
+        "toType": "AbortSignal",
+        "sourcePath": "src/types/dependencyGraph.ts"
+      },
+      {
+        "fromSymbol": "DependencyGraphAnalyzerContext",
+        "toType": "DependencyGraphPackage",
+        "sourcePath": "src/types/dependencyGraph.ts"
+      },
+      {
+        "fromSymbol": "DependencyGraphAnalyzerContext",
+        "toType": "ProjectInspection",
+        "sourcePath": "src/types/dependencyGraph.ts"
+      },
+      {
+        "fromSymbol": "DependencyGraphAnalyzerContext",
+        "toType": "ReadonlyMap",
+        "sourcePath": "src/types/dependencyGraph.ts"
+      },
+      {
+        "fromSymbol": "DependencyGraphEdgeData",
+        "toType": "DependencyImportEvidence",
+        "sourcePath": "src/types/dependencyGraph.ts"
+      },
+      {
+        "fromSymbol": "DependencyGraphFragment",
+        "toType": "DependencyGraphEdgeData",
+        "sourcePath": "src/types/dependencyGraph.ts"
+      },
+      {
+        "fromSymbol": "DependencyGraphFragment",
+        "toType": "DependencyGraphNodeData",
+        "sourcePath": "src/types/dependencyGraph.ts"
+      },
+      {
+        "fromSymbol": "DependencyGraphFragment",
+        "toType": "GraphEdge",
+        "sourcePath": "src/types/dependencyGraph.ts"
+      },
+      {
+        "fromSymbol": "DependencyGraphFragment",
+        "toType": "GraphNode",
+        "sourcePath": "src/types/dependencyGraph.ts"
+      },
+      {
+        "fromSymbol": "DependencyGraphInspectionProjectInput",
+        "toType": "ProjectInspection",
+        "sourcePath": "src/types/dependencyGraph.ts"
+      },
+      {
+        "fromSymbol": "DependencyGraphNodeData",
+        "toType": "DependencyNodeClassification",
+        "sourcePath": "src/types/dependencyGraph.ts"
+      },
+      {
+        "fromSymbol": "DependencyGraphNodeData",
+        "toType": "DependencyNodeKind",
+        "sourcePath": "src/types/dependencyGraph.ts"
+      },
+      {
+        "fromSymbol": "DependencyGraphPackage",
+        "toType": "DependencyDeclaration",
+        "sourcePath": "src/types/dependencyGraph.ts"
+      },
+      {
+        "fromSymbol": "DependencyGraphPackage",
+        "toType": "ProjectDetection",
+        "sourcePath": "src/types/dependencyGraph.ts"
+      },
+      {
+        "fromSymbol": "DependencyGraphPackage",
+        "toType": "Readonly",
+        "sourcePath": "src/types/dependencyGraph.ts"
+      },
+      {
+        "fromSymbol": "DependencyImportEvidence",
+        "toType": "DependencyDeclaration",
+        "sourcePath": "src/types/dependencyGraph.ts"
+      },
+      {
+        "fromSymbol": "DependencyImportEvidence",
+        "toType": "DependencyReferenceClassification",
+        "sourcePath": "src/types/dependencyGraph.ts"
+      }
+    ],
+    "componentComposition": []
+  }
+}
