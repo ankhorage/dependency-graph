@@ -10,6 +10,8 @@ import { expect, test } from 'bun:test';
 import {
   createDependencyGraphAsync,
   createDependencyGraphFromInspectionsAsync,
+  createSourceGraphFromInspectionsAsync,
+  projectDependencyGraphFromInspections,
 } from '../../../dependencyGraph.js';
 
 test('matches filesystem analysis for an inspected TypeScript workspace', async () => {
@@ -126,8 +128,14 @@ async function expectEquivalentGraphsAsync(id: string, root: string): Promise<vo
     createDependencyGraphAsync({ projects: [{ id, rootPath: root }] }),
     createDependencyGraphFromInspectionsAsync({ projects: [{ id, inspection }] }),
   ]);
+  const sourceGraph = await createSourceGraphFromInspectionsAsync({
+    projects: [{ id, inspection }],
+  });
 
   expect(fromInspection).toEqual(fromFilesystem);
+  expect(projectDependencyGraphFromInspections(sourceGraph, [{ id, inspection }])).toEqual(
+    fromInspection,
+  );
 }
 
 /*** Build a complete inspection whose root deliberately does not exist on disk. */
