@@ -1,5 +1,11 @@
 # @ankhorage/dependency-graph
 
+## 1.1.0
+
+### Minor Changes
+
+- 3d15669: Expose the existing package dependency projection for consumers that already analyzed a canonical source graph.
+
 ## 1.0.0
 
 ### Major Changes
