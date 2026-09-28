@@ -1,0 +1,11 @@
+sequenceDiagram
+  participant participant_isRecord as isRecord
+  participant participant_mapString as mapString
+  participant participant_serializeSourceGraph as serializeSourceGraph
+  participant participant_transform as transform
+  participant_serializeSourceGraph->>participant_transform: transform()
+  participant_transform->>participant_mapString: mapString()
+  participant_mapString-->>participant_transform: return
+  participant_transform->>participant_isRecord: isRecord()
+  participant_isRecord-->>participant_transform: return
+  participant_transform-->>participant_serializeSourceGraph: return

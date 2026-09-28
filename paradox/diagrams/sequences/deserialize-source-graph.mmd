@@ -1,0 +1,21 @@
+sequenceDiagram
+  participant participant_deserializeSourceGraph as deserializeSourceGraph
+  participant participant_isPackedSourceGraph as isPackedSourceGraph
+  participant participant_isRecord as isRecord
+  participant participant_isSourceGraph as isSourceGraph
+  participant participant_mapString as mapString
+  participant participant_transform as transform
+  participant_deserializeSourceGraph->>participant_isPackedSourceGraph: isPackedSourceGraph()
+  participant_isPackedSourceGraph->>participant_isRecord: isRecord()
+  participant_isRecord-->>participant_isPackedSourceGraph: return
+  participant_isPackedSourceGraph-->>participant_deserializeSourceGraph: return
+  participant_deserializeSourceGraph->>participant_transform: transform()
+  participant_transform->>participant_mapString: mapString()
+  participant_mapString-->>participant_transform: return
+  participant_transform->>participant_isRecord: isRecord()
+  participant_isRecord-->>participant_transform: return
+  participant_transform-->>participant_deserializeSourceGraph: return
+  participant_deserializeSourceGraph->>participant_isSourceGraph: isSourceGraph()
+  participant_isSourceGraph->>participant_isRecord: isRecord()
+  participant_isRecord-->>participant_isSourceGraph: return
+  participant_isSourceGraph-->>participant_deserializeSourceGraph: return

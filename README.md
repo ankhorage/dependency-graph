@@ -3,7 +3,7 @@
 
 # @ankhorage/dependency-graph
 
-![license: MIT](././paradox/badges/license.svg) ![npm: v0.7.0](././paradox/badges/npm.svg) ![runtime: bun](././paradox/badges/runtime.svg) ![typescript: strict](././paradox/badges/typescript.svg) ![eslint: checked](././paradox/badges/eslint.svg) ![prettier: checked](././paradox/badges/prettier.svg) ![build: checked](././paradox/badges/build.svg) ![tests: checked](././paradox/badges/tests.svg) ![docs: paradox](././paradox/badges/docs.svg)
+![license: MIT](././paradox/badges/license.svg) ![npm: v0.7.2](././paradox/badges/npm.svg) ![runtime: bun](././paradox/badges/runtime.svg) ![typescript: strict](././paradox/badges/typescript.svg) ![eslint: checked](././paradox/badges/eslint.svg) ![prettier: checked](././paradox/badges/prettier.svg) ![build: checked](././paradox/badges/build.svg) ![tests: checked](././paradox/badges/tests.svg) ![docs: paradox](././paradox/badges/docs.svg)
 
 Project-aware dependency analysis that produces canonical Ankhorage graphs.
 
@@ -15,5 +15,14 @@ Project-aware dependency analysis that produces canonical Ankhorage graphs.
 - [Architecture overview](././paradox/diagrams/architecture-overview.mmd)
 - [Module relationships](././paradox/diagrams/module-relationships.mmd)
 - [Export graph](././paradox/diagrams/export-graph.mmd)
-- [createDependencyGraphAsync sequence](././paradox/diagrams/sequences/create-dependency-graph-async.mmd)
-- [createDependencyGraphFromInspectionsAsync sequence](././paradox/diagrams/sequences/create-dependency-graph-from-inspections-async.mmd)
+- [createSourceGraph sequence](././paradox/diagrams/sequences/create-source-graph.mmd)
+- [createSourceGraphIndex sequence](././paradox/diagrams/sequences/create-source-graph-index.mmd)
+- [createSourceRollupIndex sequence](././paradox/diagrams/sequences/create-source-rollup-index.mmd)
+- [deserializeSourceGraph sequence](././paradox/diagrams/sequences/deserialize-source-graph.mmd)
+- [findRolledUpDependency sequence](././paradox/diagrams/sequences/find-rolled-up-dependency.mmd)
+- [findSourceRelationsBetween sequence](././paradox/diagrams/sequences/find-source-relations-between.mmd)
+- [incomingSourceRelations sequence](././paradox/diagrams/sequences/incoming-source-relations.mmd)
+- [outgoingSourceRelations sequence](././paradox/diagrams/sequences/outgoing-source-relations.mmd)
+- [rollupSourceRelations sequence](././paradox/diagrams/sequences/rollup-source-relations.mmd)
+- [serializeSourceGraph sequence](././paradox/diagrams/sequences/serialize-source-graph.mmd)
+- [summarizeSourceNode sequence](././paradox/diagrams/sequences/summarize-source-node.mmd)

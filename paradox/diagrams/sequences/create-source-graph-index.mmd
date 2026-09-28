@@ -1,0 +1,20 @@
+sequenceDiagram
+  participant participant_createSourceGraphIndex as createSourceGraphIndex
+  participant participant_fileKey as fileKey
+  participant participant_isDeclaration as isDeclaration
+  participant participant_sourceSemanticPath as sourceSemanticPath
+  participant participant_symbolKey as symbolKey
+  participant_createSourceGraphIndex->>participant_fileKey: fileKey()
+  participant_fileKey->>participant_sourceSemanticPath: sourceSemanticPath()
+  participant_sourceSemanticPath-->>participant_fileKey: return
+  participant_fileKey-->>participant_createSourceGraphIndex: return
+  participant_createSourceGraphIndex->>participant_isDeclaration: isDeclaration()
+  participant_isDeclaration-->>participant_createSourceGraphIndex: return
+  participant_createSourceGraphIndex->>participant_symbolKey: symbolKey()
+  participant_symbolKey->>participant_fileKey: fileKey()
+  participant_fileKey-->>participant_symbolKey: return
+  participant_symbolKey->>participant_sourceSemanticPath: sourceSemanticPath()
+  participant_sourceSemanticPath-->>participant_symbolKey: return
+  participant_symbolKey->>participant_sourceSemanticPath: sourceSemanticPath()
+  participant_sourceSemanticPath-->>participant_symbolKey: return
+  participant_symbolKey-->>participant_createSourceGraphIndex: return

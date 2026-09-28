@@ -1,0 +1,8 @@
+sequenceDiagram
+  participant participant_assertUniqueSemanticPaths as assertUniqueSemanticPaths
+  participant participant_createGraph as createGraph
+  participant participant_createSourceGraph as createSourceGraph
+  participant_createSourceGraph->>participant_assertUniqueSemanticPaths: assertUniqueSemanticPaths()
+  participant_assertUniqueSemanticPaths-->>participant_createSourceGraph: return
+  participant_createSourceGraph->>participant_createGraph: createGraph()
+  participant_createGraph-->>participant_createSourceGraph: return

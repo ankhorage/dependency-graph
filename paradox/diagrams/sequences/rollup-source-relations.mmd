@@ -1,0 +1,5 @@
+sequenceDiagram
+  participant participant_ancestorOfKind as ancestorOfKind
+  participant participant_rollupSourceRelations as rollupSourceRelations
+  participant_rollupSourceRelations->>participant_ancestorOfKind: ancestorOfKind()
+  participant_ancestorOfKind-->>participant_rollupSourceRelations: return

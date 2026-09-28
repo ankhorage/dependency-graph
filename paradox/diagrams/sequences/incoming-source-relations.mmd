@@ -1,0 +1,5 @@
+sequenceDiagram
+  participant participant_findSourceNode as findSourceNode
+  participant participant_incomingSourceRelations as incomingSourceRelations
+  participant_incomingSourceRelations->>participant_findSourceNode: findSourceNode()
+  participant_findSourceNode-->>participant_incomingSourceRelations: return
