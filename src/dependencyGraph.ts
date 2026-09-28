@@ -1,3 +1,4 @@
+export { projectDependencyGraphFromInspections } from './features/dependency-analysis/application/projectDependencyGraphFromInspections.js';
 export { createDependencyGraphAsync } from './features/dependency-analysis/composition/createDependencyGraphAsync.js';
 export { createDependencyGraphFromInspectionsAsync } from './features/dependency-analysis/composition/createDependencyGraphFromInspectionsAsync.js';
 export { createSourceGraphAsync } from './features/source-graph/composition/createSourceGraphAsync.js';
