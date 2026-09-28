@@ -39,6 +39,7 @@ export interface SourceImportFact {
   readonly local?: boolean;
   readonly location?: SourceLocation;
   readonly specifier: string;
+  readonly resolvedPath?: string;
   readonly typeOnly?: boolean;
 }
 
