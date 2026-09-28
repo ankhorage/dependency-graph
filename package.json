@@ -41,6 +41,7 @@
     "node": ">=24"
   },
   "scripts": {
+    "bench:source-graph": "bun benchmarks/sourceGraph.ts",
     "build": "rm -rf dist tsconfig.tsbuildinfo && bun x tsc -p tsconfig.build.json",
     "changeset": "ankhorage-changeset",
     "changeset:status": "ankhorage-changeset status --since=origin/main",
@@ -67,7 +68,7 @@
   "devDependencies": {
     "@ankhorage/devtools": "^1.14.7",
     "@ankhorage/paradox": "^0.1.26",
-    "@types/bun": "^1.4.1",
+    "@types/bun": "^1.4.2",
     "@types/node": "^26.5.1",
     "typescript": "~6.0.3"
   },

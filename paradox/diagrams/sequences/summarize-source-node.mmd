@@ -1,0 +1,13 @@
+sequenceDiagram
+  participant participant_containsNode as containsNode
+  participant participant_countDependency as countDependency
+  participant participant_isDescendant as isDescendant
+  participant participant_summarizeSourceNode as summarizeSourceNode
+  participant_summarizeSourceNode->>participant_isDescendant: isDescendant()
+  participant_isDescendant-->>participant_summarizeSourceNode: return
+  participant_summarizeSourceNode->>participant_containsNode: containsNode()
+  participant_containsNode->>participant_isDescendant: isDescendant()
+  participant_isDescendant-->>participant_containsNode: return
+  participant_containsNode-->>participant_summarizeSourceNode: return
+  participant_summarizeSourceNode->>participant_countDependency: countDependency()
+  participant_countDependency-->>participant_summarizeSourceNode: return

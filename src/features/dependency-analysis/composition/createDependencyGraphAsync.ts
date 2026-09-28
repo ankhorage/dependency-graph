@@ -4,7 +4,7 @@ import type {
   CreateDependencyGraphInput,
   DependencyGraph,
 } from '../../../types/dependencyGraph.js';
-import { assertDependencyGraphProjectIds } from './assertDependencyGraphProjectIds.js';
+import { assertDependencyGraphProjectIds } from '../application/assertDependencyGraphProjectIds.js';
 import { createDependencyGraphFromInspectionsAsync } from './createDependencyGraphFromInspectionsAsync.js';
 
 /*** Inspect project roots, then delegate dependency topology construction to the inspection API. */
@@ -23,7 +23,6 @@ export async function createDependencyGraphAsync(
 
   return createDependencyGraphFromInspectionsAsync({
     projects,
-    ...(input.analyzers === undefined ? {} : { analyzers: input.analyzers }),
     ...(input.signal === undefined ? {} : { signal: input.signal }),
   });
 }

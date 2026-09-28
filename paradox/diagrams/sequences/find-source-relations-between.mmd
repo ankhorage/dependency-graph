@@ -1,0 +1,8 @@
+sequenceDiagram
+  participant participant_findSourceNode as findSourceNode
+  participant participant_findSourceRelationsBetween as findSourceRelationsBetween
+  participant participant_outgoingSourceRelations as outgoingSourceRelations
+  participant_findSourceRelationsBetween->>participant_outgoingSourceRelations: outgoingSourceRelations()
+  participant_outgoingSourceRelations->>participant_findSourceNode: findSourceNode()
+  participant_findSourceNode-->>participant_outgoingSourceRelations: return
+  participant_outgoingSourceRelations-->>participant_findSourceRelationsBetween: return

@@ -69,6 +69,7 @@ function extractClassDeclaration(
       name: identifier(firstChild(declaration, 'typeIdentifier')),
       visibility: visibility(modifiers),
       modifiers,
+      exported: modifiers.includes('public'),
       location: sourceLocation(node),
       extends: children(firstChild(declaration, 'classExtends'), 'classType').map((type) =>
         sourceText(type, source),
@@ -99,6 +100,7 @@ function extractInterfaceDeclaration(
       name: identifier(firstChild(declaration, 'typeIdentifier')),
       visibility: visibility(modifiers),
       modifiers,
+      exported: modifiers.includes('public'),
       location: sourceLocation(node),
       extends: children(
         firstChild(firstChild(declaration, 'interfaceExtends'), 'interfaceTypeList'),
@@ -151,6 +153,7 @@ function extractMethod(
       signature: sourceText(header, source).replace(/\s+/gu, ' ').trim(),
       visibility: visibility(modifiers, defaultVisibility),
       modifiers,
+      exported: visibility(modifiers, defaultVisibility) === 'public',
       location: sourceLocation(node),
       extends: [],
       implements: [],

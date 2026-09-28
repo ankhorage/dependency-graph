@@ -10,7 +10,6 @@ import { expect, test } from 'bun:test';
 import {
   createDependencyGraphAsync,
   createDependencyGraphFromInspectionsAsync,
-  type DependencyGraphAnalyzer,
 } from '../../../dependencyGraph.js';
 
 test('matches filesystem analysis for an inspected TypeScript workspace', async () => {
@@ -97,22 +96,11 @@ test('matches filesystem analysis for an inspected Java project', async () => {
 
 test('uses a supplied inspection without touching its missing root', async () => {
   const inspection = virtualInspection();
-  let analyzed = false;
-  const analyzer: DependencyGraphAnalyzer = {
-    id: 'virtual',
-    supports: () => true,
-    analyzeAsync: () => {
-      analyzed = true;
-      return Promise.resolve({ nodes: [], edges: [] });
-    },
-  };
 
   const graph = await createDependencyGraphFromInspectionsAsync({
     projects: [{ id: 'virtual', inspection }],
-    analyzers: [analyzer],
   });
 
-  expect(analyzed).toBe(true);
   expect(graph.nodes).toHaveLength(1);
   expect(graph.edges).toEqual([]);
 });
@@ -126,7 +114,6 @@ test('rejects duplicate supplied project identities before analysis', async () =
         { id: 'duplicate', inspection },
         { id: 'duplicate', inspection },
       ],
-      analyzers: [],
     }),
     /must be unique/u,
   );

@@ -1,4 +1,4 @@
-export interface CppInclude {
+interface CppInclude {
   readonly specifier: string;
   readonly local: boolean;
 }

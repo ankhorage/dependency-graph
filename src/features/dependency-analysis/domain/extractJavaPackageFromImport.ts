@@ -1,4 +1,4 @@
-/*** Reduce a Java import specifier to its package path using PKGViz-compatible semantics. */
+/*** Reduce a Java import specifier to its package path using established projection semantics. */
 export function extractJavaPackageFromImport(specifier: string): string {
   const cleaned = specifier.replace(/\.\*$/u, '');
   const segments = cleaned.split('.').reverse();

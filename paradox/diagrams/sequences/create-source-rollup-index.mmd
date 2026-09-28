@@ -1,0 +1,5 @@
+sequenceDiagram
+  participant participant_createSourceRollupIndex as createSourceRollupIndex
+  participant participant_pairKey as pairKey
+  participant_createSourceRollupIndex->>participant_pairKey: pairKey()
+  participant_pairKey-->>participant_createSourceRollupIndex: return

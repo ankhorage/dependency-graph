@@ -27,7 +27,7 @@ test('extracts portable Java declarations, relations, imports, and Javadoc', () 
     'com.example.port.Reader',
     'java.util.List',
   ]);
-  expect(facts.imports[0]?.location.line).toBe(2);
+  expect(facts.imports[0]?.location?.line).toBe(2);
   expect(facts.declarations[0]).toMatchObject({
     kind: 'class',
     name: 'Service',
