@@ -1,5 +1,11 @@
 # @ankhorage/dependency-graph
 
+## 1.1.1
+
+### Patch Changes
+
+- fd718bf: Resolve TypeScript compiler path aliases into canonical intrinsic source edges and preserve package dependency weights.
+
 ## 1.1.0
 
 ### Minor Changes
