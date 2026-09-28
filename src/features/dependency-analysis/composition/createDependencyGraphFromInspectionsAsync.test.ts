@@ -10,6 +10,7 @@ import { expect, test } from 'bun:test';
 import {
   createDependencyGraphAsync,
   createDependencyGraphFromInspectionsAsync,
+  createSourceGraphAsync,
   createSourceGraphFromInspectionsAsync,
   projectDependencyGraphFromInspections,
 } from '../../../dependencyGraph.js';
@@ -29,6 +30,42 @@ test('matches filesystem analysis for an inspected TypeScript workspace', async 
 
   try {
     await expectEquivalentGraphsAsync('workspace', root);
+  } finally {
+    await rm(root, { recursive: true });
+  }
+});
+
+test('resolves tsconfig path aliases as intrinsic source and package dependencies', async () => {
+  const root = await createFixtureAsync({
+    'package.json': JSON.stringify({ name: 'alias-fixture' }),
+    'tsconfig.json': JSON.stringify({
+      compilerOptions: { moduleResolution: 'bundler', paths: { '@/*': ['./src/*'] } },
+    }),
+    'src/index.ts': [
+      "import { aliased } from '@/components/aliased';",
+      "import { relative } from './components/relative';",
+      'export { aliased, relative };',
+    ].join('\n'),
+    'src/components/aliased.ts': 'export const aliased = 1;\n',
+    'src/components/relative.ts': 'export const relative = 2;\n',
+  });
+
+  try {
+    const [sourceGraph, packageGraph] = await Promise.all([
+      createSourceGraphAsync({ projects: [{ id: 'alias', rootPath: root }] }),
+      createDependencyGraphAsync({ projects: [{ id: 'alias', rootPath: root }] }),
+    ]);
+    const nodes = new Map(sourceGraph.graph.nodes.map((node) => [node.id, node.data]));
+    const imports = sourceGraph.graph.edges.filter(({ data }) => data.kind === 'imports');
+    const targets = imports.map(({ target }) => nodes.get(target)?.filePath);
+    expect(targets).toContain('src/components/aliased.ts');
+    expect(targets).toContain('src/components/relative.ts');
+
+    const projected = packageGraph.edges.find(({ data }) => data.weight === 2);
+    expect(projected?.data.evidence.map(({ classification }) => classification)).toEqual([
+      'intrinsic',
+      'intrinsic',
+    ]);
   } finally {
     await rm(root, { recursive: true });
   }

@@ -20,12 +20,21 @@ export function resolveImport(
   file: SourceAnalyzedFile,
   specifier: string,
   local: boolean | undefined,
+  resolvedPath: string | undefined,
   nodes: Map<string, SourceNodeDraft>,
   symbols: ReadonlyMap<string, string>,
   namespaces: ReadonlyMap<string, readonly string[]>,
   focusPackages: ReadonlyMap<string, string>,
 ): ResolvedImport {
-  const intrinsic = resolveIntrinsicImport(file, specifier, local, nodes, symbols, namespaces);
+  const intrinsic = resolveIntrinsicImport(
+    file,
+    specifier,
+    local,
+    resolvedPath,
+    nodes,
+    symbols,
+    namespaces,
+  );
   if (intrinsic !== undefined) return { target: intrinsic, declarations: [] };
   return resolveExternalImport(file, specifier, nodes, focusPackages);
 }
@@ -35,13 +44,15 @@ function resolveIntrinsicImport(
   file: SourceAnalyzedFile,
   specifier: string,
   local: boolean | undefined,
+  resolvedPath: string | undefined,
   nodes: Map<string, SourceNodeDraft>,
   symbols: ReadonlyMap<string, string>,
   namespaces: ReadonlyMap<string, readonly string[]>,
 ): string | undefined {
   if (file.analyzerId === 'java')
     return resolveJavaImport(file, specifier, nodes, symbols, namespaces);
-  if (file.analyzerId === 'typescript') return resolveTypeScriptFileImport(file, specifier, nodes);
+  if (file.analyzerId === 'typescript')
+    return resolveTypeScriptFileImport(file, specifier, resolvedPath, nodes);
   if (file.analyzerId === 'cpp')
     return local ? resolveLocalCppInclude(file, specifier, nodes) : undefined;
   return resolveNamespaceImport(file, specifier, namespaces);
@@ -112,8 +123,13 @@ function resolveJavaImport(
 function resolveTypeScriptFileImport(
   file: SourceAnalyzedFile,
   specifier: string,
+  resolvedPath: string | undefined,
   nodes: ReadonlyMap<string, SourceNodeDraft>,
 ): string | undefined {
+  if (resolvedPath !== undefined) {
+    const resolved = fileKey(file.projectId, resolvedPath);
+    if (nodes.has(resolved)) return resolved;
+  }
   if (!specifier.startsWith('.')) return undefined;
   const base = path.posix.normalize(path.posix.join(path.posix.dirname(file.path), specifier));
   const candidates = [

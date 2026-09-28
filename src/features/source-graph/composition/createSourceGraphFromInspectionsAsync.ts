@@ -9,6 +9,7 @@ import type {
   SourceGraph,
 } from '../../../types/sourceGraph.js';
 import { extractJavaSourceFacts } from '../../dependency-analysis/adapters/outbound/java/extractJavaSourceFacts.js';
+import { createTypeScriptImportResolver } from '../../dependency-analysis/adapters/outbound/typescript/createTypeScriptImportResolver.js';
 import { extractTypeScriptSourceFacts } from '../../dependency-analysis/adapters/outbound/typescript/extractTypeScriptSourceFacts.js';
 import { readDependencyDeclarationsAsync } from '../../dependency-analysis/domain/readDependencyDeclarationsAsync.js';
 import { extractOtherLanguageFacts } from '../adapters/outbound/extractOtherLanguageFacts.js';
@@ -39,6 +40,7 @@ async function readProjectFilesAsync(
   signal: AbortSignal | undefined,
 ): Promise<readonly SourceAnalyzedFile[]> {
   const declarations = await readPackageDeclarationsAsync(inspection);
+  const resolveTypeScriptImports = createTypeScriptImportResolver(inspection.rootPath);
   return Promise.all(
     inspection.files.flatMap((file) => {
       const analyzerId = analyzerForPath(file);
@@ -66,6 +68,7 @@ async function readProjectFilesAsync(
           packageRoot: path.resolve(inspection.rootPath, root),
           sourceRoots,
           declaredDependencies: declarations.get(root),
+          resolveTypeScriptImports,
           signal,
         }),
       ];
@@ -102,6 +105,7 @@ interface ReadSourceFileInput {
   readonly file: string;
   readonly analyzerId: Exclude<ReturnType<typeof analyzerForPath>, undefined>;
   readonly declaredDependencies: SourceAnalyzedFile['declaredDependencies'];
+  readonly resolveTypeScriptImports: ReturnType<typeof createTypeScriptImportResolver>;
   readonly signal: AbortSignal | undefined;
 }
 
@@ -121,7 +125,11 @@ async function readAnalyzedFileAsync(input: ReadSourceFileInput): Promise<Source
       input.analyzerId === 'java'
         ? extractJavaSourceFacts(content)
         : input.analyzerId === 'typescript'
-          ? extractTypeScriptSourceFacts(input.file, content)
+          ? input.resolveTypeScriptImports(
+              absolute,
+              input.packageRoot,
+              extractTypeScriptSourceFacts(input.file, content),
+            )
           : extractOtherLanguageFacts(
               input.analyzerId,
               content,

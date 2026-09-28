@@ -33,6 +33,7 @@ export function createSourceRelationDraft(
         file,
         imported.specifier,
         imported.local,
+        imported.resolvedPath,
         nodes,
         symbolIndex,
         namespaceIndex,
