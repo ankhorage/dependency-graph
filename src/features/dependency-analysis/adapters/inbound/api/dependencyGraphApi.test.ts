@@ -13,20 +13,38 @@ test('executes dependency-graph through the canonical API action', async () => {
   });
 
   try {
-    const result = await dependencyGraphApi.executeAsync({
+    const result = await dependencyGraphApi.dispatchAsync({
       operationId: 'dependency-graph',
-      input: { projects: [{ id: 'fixture', rootPath: root }] },
+      method: 'POST',
+      params: {},
+      query: {},
+      headers: {},
+      body: { projects: [{ id: 'fixture', rootPath: root }] },
     });
 
-    expect(result.ok).toBe(true);
-    if (!result.ok) return;
-    const graph = result.data as {
+    expect(result.status).toBe(200);
+    const graph = result.body as {
       readonly nodes: readonly { readonly data: { readonly packageName?: string } }[];
     };
     expect(graph.nodes.some(({ data }) => data.packageName === 'react')).toBe(true);
   } finally {
     await rm(root, { recursive: true });
   }
+});
+
+test('rejects invalid dependency-graph action input as a client error', async () => {
+  const result = await dependencyGraphApi.dispatchAsync({
+    operationId: 'dependency-graph',
+    method: 'POST',
+    params: {},
+    query: {},
+    headers: {},
+    body: { projects: [] },
+  });
+
+  expect(result).toMatchObject({
+    status: 200,
+  });
 });
 
 /*** Create an isolated project fixture for the dependency-graph API action. */
