@@ -39,11 +39,18 @@ test('rejects invalid dependency-graph action input as a client error', async ()
     params: {},
     query: {},
     headers: {},
-    body: { projects: [] },
+    body: { projects: [{ id: 'fixture' }] },
   });
 
-  expect(result).toMatchObject({
-    status: 200,
+  expect(result).toEqual({
+    status: 400,
+    headers: {},
+    body: {
+      error: {
+        code: 'invalid_dependency_graph_input',
+        operationId: 'dependency-graph',
+      },
+    },
   });
 });
 
