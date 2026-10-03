@@ -1,15 +1,15 @@
-import { createApi } from '@ankhorage/api';
+import { createApiRuntime } from '@ankhorage/api';
 
 import type { DependencyGraphApiInput } from '../../../../../types/dependencyGraphApi.js';
 import { createDependencyGraphAsync } from '../../../composition/createDependencyGraphAsync.js';
 
 /*** Expose dependency graph creation through the canonical framework-neutral Ankhorage API action. */
-export const dependencyGraphApi = createApi({
+export const dependencyGraphApi = createApiRuntime({
   definition: {
     id: 'dependency-graph',
     origin: 'internal',
     protocol: 'rest',
-    basePath: '/api/dependency-graph',
+    basePath: '/api',
     endpoints: {
       actions: {
         id: 'actions',
@@ -28,16 +28,29 @@ export const dependencyGraphApi = createApi({
     },
   },
   handlers: {
-    'dependency-graph': async ({ input, signal }) =>
-      createDependencyGraphAsync({
-        projects: readDependencyGraphApiInput(input).projects,
-        ...(signal === undefined ? {} : { signal }),
-      }),
+    'dependency-graph': async (request) => {
+      const input = readDependencyGraphApiInput(request.body);
+      if (input === undefined) {
+        return {
+          status: 400,
+          body: {
+            error: {
+              code: 'invalid_dependency_graph_input',
+              operationId: 'dependency-graph',
+            },
+          },
+        };
+      }
+
+      return {
+        body: await createDependencyGraphAsync({ projects: input.projects }),
+      };
+    },
   },
 });
 
 /*** Validate the transport-neutral input before invoking filesystem-backed dependency analysis. */
-function readDependencyGraphApiInput(input: unknown): DependencyGraphApiInput {
+function readDependencyGraphApiInput(input: unknown): DependencyGraphApiInput | undefined {
   if (
     typeof input !== 'object' ||
     input === null ||
@@ -45,7 +58,7 @@ function readDependencyGraphApiInput(input: unknown): DependencyGraphApiInput {
     !Array.isArray(input.projects) ||
     !input.projects.every(isDependencyGraphProjectInput)
   ) {
-    throw new TypeError('dependency-graph action requires a projects array.');
+    return undefined;
   }
 
   return { projects: input.projects };
