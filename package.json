@@ -32,6 +32,10 @@
       "types": "./dist/dependencyGraph.d.ts",
       "import": "./dist/dependencyGraph.js"
     },
+    "./api": {
+      "types": "./dist/dependencyGraphApi.d.ts",
+      "import": "./dist/dependencyGraphApi.js"
+    },
     "./package.json": "./package.json"
   },
   "publishConfig": {
@@ -57,6 +61,7 @@
     "knip:check": "ankhorage-knip"
   },
   "dependencies": {
+    "@ankhorage/api": "^0.1.0",
     "@ankhorage/graph": "^0.3.0",
     "@ankhorage/project-detector": "^0.3.0",
     "@ankhorage/utility": "^0.8.0",
