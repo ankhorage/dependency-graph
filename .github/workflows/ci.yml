@@ -31,7 +31,7 @@ jobs:
           node-version: '24'
 
       - name: Install dependencies
-        run: bun install --frozen-lockfile
+        run: bun install
 
       - name: Run build
         run: |
@@ -42,7 +42,7 @@ jobs:
           fi
 
       - name: Validate Ankhorage repository
-        run: bunx @ankhorage/ankh doctor validate .
+        run: BUN_INSTALL_CACHE_DIR="${RUNNER_TEMP}/doctor-cache" bunx @ankhorage/doctor@0.12.15 validate .
 
       - name: Run lint
         run: |
