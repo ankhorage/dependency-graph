@@ -1,6 +1,6 @@
 {
   "name": "@ankhorage/dependency-graph",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "type": "module",
   "description": "Project-aware dependency analysis that produces canonical Ankhorage graphs.",
   "license": "MIT",

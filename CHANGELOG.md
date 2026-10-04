@@ -1,5 +1,12 @@
 # @ankhorage/dependency-graph
 
+## 1.2.0
+
+### Minor Changes
+
+- 9960384: Expose dependency graph creation as the canonical `dependency-graph` API action through a new public
+  `@ankhorage/dependency-graph/api` entrypoint.
+
 ## 1.1.1
 
 ### Patch Changes
