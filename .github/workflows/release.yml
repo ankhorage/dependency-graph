@@ -59,6 +59,9 @@ jobs:
             echo "No build script found; skipping."
           fi
 
+      - name: Validate release contract
+        run: BUN_INSTALL_CACHE_DIR="${RUNNER_TEMP}/doctor-cache" bunx @ankhorage/doctor@0.12.15 validate .
+
       - name: Version packages directly on main
         id: release
         if: hashFiles('.changeset/config.json') != ''
