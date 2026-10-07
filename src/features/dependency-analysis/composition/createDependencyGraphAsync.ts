@@ -15,9 +15,12 @@ export async function createDependencyGraphAsync(
   const projects = await Promise.all(
     input.projects.map(async (project) => ({
       id: project.id,
-      inspection: await inspectProjectAsync(project.rootPath, {
-        ...(input.signal === undefined ? {} : { signal: input.signal }),
-      }),
+      inspection:
+        'inspection' in project
+          ? project.inspection
+          : await inspectProjectAsync(project.rootPath, {
+              ...(input.signal === undefined ? {} : { signal: input.signal }),
+            }),
     })),
   );
 

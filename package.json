@@ -63,7 +63,7 @@
   "dependencies": {
     "@ankhorage/api": "^0.2.0",
     "@ankhorage/graph": "^0.3.0",
-    "@ankhorage/project-detector": "^0.3.0",
+    "@ankhorage/project-detector": "^0.3.3",
     "@ankhorage/utility": "^0.8.0",
     "java-parser": "^3.0.1",
     "typescript": "~6.0.3"

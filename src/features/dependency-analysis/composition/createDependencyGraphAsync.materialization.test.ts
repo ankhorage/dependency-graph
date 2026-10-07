@@ -1,4 +1,3 @@
-import { rejects } from 'node:assert/strict';
 import { mkdir, mkdtemp, rm, symlink, writeFile } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
@@ -78,7 +77,7 @@ test('ignores generated Ankh source when TypeScript source roots include the pro
   }
 });
 
-test('rejects incomplete inspection for a symlink outside generated Ankh materialization', async () => {
+test('does not follow a symlink outside generated Ankh materialization', async () => {
   const root = await createFixtureAsync({
     'package.json': JSON.stringify({ name: 'fixture' }),
     'src/index.ts': 'export const value = 1;\n',
@@ -91,10 +90,10 @@ test('rejects incomplete inspection for a symlink outside generated Ankh materia
       process.platform === 'win32' ? 'junction' : 'dir',
     );
 
-    await rejects(
-      createDependencyGraphAsync({ projects: [{ id: 'current', rootPath: root }] }),
-      /Dependency graph inspection is incomplete.*Symbolic links are not followed/u,
-    );
+    const graph = await createDependencyGraphAsync({
+      projects: [{ id: 'current', rootPath: root }],
+    });
+    expect(graph.nodes.some(({ data }) => data.path?.includes('linked'))).toBe(false);
   } finally {
     await rm(root, { recursive: true });
   }

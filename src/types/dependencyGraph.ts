@@ -44,6 +44,11 @@ export interface DependencyGraphProjectInput {
   readonly rootPath: string;
 }
 
+export interface DependencyGraphInspectedProjectInput {
+  readonly id: string;
+  readonly inspection: ProjectInspection;
+}
+
 export interface DependencyGraphInspectionProjectInput {
   readonly id: string;
   readonly inspection: ProjectInspection;
@@ -58,7 +63,9 @@ export interface DependencyGraphPackage {
 }
 
 export interface CreateDependencyGraphInput {
-  readonly projects: readonly DependencyGraphProjectInput[];
+  readonly projects: readonly (
+    DependencyGraphProjectInput | DependencyGraphInspectedProjectInput
+  )[];
   readonly signal?: AbortSignal;
 }
 
