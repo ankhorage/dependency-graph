@@ -1,5 +1,11 @@
 # @ankhorage/dependency-graph
 
+## 1.3.0
+
+### Minor Changes
+
+- 3815bdd: Allow the dependency-graph API action to consume a bounded project inspection so applications can share one inspection across graph and other project views.
+
 ## 1.2.0
 
 ### Minor Changes
