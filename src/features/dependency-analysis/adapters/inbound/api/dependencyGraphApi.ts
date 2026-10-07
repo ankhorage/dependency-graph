@@ -68,14 +68,57 @@ function readDependencyGraphApiInput(input: unknown): DependencyGraphApiInput | 
 function isDependencyGraphProjectInput(
   value: unknown,
 ): value is DependencyGraphApiInput['projects'][number] {
+  if (
+    typeof value !== 'object' ||
+    value === null ||
+    !('id' in value) ||
+    typeof value.id !== 'string' ||
+    value.id.length === 0
+  )
+    return false;
+  if ('inspection' in value) return isProjectInspection(value.inspection);
+  return 'rootPath' in value && typeof value.rootPath === 'string' && value.rootPath.length > 0;
+}
+
+/*** Validate the inspection fields read by canonical graph analysis. */
+function isProjectInspection(value: unknown): boolean {
+  return isInspectionScope(value) && isInspectionMetadata(value);
+}
+
+/*** Validate the bounded filesystem scope used by source readers. */
+function isInspectionScope(value: unknown): boolean {
   return (
     typeof value === 'object' &&
     value !== null &&
-    'id' in value &&
-    typeof value.id === 'string' &&
-    value.id.length > 0 &&
     'rootPath' in value &&
     typeof value.rootPath === 'string' &&
-    value.rootPath.length > 0
+    value.rootPath.length > 0 &&
+    'complete' in value &&
+    typeof value.complete === 'boolean' &&
+    'directories' in value &&
+    Array.isArray(value.directories) &&
+    value.directories.every((entry: unknown) => typeof entry === 'string') &&
+    'files' in value &&
+    Array.isArray(value.files) &&
+    value.files.every((entry: unknown) => typeof entry === 'string')
+  );
+}
+
+/*** Validate metadata collections required for graph projection. */
+function isInspectionMetadata(value: unknown): boolean {
+  return (
+    typeof value === 'object' &&
+    value !== null &&
+    'detection' in value &&
+    typeof value.detection === 'object' &&
+    value.detection !== null &&
+    'packages' in value &&
+    Array.isArray(value.packages) &&
+    'workspaces' in value &&
+    Array.isArray(value.workspaces) &&
+    'manifests' in value &&
+    Array.isArray(value.manifests) &&
+    'diagnostics' in value &&
+    Array.isArray(value.diagnostics)
   );
 }

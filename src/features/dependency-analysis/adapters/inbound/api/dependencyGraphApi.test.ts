@@ -2,6 +2,7 @@ import { mkdir, mkdtemp, rm, writeFile } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 
+import { inspectProjectAsync } from '@ankhorage/project-detector/node';
 import { expect, test } from 'bun:test';
 
 import { dependencyGraphApi } from '../../../../../dependencyGraphApi.js';
@@ -52,6 +53,40 @@ test('rejects invalid dependency-graph action input as a client error', async ()
       },
     },
   });
+});
+
+test('uses the supplied bounded inspection without restoring excluded source edges', async () => {
+  const root = await createFixtureAsync({
+    'package.json': JSON.stringify({ name: 'fixture' }),
+    'src/index.ts': "import 'included';\n",
+    'src/index.test.ts': "import 'excluded';\n",
+  });
+
+  try {
+    const inspection = await inspectProjectAsync(root, { excludeFiles: ['**/*.test.*'] });
+    const result = await dependencyGraphApi.dispatchAsync({
+      operationId: 'dependency-graph',
+      method: 'POST',
+      params: {},
+      query: {},
+      headers: {},
+      body: { projects: [{ id: 'fixture', inspection }] },
+    });
+
+    expect(result.status).toBe(200);
+    const graph = result.body as {
+      readonly edges: readonly {
+        readonly data: { readonly evidence: readonly { readonly specifier: string }[] };
+      }[];
+    };
+    const specifiers = graph.edges.flatMap(({ data }) =>
+      data.evidence.map(({ specifier }) => specifier),
+    );
+    expect(specifiers).toContain('included');
+    expect(specifiers).not.toContain('excluded');
+  } finally {
+    await rm(root, { recursive: true });
+  }
 });
 
 /*** Create an isolated project fixture for the dependency-graph API action. */
