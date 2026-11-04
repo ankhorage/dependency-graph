@@ -96,7 +96,8 @@ function moduleForFile(file: SourceNodeData, owner: DependencyGraphPackage): str
       ? (file.filePath ?? '')
       : (file.filePath ?? '').slice(owner.relativeRoot.length + 1);
   const directory = relative.split('/').slice(0, -1).join('/');
-  return directory.split('/').filter(Boolean).join('.');
+  if (directory !== '') return directory.split('/').filter(Boolean).join('.');
+  return relative.replace(/\.[^.]+$/u, '');
 }
 
 /*** Preserve the existing package/module node identity and dotted ancestor structure. */
