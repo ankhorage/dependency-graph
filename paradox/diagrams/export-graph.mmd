@@ -2,6 +2,9 @@ graph LR
   module_examples_basic_usage_analyze_ts["examples/basic-usage/analyze.ts"]
   module_paradox_config_ts["paradox.config.ts"]
   module_src_dependencyGraph_ts["src/dependencyGraph.ts"]
+  module_src_dependencyGraphApi_ts["src/dependencyGraphApi.ts"]
+  module_src_features_dependency_analysis_adapters_inbound_api_dependencyGraphApi_test_ts["src/features/dependency-analysis/adapters/inbound/api/dependencyGraphApi.test.ts"]
+  module_src_features_dependency_analysis_adapters_inbound_api_dependencyGraphApi_ts["src/features/dependency-analysis/adapters/inbound/api/dependencyGraphApi.ts"]
   module_src_features_dependency_analysis_adapters_outbound_cpp_extractCppDependencies_ts["src/features/dependency-analysis/adapters/outbound/cpp/extractCppDependencies.ts"]
   module_src_features_dependency_analysis_adapters_outbound_delphi_delphiPackageForFile_ts["src/features/dependency-analysis/adapters/outbound/delphi/delphiPackageForFile.ts"]
   module_src_features_dependency_analysis_adapters_outbound_delphi_extractDelphiDependencies_ts["src/features/dependency-analysis/adapters/outbound/delphi/extractDelphiDependencies.ts"]
@@ -10,14 +13,19 @@ graph LR
   module_src_features_dependency_analysis_adapters_outbound_kotlin_extractKotlinDependencies_ts["src/features/dependency-analysis/adapters/outbound/kotlin/extractKotlinDependencies.ts"]
   module_src_features_dependency_analysis_adapters_outbound_python_extractPythonDependencies_ts["src/features/dependency-analysis/adapters/outbound/python/extractPythonDependencies.ts"]
   module_src_features_dependency_analysis_adapters_outbound_python_pythonPackageForFile_ts["src/features/dependency-analysis/adapters/outbound/python/pythonPackageForFile.ts"]
+  module_src_features_dependency_analysis_adapters_outbound_typescript_createTypeScriptImportResolver_ts["src/features/dependency-analysis/adapters/outbound/typescript/createTypeScriptImportResolver.ts"]
   module_src_features_dependency_analysis_adapters_outbound_typescript_extractTypeScriptSourceFacts_ts["src/features/dependency-analysis/adapters/outbound/typescript/extractTypeScriptSourceFacts.ts"]
+  module_src_features_dependency_analysis_application_assertDependencyGraphInspections_ts["src/features/dependency-analysis/application/assertDependencyGraphInspections.ts"]
   module_src_features_dependency_analysis_application_assertDependencyGraphProjectIds_ts["src/features/dependency-analysis/application/assertDependencyGraphProjectIds.ts"]
   module_src_features_dependency_analysis_application_dependencyClassification_test_ts["src/features/dependency-analysis/application/dependencyClassification.test.ts"]
+  module_src_features_dependency_analysis_application_projectDependencyGraphFromInspections_ts["src/features/dependency-analysis/application/projectDependencyGraphFromInspections.ts"]
+  module_src_features_dependency_analysis_application_projectDependencyGraphFromProjectAnalysisSnapshots_ts["src/features/dependency-analysis/application/projectDependencyGraphFromProjectAnalysisSnapshots.ts"]
   module_src_features_dependency_analysis_composition_createDependencyGraphAsync_materialization_test_ts["src/features/dependency-analysis/composition/createDependencyGraphAsync.materialization.test.ts"]
   module_src_features_dependency_analysis_composition_createDependencyGraphAsync_test_ts["src/features/dependency-analysis/composition/createDependencyGraphAsync.test.ts"]
   module_src_features_dependency_analysis_composition_createDependencyGraphAsync_ts["src/features/dependency-analysis/composition/createDependencyGraphAsync.ts"]
   module_src_features_dependency_analysis_composition_createDependencyGraphFromInspectionsAsync_test_ts["src/features/dependency-analysis/composition/createDependencyGraphFromInspectionsAsync.test.ts"]
   module_src_features_dependency_analysis_composition_createDependencyGraphFromInspectionsAsync_ts["src/features/dependency-analysis/composition/createDependencyGraphFromInspectionsAsync.ts"]
+  module_src_features_dependency_analysis_composition_createDependencyGraphFromProjectAnalysisSnapshots_ts["src/features/dependency-analysis/composition/createDependencyGraphFromProjectAnalysisSnapshots.ts"]
   module_src_features_dependency_analysis_domain_createFocusPackageNode_ts["src/features/dependency-analysis/domain/createFocusPackageNode.ts"]
   module_src_features_dependency_analysis_domain_extractCppPackageFromInclude_ts["src/features/dependency-analysis/domain/extractCppPackageFromInclude.ts"]
   module_src_features_dependency_analysis_domain_extractDelphiPackageFromImport_ts["src/features/dependency-analysis/domain/extractDelphiPackageFromImport.ts"]
@@ -27,21 +35,30 @@ graph LR
   module_src_features_dependency_analysis_domain_projectDependencyGraphFromSourceGraph_ts["src/features/dependency-analysis/domain/projectDependencyGraphFromSourceGraph.ts"]
   module_src_features_dependency_analysis_domain_readDependencyDeclarationsAsync_ts["src/features/dependency-analysis/domain/readDependencyDeclarationsAsync.ts"]
   module_src_features_source_graph_adapters_outbound_extractOtherLanguageFacts_ts["src/features/source-graph/adapters/outbound/extractOtherLanguageFacts.ts"]
+  module_src_features_source_graph_composition_createProjectAnalysisSnapshotAsync_ts["src/features/source-graph/composition/createProjectAnalysisSnapshotAsync.ts"]
   module_src_features_source_graph_composition_createSourceGraphAsync_ts["src/features/source-graph/composition/createSourceGraphAsync.ts"]
   module_src_features_source_graph_composition_createSourceGraphFromInspectionsAsync_test_ts["src/features/source-graph/composition/createSourceGraphFromInspectionsAsync.test.ts"]
   module_src_features_source_graph_composition_createSourceGraphFromInspectionsAsync_ts["src/features/source-graph/composition/createSourceGraphFromInspectionsAsync.ts"]
+  module_src_features_source_graph_composition_createSourceGraphFromProjectAnalysisSnapshots_ts["src/features/source-graph/composition/createSourceGraphFromProjectAnalysisSnapshots.ts"]
+  module_src_features_source_graph_composition_projectAnalysisSnapshot_test_ts["src/features/source-graph/composition/projectAnalysisSnapshot.test.ts"]
   module_src_features_source_graph_domain_createSourceGraph_ts["src/features/source-graph/domain/createSourceGraph.ts"]
   module_src_features_source_graph_domain_createSourceGraphIndex_ts["src/features/source-graph/domain/createSourceGraphIndex.ts"]
   module_src_features_source_graph_domain_createSourceRelationDraft_ts["src/features/source-graph/domain/createSourceRelationDraft.ts"]
   module_src_features_source_graph_domain_createSourceRollupIndex_ts["src/features/source-graph/domain/createSourceRollupIndex.ts"]
   module_src_features_source_graph_domain_createSourceStructureDraft_ts["src/features/source-graph/domain/createSourceStructureDraft.ts"]
+  module_src_features_source_graph_domain_deserializeProjectAnalysisSnapshot_ts["src/features/source-graph/domain/deserializeProjectAnalysisSnapshot.ts"]
+  module_src_features_source_graph_domain_projectAnalysisSnapshot_ts["src/features/source-graph/domain/projectAnalysisSnapshot.ts"]
   module_src_features_source_graph_domain_querySourceGraph_ts["src/features/source-graph/domain/querySourceGraph.ts"]
   module_src_features_source_graph_domain_resolveSourceImport_ts["src/features/source-graph/domain/resolveSourceImport.ts"]
   module_src_features_source_graph_domain_rollupSourceRelations_ts["src/features/source-graph/domain/rollupSourceRelations.ts"]
+  module_src_features_source_graph_domain_serializeProjectAnalysisSnapshot_ts["src/features/source-graph/domain/serializeProjectAnalysisSnapshot.ts"]
   module_src_features_source_graph_domain_serializeSourceGraph_ts["src/features/source-graph/domain/serializeSourceGraph.ts"]
+  module_src_features_source_graph_domain_sourceAnalyzerCapabilities_ts["src/features/source-graph/domain/sourceAnalyzerCapabilities.ts"]
   module_src_features_source_graph_domain_sourceSemanticPath_ts["src/features/source-graph/domain/sourceSemanticPath.ts"]
   module_src_features_source_graph_domain_summarizeSourceNode_ts["src/features/source-graph/domain/summarizeSourceNode.ts"]
   module_src_types_dependencyGraph_ts["src/types/dependencyGraph.ts"]
+  module_src_types_dependencyGraphApi_ts["src/types/dependencyGraphApi.ts"]
+  module_src_types_projectAnalysisSnapshot_ts["src/types/projectAnalysisSnapshot.ts"]
   module_src_types_sourceGraph_ts["src/types/sourceGraph.ts"]
   export_createDependencyGraphAsync["createDependencyGraphAsync"]
   module_src_features_dependency_analysis_composition_createDependencyGraphAsync_ts --> export_createDependencyGraphAsync
@@ -54,9 +71,19 @@ graph LR
   export_CreateDependencyGraphFromInspectionsInput["CreateDependencyGraphFromInspectionsInput"]
   module_src_types_dependencyGraph_ts --> export_CreateDependencyGraphFromInspectionsInput
   export_CreateDependencyGraphFromInspectionsInput -.-> export_DependencyGraphInspectionProjectInput
+  export_createDependencyGraphFromProjectAnalysisSnapshots["createDependencyGraphFromProjectAnalysisSnapshots"]
+  module_src_features_dependency_analysis_composition_createDependencyGraphFromProjectAnalysisSnapshots_ts --> export_createDependencyGraphFromProjectAnalysisSnapshots
+  export_createDependencyGraphFromProjectAnalysisSnapshots -.-> export_DependencyGraph
+  export_createDependencyGraphFromProjectAnalysisSnapshots -.-> export_ProjectAnalysisSnapshot
   export_CreateDependencyGraphInput["CreateDependencyGraphInput"]
   module_src_types_dependencyGraph_ts --> export_CreateDependencyGraphInput
   export_CreateDependencyGraphInput -.-> export_DependencyGraphProjectInput
+  export_createProjectAnalysisSnapshotAsync["createProjectAnalysisSnapshotAsync"]
+  module_src_features_source_graph_composition_createProjectAnalysisSnapshotAsync_ts --> export_createProjectAnalysisSnapshotAsync
+  export_createProjectAnalysisSnapshotAsync -.-> export_CreateProjectAnalysisSnapshotInput
+  export_createProjectAnalysisSnapshotAsync -.-> export_ProjectAnalysisSnapshot
+  export_CreateProjectAnalysisSnapshotInput["CreateProjectAnalysisSnapshotInput"]
+  module_src_types_projectAnalysisSnapshot_ts --> export_CreateProjectAnalysisSnapshotInput
   export_createSourceGraph["createSourceGraph"]
   module_src_features_source_graph_domain_createSourceGraph_ts --> export_createSourceGraph
   export_createSourceGraph -.-> export_SourceGraph
@@ -72,6 +99,10 @@ graph LR
   export_CreateSourceGraphFromInspectionsInput["CreateSourceGraphFromInspectionsInput"]
   module_src_types_sourceGraph_ts --> export_CreateSourceGraphFromInspectionsInput
   export_CreateSourceGraphFromInspectionsInput -.-> export_SourceInspectionProjectInput
+  export_createSourceGraphFromProjectAnalysisSnapshots["createSourceGraphFromProjectAnalysisSnapshots"]
+  module_src_features_source_graph_composition_createSourceGraphFromProjectAnalysisSnapshots_ts --> export_createSourceGraphFromProjectAnalysisSnapshots
+  export_createSourceGraphFromProjectAnalysisSnapshots -.-> export_ProjectAnalysisSnapshot
+  export_createSourceGraphFromProjectAnalysisSnapshots -.-> export_SourceGraph
   export_createSourceGraphIndex["createSourceGraphIndex"]
   module_src_features_source_graph_domain_createSourceGraphIndex_ts --> export_createSourceGraphIndex
   export_createSourceGraphIndex -.-> export_SourceGraph
@@ -89,6 +120,11 @@ graph LR
   module_src_types_dependencyGraph_ts --> export_DependencyDeclarationKind
   export_DependencyGraph["DependencyGraph"]
   module_src_types_dependencyGraph_ts --> export_DependencyGraph
+  export_dependencyGraphApi["dependencyGraphApi"]
+  module_src_features_dependency_analysis_adapters_inbound_api_dependencyGraphApi_ts --> export_dependencyGraphApi
+  export_DependencyGraphApiInput["DependencyGraphApiInput"]
+  module_src_types_dependencyGraphApi_ts --> export_DependencyGraphApiInput
+  export_DependencyGraphApiInput -.-> export_DependencyGraphProjectInput
   export_DependencyGraphEdgeData["DependencyGraphEdgeData"]
   module_src_types_dependencyGraph_ts --> export_DependencyGraphEdgeData
   export_DependencyGraphEdgeData -.-> export_DependencyImportEvidence
@@ -112,6 +148,9 @@ graph LR
   module_src_types_dependencyGraph_ts --> export_DependencyNodeKind
   export_DependencyReferenceClassification["DependencyReferenceClassification"]
   module_src_types_dependencyGraph_ts --> export_DependencyReferenceClassification
+  export_deserializeProjectAnalysisSnapshot["deserializeProjectAnalysisSnapshot"]
+  module_src_features_source_graph_domain_deserializeProjectAnalysisSnapshot_ts --> export_deserializeProjectAnalysisSnapshot
+  export_deserializeProjectAnalysisSnapshot -.-> export_ProjectAnalysisSnapshot
   export_deserializeSourceGraph["deserializeSourceGraph"]
   module_src_features_source_graph_domain_serializeSourceGraph_ts --> export_deserializeSourceGraph
   export_deserializeSourceGraph -.-> export_SourceGraph
@@ -147,11 +186,41 @@ graph LR
   module_src_features_source_graph_domain_querySourceGraph_ts --> export_outgoingSourceRelations
   export_outgoingSourceRelations -.-> export_SourceGraphIndex
   export_outgoingSourceRelations -.-> export_SourceRelationView
+  export_ProjectAnalysisAnalyzer["ProjectAnalysisAnalyzer"]
+  module_src_types_projectAnalysisSnapshot_ts --> export_ProjectAnalysisAnalyzer
+  export_ProjectAnalysisAnalyzer -.-> export_SourceCapability
+  export_ProjectAnalysisPackage["ProjectAnalysisPackage"]
+  module_src_types_projectAnalysisSnapshot_ts --> export_ProjectAnalysisPackage
+  export_ProjectAnalysisSnapshot["ProjectAnalysisSnapshot"]
+  module_src_types_projectAnalysisSnapshot_ts --> export_ProjectAnalysisSnapshot
+  export_ProjectAnalysisSnapshot -.-> export_ProjectAnalysisAnalyzer
+  export_ProjectAnalysisSnapshot -.-> export_ProjectAnalysisPackage
+  export_ProjectAnalysisSnapshot -.-> export_ProjectAnalysisSourceFile
+  export_ProjectAnalysisSnapshot -.-> export_ProjectAnalysisWorkspace
+  export_ProjectAnalysisSourceFile["ProjectAnalysisSourceFile"]
+  module_src_types_projectAnalysisSnapshot_ts --> export_ProjectAnalysisSourceFile
+  export_ProjectAnalysisSourceFile -.-> export_DependencyDeclaration
+  export_ProjectAnalysisSourceFile -.-> export_SourceFileFacts
+  export_ProjectAnalysisWorkspace["ProjectAnalysisWorkspace"]
+  module_src_types_projectAnalysisSnapshot_ts --> export_ProjectAnalysisWorkspace
+  export_projectDependencyGraphFromInspections["projectDependencyGraphFromInspections"]
+  module_src_features_dependency_analysis_application_projectDependencyGraphFromInspections_ts --> export_projectDependencyGraphFromInspections
+  export_projectDependencyGraphFromInspections -.-> export_DependencyGraph
+  export_projectDependencyGraphFromInspections -.-> export_DependencyGraphInspectionProjectInput
+  export_projectDependencyGraphFromInspections -.-> export_SourceGraph
+  export_projectDependencyGraphFromProjectAnalysisSnapshots["projectDependencyGraphFromProjectAnalysisSnapshots"]
+  module_src_features_dependency_analysis_application_projectDependencyGraphFromProjectAnalysisSnapshots_ts --> export_projectDependencyGraphFromProjectAnalysisSnapshots
+  export_projectDependencyGraphFromProjectAnalysisSnapshots -.-> export_DependencyGraph
+  export_projectDependencyGraphFromProjectAnalysisSnapshots -.-> export_ProjectAnalysisSnapshot
+  export_projectDependencyGraphFromProjectAnalysisSnapshots -.-> export_SourceGraph
   export_rollupSourceRelations["rollupSourceRelations"]
   module_src_features_source_graph_domain_rollupSourceRelations_ts --> export_rollupSourceRelations
   export_rollupSourceRelations -.-> export_SourceGraph
   export_rollupSourceRelations -.-> export_SourceGraphIndex
   export_rollupSourceRelations -.-> export_SourceRollupEdge
+  export_serializeProjectAnalysisSnapshot["serializeProjectAnalysisSnapshot"]
+  module_src_features_source_graph_domain_serializeProjectAnalysisSnapshot_ts --> export_serializeProjectAnalysisSnapshot
+  export_serializeProjectAnalysisSnapshot -.-> export_ProjectAnalysisSnapshot
   export_serializeSourceGraph["serializeSourceGraph"]
   module_src_features_source_graph_domain_serializeSourceGraph_ts --> export_serializeSourceGraph
   export_serializeSourceGraph -.-> export_SourceGraph

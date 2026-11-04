@@ -4,7 +4,6 @@ import { createGraph } from '@ankhorage/graph';
 import type {
   DependencyGraph,
   DependencyGraphEdgeData,
-  DependencyGraphInspectionProjectInput,
   DependencyGraphNodeData,
   DependencyGraphPackage,
   DependencyImportEvidence,
@@ -21,11 +20,14 @@ import { createFocusPackageNode } from './createFocusPackageNode.js';
 export function projectDependencyGraphFromSourceGraph(
   sourceGraph: SourceGraph,
   packages: readonly DependencyGraphPackage[],
-  projects: readonly DependencyGraphInspectionProjectInput[],
+  projects: readonly {
+    readonly id: string;
+    readonly packages: readonly { readonly rootPath: string }[];
+  }[],
 ): DependencyGraph {
   const detectedRoots = new Map(
     projects.map(
-      ({ id, inspection }) => [id, inspection.packages.map(({ rootPath }) => rootPath)] as const,
+      ({ id, packages: detected }) => [id, detected.map(({ rootPath }) => rootPath)] as const,
     ),
   );
   const nodes = new Map<string, GraphNode<DependencyGraphNodeData>>(

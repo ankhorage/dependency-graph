@@ -1,0 +1,17 @@
+sequenceDiagram
+  participant participant_assertProjectAnalysisSnapshot as assertProjectAnalysisSnapshot
+  participant participant_isProjectAnalysisSnapshot as isProjectAnalysisSnapshot
+  participant participant_isRecord as isRecord
+  participant participant_isText as isText
+  participant participant_isTextArray as isTextArray
+  participant participant_serializeProjectAnalysisSnapshot as serializeProjectAnalysisSnapshot
+  participant_serializeProjectAnalysisSnapshot->>participant_assertProjectAnalysisSnapshot: assertProjectAnalysisSnapshot()
+  participant_assertProjectAnalysisSnapshot->>participant_isProjectAnalysisSnapshot: isProjectAnalysisSnapshot()
+  participant_isProjectAnalysisSnapshot->>participant_isRecord: isRecord()
+  participant_isRecord-->>participant_isProjectAnalysisSnapshot: return
+  participant_isProjectAnalysisSnapshot->>participant_isText: isText()
+  participant_isText-->>participant_isProjectAnalysisSnapshot: return
+  participant_isProjectAnalysisSnapshot->>participant_isTextArray: isTextArray()
+  participant_isTextArray-->>participant_isProjectAnalysisSnapshot: return
+  participant_isProjectAnalysisSnapshot-->>participant_assertProjectAnalysisSnapshot: return
+  participant_assertProjectAnalysisSnapshot-->>participant_serializeProjectAnalysisSnapshot: return

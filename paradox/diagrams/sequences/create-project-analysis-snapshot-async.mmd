@@ -1,0 +1,14 @@
+sequenceDiagram
+  participant participant_createProjectAnalysisSnapshotAsync as createProjectAnalysisSnapshotAsync
+  participant participant_createTypeScriptImportResolver as createTypeScriptImportResolver
+  participant participant_inspectProjectAsync as inspectProjectAsync
+  participant participant_readPackageDeclarationsAsync as readPackageDeclarationsAsync
+  participant participant_readProjectFilesAsync as readProjectFilesAsync
+  participant_createProjectAnalysisSnapshotAsync->>participant_inspectProjectAsync: inspectProjectAsync()
+  participant_inspectProjectAsync-->>participant_createProjectAnalysisSnapshotAsync: return
+  participant_createProjectAnalysisSnapshotAsync->>participant_readProjectFilesAsync: readProjectFilesAsync()
+  participant_readProjectFilesAsync->>participant_readPackageDeclarationsAsync: readPackageDeclarationsAsync()
+  participant_readPackageDeclarationsAsync-->>participant_readProjectFilesAsync: return
+  participant_readProjectFilesAsync->>participant_createTypeScriptImportResolver: createTypeScriptImportResolver()
+  participant_createTypeScriptImportResolver-->>participant_readProjectFilesAsync: return
+  participant_readProjectFilesAsync-->>participant_createProjectAnalysisSnapshotAsync: return

@@ -17,7 +17,11 @@ export function projectDependencyGraphFromInspections(
   assertDependencyGraphInspections(projects);
   const packages = projects.flatMap(createInspectedPackages);
   assertUniqueFocusNames(packages);
-  return projectDependencyGraphFromSourceGraph(sourceGraph, packages, projects);
+  return projectDependencyGraphFromSourceGraph(
+    sourceGraph,
+    packages,
+    projects.map(({ id, inspection }) => ({ id, packages: inspection.packages })),
+  );
 }
 
 /*** Normalize one supplied inspection into dependency-analysis package contexts. */
