@@ -33,14 +33,14 @@
   },
   {
     "name": "createDependencyGraphFromInspectionsAsync",
-    "description": "Build one canonical dependency graph from already-inspected projects without rescanning them.",
+    "description": "Build the established dependency view from one canonical source analysis.",
     "isReadme": false,
     "examples": [],
     "kind": "function",
     "modulePath": "src/features/dependency-analysis/composition/createDependencyGraphFromInspectionsAsync.ts",
     "sourceLocation": {
       "filePath": "src/features/dependency-analysis/composition/createDependencyGraphFromInspectionsAsync.ts",
-      "line": 16,
+      "line": 10,
       "column": 1
     },
     "exportPaths": ["src/dependencyGraph.ts"],
@@ -72,7 +72,7 @@
     "modulePath": "src/types/dependencyGraph.ts",
     "sourceLocation": {
       "filePath": "src/types/dependencyGraph.ts",
-      "line": 65,
+      "line": 72,
       "column": 1
     },
     "exportPaths": ["src/dependencyGraph.ts"],
@@ -97,6 +97,38 @@
     "structuredRows": []
   },
   {
+    "name": "createDependencyGraphFromProjectAnalysisSnapshots",
+    "description": "Recompose portable project snapshots into the canonical dependency graph.",
+    "isReadme": false,
+    "examples": [],
+    "kind": "function",
+    "modulePath": "src/features/dependency-analysis/composition/createDependencyGraphFromProjectAnalysisSnapshots.ts",
+    "sourceLocation": {
+      "filePath": "src/features/dependency-analysis/composition/createDependencyGraphFromProjectAnalysisSnapshots.ts",
+      "line": 7,
+      "column": 1
+    },
+    "exportPaths": ["src/dependencyGraph.ts"],
+    "relatedSymbols": ["DependencyGraph", "ProjectAnalysisSnapshot"],
+    "signatures": [
+      {
+        "label": "(snapshots: readonly ProjectAnalysisSnapshot[]) => DependencyGraph",
+        "parameters": [
+          {
+            "name": "snapshots",
+            "type": "readonly ProjectAnalysisSnapshot[]",
+            "required": true,
+            "description": null
+          }
+        ],
+        "returnType": "DependencyGraph",
+        "returnDescription": null
+      }
+    ],
+    "members": [],
+    "structuredRows": []
+  },
+  {
     "name": "CreateDependencyGraphInput",
     "description": null,
     "isReadme": false,
@@ -105,7 +137,7 @@
     "modulePath": "src/types/dependencyGraph.ts",
     "sourceLocation": {
       "filePath": "src/types/dependencyGraph.ts",
-      "line": 60,
+      "line": 65,
       "column": 1
     },
     "exportPaths": ["src/dependencyGraph.ts"],
@@ -115,7 +147,7 @@
       {
         "name": "projects",
         "kind": "property",
-        "type": "readonly DependencyGraphProjectInput[]",
+        "type": "readonly (DependencyGraphProjectInput | DependencyGraphInspectedProjectInput)[]",
         "required": true,
         "description": null
       },
@@ -127,6 +159,56 @@
         "description": null
       }
     ],
+    "structuredRows": []
+  },
+  {
+    "name": "createProjectAnalysisSnapshotAsync",
+    "description": "Analyze one bounded project into facts that remain valid after its source root is removed.",
+    "isReadme": false,
+    "examples": [],
+    "kind": "function",
+    "modulePath": "src/features/source-graph/composition/createProjectAnalysisSnapshotAsync.ts",
+    "sourceLocation": {
+      "filePath": "src/features/source-graph/composition/createProjectAnalysisSnapshotAsync.ts",
+      "line": 20,
+      "column": 1
+    },
+    "exportPaths": ["src/dependencyGraph.ts"],
+    "relatedSymbols": ["CreateProjectAnalysisSnapshotInput", "ProjectAnalysisSnapshot"],
+    "signatures": [
+      {
+        "label": "(input: CreateProjectAnalysisSnapshotInput & { readonly signal?: AbortSignal; }) => Promise<ProjectAnalysisSnapshot>",
+        "parameters": [
+          {
+            "name": "input",
+            "type": "CreateProjectAnalysisSnapshotInput & { readonly signal?: AbortSignal; }",
+            "required": true,
+            "description": null
+          }
+        ],
+        "returnType": "Promise<ProjectAnalysisSnapshot>",
+        "returnDescription": null
+      }
+    ],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "CreateProjectAnalysisSnapshotInput",
+    "description": "A project root or its already-bounded inspection may create a portable analysis snapshot.",
+    "isReadme": false,
+    "examples": [],
+    "kind": "unknown",
+    "modulePath": "src/types/projectAnalysisSnapshot.ts",
+    "sourceLocation": {
+      "filePath": "src/types/projectAnalysisSnapshot.ts",
+      "line": 44,
+      "column": 1
+    },
+    "exportPaths": ["src/dependencyGraph.ts"],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [],
     "structuredRows": []
   },
   {
@@ -202,7 +284,7 @@
     "modulePath": "src/features/source-graph/composition/createSourceGraphFromInspectionsAsync.ts",
     "sourceLocation": {
       "filePath": "src/features/source-graph/composition/createSourceGraphFromInspectionsAsync.ts",
-      "line": 20,
+      "line": 9,
       "column": 1
     },
     "exportPaths": ["src/dependencyGraph.ts"],
@@ -234,7 +316,7 @@
     "modulePath": "src/types/sourceGraph.ts",
     "sourceLocation": {
       "filePath": "src/types/sourceGraph.ts",
-      "line": 147,
+      "line": 148,
       "column": 1
     },
     "exportPaths": ["src/dependencyGraph.ts"],
@@ -256,6 +338,38 @@
         "description": null
       }
     ],
+    "structuredRows": []
+  },
+  {
+    "name": "createSourceGraphFromProjectAnalysisSnapshots",
+    "description": "Recompose portable project facts through the canonical structure and relation pipeline.",
+    "isReadme": false,
+    "examples": [],
+    "kind": "function",
+    "modulePath": "src/features/source-graph/composition/createSourceGraphFromProjectAnalysisSnapshots.ts",
+    "sourceLocation": {
+      "filePath": "src/features/source-graph/composition/createSourceGraphFromProjectAnalysisSnapshots.ts",
+      "line": 9,
+      "column": 1
+    },
+    "exportPaths": ["src/dependencyGraph.ts"],
+    "relatedSymbols": ["ProjectAnalysisSnapshot", "SourceGraph"],
+    "signatures": [
+      {
+        "label": "(snapshots: readonly ProjectAnalysisSnapshot[]) => SourceGraph",
+        "parameters": [
+          {
+            "name": "snapshots",
+            "type": "readonly ProjectAnalysisSnapshot[]",
+            "required": true,
+            "description": null
+          }
+        ],
+        "returnType": "SourceGraph",
+        "returnDescription": null
+      }
+    ],
+    "members": [],
     "structuredRows": []
   },
   {
@@ -299,7 +413,7 @@
     "modulePath": "src/types/sourceGraph.ts",
     "sourceLocation": {
       "filePath": "src/types/sourceGraph.ts",
-      "line": 152,
+      "line": 153,
       "column": 1
     },
     "exportPaths": ["src/dependencyGraph.ts"],
@@ -425,6 +539,50 @@
     "structuredRows": []
   },
   {
+    "name": "dependencyGraphApi",
+    "description": "Expose dependency graph creation through the canonical framework-neutral Ankhorage API action.",
+    "isReadme": false,
+    "examples": [],
+    "kind": "value",
+    "modulePath": "src/features/dependency-analysis/adapters/inbound/api/dependencyGraphApi.ts",
+    "sourceLocation": {
+      "filePath": "src/features/dependency-analysis/adapters/inbound/api/dependencyGraphApi.ts",
+      "line": 7,
+      "column": 14
+    },
+    "exportPaths": ["src/dependencyGraphApi.ts"],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "DependencyGraphApiInput",
+    "description": null,
+    "isReadme": false,
+    "examples": [],
+    "kind": "type",
+    "modulePath": "src/types/dependencyGraphApi.ts",
+    "sourceLocation": {
+      "filePath": "src/types/dependencyGraphApi.ts",
+      "line": 6,
+      "column": 1
+    },
+    "exportPaths": ["src/dependencyGraphApi.ts"],
+    "relatedSymbols": ["DependencyGraphProjectInput"],
+    "signatures": [],
+    "members": [
+      {
+        "name": "projects",
+        "kind": "property",
+        "type": "readonly (DependencyGraphProjectInput | DependencyGraphInspectedProjectInput)[]",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
     "name": "DependencyGraphEdgeData",
     "description": null,
     "isReadme": false,
@@ -480,7 +638,7 @@
     "modulePath": "src/types/dependencyGraph.ts",
     "sourceLocation": {
       "filePath": "src/types/dependencyGraph.ts",
-      "line": 47,
+      "line": 52,
       "column": 1
     },
     "exportPaths": ["src/dependencyGraph.ts"],
@@ -588,7 +746,7 @@
     "modulePath": "src/types/dependencyGraph.ts",
     "sourceLocation": {
       "filePath": "src/types/dependencyGraph.ts",
-      "line": 52,
+      "line": 57,
       "column": 1
     },
     "exportPaths": ["src/dependencyGraph.ts"],
@@ -764,6 +922,38 @@
     "exportPaths": ["src/dependencyGraph.ts"],
     "relatedSymbols": [],
     "signatures": [],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "deserializeProjectAnalysisSnapshot",
+    "description": "Restore and validate one portable project analysis snapshot before it enters recomposition.",
+    "isReadme": false,
+    "examples": [],
+    "kind": "function",
+    "modulePath": "src/features/source-graph/domain/deserializeProjectAnalysisSnapshot.ts",
+    "sourceLocation": {
+      "filePath": "src/features/source-graph/domain/deserializeProjectAnalysisSnapshot.ts",
+      "line": 5,
+      "column": 1
+    },
+    "exportPaths": ["src/dependencyGraph.ts"],
+    "relatedSymbols": ["ProjectAnalysisSnapshot"],
+    "signatures": [
+      {
+        "label": "(serialized: string) => ProjectAnalysisSnapshot",
+        "parameters": [
+          {
+            "name": "serialized",
+            "type": "string",
+            "required": true,
+            "description": null
+          }
+        ],
+        "returnType": "ProjectAnalysisSnapshot",
+        "returnDescription": null
+      }
+    ],
     "members": [],
     "structuredRows": []
   },
@@ -1134,6 +1324,308 @@
     "structuredRows": []
   },
   {
+    "name": "ProjectAnalysisAnalyzer",
+    "description": "Analyzer provenance and available factual capabilities captured at analysis time.",
+    "isReadme": false,
+    "examples": [],
+    "kind": "type",
+    "modulePath": "src/types/projectAnalysisSnapshot.ts",
+    "sourceLocation": {
+      "filePath": "src/types/projectAnalysisSnapshot.ts",
+      "line": 30,
+      "column": 1
+    },
+    "exportPaths": ["src/dependencyGraph.ts"],
+    "relatedSymbols": ["SourceCapability"],
+    "signatures": [],
+    "members": [
+      {
+        "name": "capabilities",
+        "kind": "property",
+        "type": "readonly SourceCapability[]",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "id",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "ProjectAnalysisPackage",
+    "description": "One detected package expressed only with project-relative identity.",
+    "isReadme": false,
+    "examples": [],
+    "kind": "type",
+    "modulePath": "src/types/projectAnalysisSnapshot.ts",
+    "sourceLocation": {
+      "filePath": "src/types/projectAnalysisSnapshot.ts",
+      "line": 18,
+      "column": 1
+    },
+    "exportPaths": ["src/dependencyGraph.ts"],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [
+      {
+        "name": "name",
+        "kind": "property",
+        "type": "string",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "rootPath",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "ProjectAnalysisSnapshot",
+    "description": "Versioned, filesystem-independent facts required to recompose one analyzed project.",
+    "isReadme": false,
+    "examples": [],
+    "kind": "type",
+    "modulePath": "src/types/projectAnalysisSnapshot.ts",
+    "sourceLocation": {
+      "filePath": "src/types/projectAnalysisSnapshot.ts",
+      "line": 6,
+      "column": 1
+    },
+    "exportPaths": ["src/dependencyGraph.ts"],
+    "relatedSymbols": [
+      "ProjectAnalysisAnalyzer",
+      "ProjectAnalysisPackage",
+      "ProjectAnalysisSourceFile",
+      "ProjectAnalysisWorkspace"
+    ],
+    "signatures": [],
+    "members": [
+      {
+        "name": "analyzedFiles",
+        "kind": "property",
+        "type": "readonly ProjectAnalysisSourceFile[]",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "analyzers",
+        "kind": "property",
+        "type": "readonly ProjectAnalysisAnalyzer[]",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "directories",
+        "kind": "property",
+        "type": "readonly string[]",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "files",
+        "kind": "property",
+        "type": "readonly string[]",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "packages",
+        "kind": "property",
+        "type": "readonly ProjectAnalysisPackage[]",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "projectId",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "version",
+        "kind": "property",
+        "type": "1",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "workspaces",
+        "kind": "property",
+        "type": "readonly ProjectAnalysisWorkspace[]",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "ProjectAnalysisSourceFile",
+    "description": "One project-relative source file and its language-neutral analyzer output.",
+    "isReadme": false,
+    "examples": [],
+    "kind": "type",
+    "modulePath": "src/types/projectAnalysisSnapshot.ts",
+    "sourceLocation": {
+      "filePath": "src/types/projectAnalysisSnapshot.ts",
+      "line": 36,
+      "column": 1
+    },
+    "exportPaths": ["src/dependencyGraph.ts"],
+    "relatedSymbols": ["DependencyDeclaration", "SourceFileFacts"],
+    "signatures": [],
+    "members": [
+      {
+        "name": "analyzerId",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "declaredDependencies",
+        "kind": "property",
+        "type": "Readonly<Record<string, readonly import(\"./dependencyGraph.js\").DependencyDeclaration[]>> | undefined",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "facts",
+        "kind": "property",
+        "type": "SourceFileFacts",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "path",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "ProjectAnalysisWorkspace",
+    "description": "Workspace membership required to retain the established focus-package selection.",
+    "isReadme": false,
+    "examples": [],
+    "kind": "type",
+    "modulePath": "src/types/projectAnalysisSnapshot.ts",
+    "sourceLocation": {
+      "filePath": "src/types/projectAnalysisSnapshot.ts",
+      "line": 24,
+      "column": 1
+    },
+    "exportPaths": ["src/dependencyGraph.ts"],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [
+      {
+        "name": "packagePaths",
+        "kind": "property",
+        "type": "readonly string[]",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "rootPath",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "projectDependencyGraphFromInspections",
+    "description": "Project a previously analyzed source graph into the established package/module view.",
+    "isReadme": false,
+    "examples": [],
+    "kind": "function",
+    "modulePath": "src/features/dependency-analysis/application/projectDependencyGraphFromInspections.ts",
+    "sourceLocation": {
+      "filePath": "src/features/dependency-analysis/application/projectDependencyGraphFromInspections.ts",
+      "line": 13,
+      "column": 1
+    },
+    "exportPaths": ["src/dependencyGraph.ts"],
+    "relatedSymbols": ["DependencyGraph", "DependencyGraphInspectionProjectInput", "SourceGraph"],
+    "signatures": [
+      {
+        "label": "(sourceGraph: SourceGraph, projects: readonly DependencyGraphInspectionProjectInput[]) => DependencyGraph",
+        "parameters": [
+          {
+            "name": "projects",
+            "type": "readonly DependencyGraphInspectionProjectInput[]",
+            "required": true,
+            "description": null
+          },
+          {
+            "name": "sourceGraph",
+            "type": "SourceGraph",
+            "required": true,
+            "description": null
+          }
+        ],
+        "returnType": "DependencyGraph",
+        "returnDescription": null
+      }
+    ],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "projectDependencyGraphFromProjectAnalysisSnapshots",
+    "description": "Project recomposed portable source facts through the established package/module graph view.",
+    "isReadme": false,
+    "examples": [],
+    "kind": "function",
+    "modulePath": "src/features/dependency-analysis/application/projectDependencyGraphFromProjectAnalysisSnapshots.ts",
+    "sourceLocation": {
+      "filePath": "src/features/dependency-analysis/application/projectDependencyGraphFromProjectAnalysisSnapshots.ts",
+      "line": 7,
+      "column": 1
+    },
+    "exportPaths": ["src/dependencyGraph.ts"],
+    "relatedSymbols": ["DependencyGraph", "ProjectAnalysisSnapshot", "SourceGraph"],
+    "signatures": [
+      {
+        "label": "(sourceGraph: SourceGraph, snapshots: readonly ProjectAnalysisSnapshot[]) => DependencyGraph",
+        "parameters": [
+          {
+            "name": "snapshots",
+            "type": "readonly ProjectAnalysisSnapshot[]",
+            "required": true,
+            "description": null
+          },
+          {
+            "name": "sourceGraph",
+            "type": "SourceGraph",
+            "required": true,
+            "description": null
+          }
+        ],
+        "returnType": "DependencyGraph",
+        "returnDescription": null
+      }
+    ],
+    "members": [],
+    "structuredRows": []
+  },
+  {
     "name": "rollupSourceRelations",
     "description": "Aggregate observed relationships at the requested containment level, preserving edge IDs.",
     "isReadme": false,
@@ -1184,6 +1676,38 @@
     "structuredRows": []
   },
   {
+    "name": "serializeProjectAnalysisSnapshot",
+    "description": "Serialize a validated portable project analysis snapshot for cache storage or transfer.",
+    "isReadme": false,
+    "examples": [],
+    "kind": "function",
+    "modulePath": "src/features/source-graph/domain/serializeProjectAnalysisSnapshot.ts",
+    "sourceLocation": {
+      "filePath": "src/features/source-graph/domain/serializeProjectAnalysisSnapshot.ts",
+      "line": 5,
+      "column": 1
+    },
+    "exportPaths": ["src/dependencyGraph.ts"],
+    "relatedSymbols": ["ProjectAnalysisSnapshot"],
+    "signatures": [
+      {
+        "label": "(snapshot: ProjectAnalysisSnapshot) => string",
+        "parameters": [
+          {
+            "name": "snapshot",
+            "type": "ProjectAnalysisSnapshot",
+            "required": true,
+            "description": null
+          }
+        ],
+        "returnType": "string",
+        "returnDescription": null
+      }
+    ],
+    "members": [],
+    "structuredRows": []
+  },
+  {
     "name": "serializeSourceGraph",
     "description": "Intern repeated source strings while retaining a lossless JSON interchange format.",
     "isReadme": false,
@@ -1224,7 +1748,7 @@
     "modulePath": "src/types/sourceGraph.ts",
     "sourceLocation": {
       "filePath": "src/types/sourceGraph.ts",
-      "line": 134,
+      "line": 135,
       "column": 1
     },
     "exportPaths": ["src/dependencyGraph.ts"],
@@ -1278,7 +1802,7 @@
     "modulePath": "src/types/sourceGraph.ts",
     "sourceLocation": {
       "filePath": "src/types/sourceGraph.ts",
-      "line": 53,
+      "line": 54,
       "column": 1
     },
     "exportPaths": ["src/dependencyGraph.ts"],
@@ -1296,7 +1820,7 @@
     "modulePath": "src/types/sourceGraph.ts",
     "sourceLocation": {
       "filePath": "src/types/sourceGraph.ts",
-      "line": 66,
+      "line": 67,
       "column": 1
     },
     "exportPaths": ["src/dependencyGraph.ts"],
@@ -1472,7 +1996,7 @@
     "modulePath": "src/types/sourceGraph.ts",
     "sourceLocation": {
       "filePath": "src/types/sourceGraph.ts",
-      "line": 105,
+      "line": 106,
       "column": 1
     },
     "exportPaths": ["src/dependencyGraph.ts"],
@@ -1505,7 +2029,7 @@
     "modulePath": "src/types/sourceGraph.ts",
     "sourceLocation": {
       "filePath": "src/types/sourceGraph.ts",
-      "line": 121,
+      "line": 122,
       "column": 1
     },
     "exportPaths": ["src/dependencyGraph.ts"],
@@ -1545,7 +2069,7 @@
     "modulePath": "src/types/sourceGraph.ts",
     "sourceLocation": {
       "filePath": "src/types/sourceGraph.ts",
-      "line": 46,
+      "line": 47,
       "column": 1
     },
     "exportPaths": ["src/dependencyGraph.ts"],
@@ -1585,7 +2109,7 @@
     "modulePath": "src/types/sourceGraph.ts",
     "sourceLocation": {
       "filePath": "src/types/sourceGraph.ts",
-      "line": 111,
+      "line": 112,
       "column": 1
     },
     "exportPaths": ["src/dependencyGraph.ts"],
@@ -1625,7 +2149,7 @@
     "modulePath": "src/types/sourceGraph.ts",
     "sourceLocation": {
       "filePath": "src/types/sourceGraph.ts",
-      "line": 127,
+      "line": 128,
       "column": 1
     },
     "exportPaths": ["src/dependencyGraph.ts"],
@@ -1665,7 +2189,7 @@
     "modulePath": "src/types/sourceGraph.ts",
     "sourceLocation": {
       "filePath": "src/types/sourceGraph.ts",
-      "line": 158,
+      "line": 159,
       "column": 1
     },
     "exportPaths": ["src/dependencyGraph.ts"],
@@ -1762,6 +2286,13 @@
         "description": null
       },
       {
+        "name": "resolvedPath",
+        "kind": "property",
+        "type": "string",
+        "required": false,
+        "description": null
+      },
+      {
         "name": "specifier",
         "kind": "property",
         "type": "string",
@@ -1787,7 +2318,7 @@
     "modulePath": "src/types/sourceGraph.ts",
     "sourceLocation": {
       "filePath": "src/types/sourceGraph.ts",
-      "line": 142,
+      "line": 143,
       "column": 1
     },
     "exportPaths": ["src/dependencyGraph.ts"],
@@ -1867,7 +2398,7 @@
     "modulePath": "src/types/sourceGraph.ts",
     "sourceLocation": {
       "filePath": "src/types/sourceGraph.ts",
-      "line": 77,
+      "line": 78,
       "column": 1
     },
     "exportPaths": ["src/dependencyGraph.ts"],
@@ -1996,7 +2527,7 @@
     "modulePath": "src/types/sourceGraph.ts",
     "sourceLocation": {
       "filePath": "src/types/sourceGraph.ts",
-      "line": 117,
+      "line": 118,
       "column": 1
     },
     "exportPaths": ["src/dependencyGraph.ts"],
@@ -2022,7 +2553,7 @@
     "modulePath": "src/types/sourceGraph.ts",
     "sourceLocation": {
       "filePath": "src/types/sourceGraph.ts",
-      "line": 72,
+      "line": 73,
       "column": 1
     },
     "exportPaths": ["src/dependencyGraph.ts"],
@@ -2040,7 +2571,7 @@
     "modulePath": "src/types/sourceGraph.ts",
     "sourceLocation": {
       "filePath": "src/types/sourceGraph.ts",
-      "line": 199,
+      "line": 200,
       "column": 1
     },
     "exportPaths": ["src/dependencyGraph.ts"],
@@ -2101,7 +2632,7 @@
     "modulePath": "src/types/sourceGraph.ts",
     "sourceLocation": {
       "filePath": "src/types/sourceGraph.ts",
-      "line": 96,
+      "line": 97,
       "column": 1
     },
     "exportPaths": ["src/dependencyGraph.ts"],
@@ -2162,7 +2693,7 @@
     "modulePath": "src/types/sourceGraph.ts",
     "sourceLocation": {
       "filePath": "src/types/sourceGraph.ts",
-      "line": 73,
+      "line": 74,
       "column": 1
     },
     "exportPaths": ["src/dependencyGraph.ts"],
@@ -2180,7 +2711,7 @@
     "modulePath": "src/types/sourceGraph.ts",
     "sourceLocation": {
       "filePath": "src/types/sourceGraph.ts",
-      "line": 175,
+      "line": 176,
       "column": 1
     },
     "exportPaths": ["src/dependencyGraph.ts"],
@@ -2234,7 +2765,7 @@
     "modulePath": "src/types/sourceGraph.ts",
     "sourceLocation": {
       "filePath": "src/types/sourceGraph.ts",
-      "line": 184,
+      "line": 185,
       "column": 1
     },
     "exportPaths": ["src/dependencyGraph.ts"],
@@ -2295,7 +2826,7 @@
     "modulePath": "src/types/sourceGraph.ts",
     "sourceLocation": {
       "filePath": "src/types/sourceGraph.ts",
-      "line": 194,
+      "line": 195,
       "column": 1
     },
     "exportPaths": ["src/dependencyGraph.ts"],

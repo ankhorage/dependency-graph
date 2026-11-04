@@ -1,7 +1,6 @@
 import path from 'node:path';
 
-import type { ProjectInspection } from '@ankhorage/project-detector/types';
-
+import type { ProjectAnalysisSnapshot } from '../../../types/projectAnalysisSnapshot.js';
 import type {
   SourceAnalyzedFile,
   SourceEdgeDraft,
@@ -12,14 +11,9 @@ import type {
 } from '../../../types/sourceGraph.js';
 import { sourceSemanticPath } from './sourceSemanticPath.js';
 
-interface SourceProject {
-  readonly id: string;
-  readonly inspection: ProjectInspection;
-}
-
 /*** Preserve scanned projects, packages, empty directories, files, and nested declarations. */
 export function createSourceStructureDraft(
-  projects: readonly SourceProject[],
+  projects: readonly ProjectAnalysisSnapshot[],
   files: readonly SourceAnalyzedFile[],
 ): SourceGraphDraft {
   const nodes = new Map<string, SourceNodeDraft>();
@@ -28,58 +22,52 @@ export function createSourceStructureDraft(
   return {
     nodes: [...nodes.values()],
     edges,
-    capabilities: projects.flatMap(({ id, inspection }) => {
-      const analyzers = new Set([
-        'project-detector',
-        ...inspection.detection.languages.map(({ id: languageId }) => languageId),
-        ...files.filter((file) => file.projectId === id).map((file) => file.analyzerId),
-      ]);
-      return [...analyzers].map((analyzerId) => ({
-        projectId: id,
+    capabilities: projects.flatMap(({ projectId, analyzers }) =>
+      analyzers.map(({ id: analyzerId, capabilities: available }) => ({
+        projectId,
         analyzerId,
-        available: analyzerCapabilities(analyzerId),
-      }));
-    }),
+        available,
+      })),
+    ),
   };
 }
 
 /*** Add the physical containment tree for one inspected project. */
 function addProject(
-  project: SourceProject,
+  project: ProjectAnalysisSnapshot,
   analyzedFiles: readonly SourceAnalyzedFile[],
   nodes: Map<string, SourceNodeDraft>,
   edges: SourceEdgeDraft[],
 ): void {
-  const { id, inspection } = project;
-  if (!inspection.complete) throw new Error(`Source graph inspection is incomplete for ${id}.`);
-  const projectKey = sourceSemanticPath('project', id);
-  addNode(nodes, { semanticPath: projectKey, kind: 'project', name: id, projectId: id });
-  const packageRoots = new Set(['.', ...inspection.packages.map(({ rootPath }) => rootPath)]);
+  const { projectId } = project;
+  const projectKey = sourceSemanticPath('project', projectId);
+  addNode(nodes, { semanticPath: projectKey, kind: 'project', name: projectId, projectId });
+  const packageRoots = new Set(['.', ...project.packages.map(({ rootPath }) => rootPath)]);
   addPackages(project, packageRoots, projectKey, nodes, edges);
   addDirectories(project, packageRoots, nodes, edges);
   addFiles(project, packageRoots, nodes, edges);
-  for (const file of analyzedFiles.filter((item) => item.projectId === id)) {
+  for (const file of analyzedFiles.filter((item) => item.projectId === projectId)) {
     addFileFacts(file, nodes, edges);
   }
 }
 
 /*** Preserve package and workspace roots as explicit containment boundaries. */
 function addPackages(
-  project: SourceProject,
+  project: ProjectAnalysisSnapshot,
   packageRoots: ReadonlySet<string>,
   projectKey: string,
   nodes: Map<string, SourceNodeDraft>,
   edges: SourceEdgeDraft[],
 ): void {
-  const { id, inspection } = project;
+  const { projectId } = project;
   for (const root of packageRoots) {
-    const key = packageKey(id, root);
-    const name = inspection.packages.find(({ rootPath }) => rootPath === root)?.name ?? root;
+    const key = packageKey(projectId, root);
+    const name = project.packages.find(({ rootPath }) => rootPath === root)?.name ?? root;
     addNode(nodes, {
       semanticPath: key,
       kind: 'package',
       name,
-      projectId: id,
+      projectId,
       path: root,
       classification: 'intrinsic',
     });
@@ -89,28 +77,28 @@ function addPackages(
 
 /*** Preserve empty directories and their exact scanned hierarchy. */
 function addDirectories(
-  project: SourceProject,
+  project: ProjectAnalysisSnapshot,
   packageRoots: ReadonlySet<string>,
   nodes: Map<string, SourceNodeDraft>,
   edges: SourceEdgeDraft[],
 ): void {
-  const { id, inspection } = project;
-  for (const directory of inspection.directories.filter((item) => item !== '.')) {
+  const { projectId } = project;
+  for (const directory of project.directories.filter((item) => item !== '.')) {
     const root = owningPackageRoot(directory, packageRoots);
     if (directory === root) continue;
-    const key = directoryKey(id, directory);
+    const key = directoryKey(projectId, directory);
     addNode(nodes, {
       semanticPath: key,
       kind: 'directory',
       name: path.posix.basename(directory),
-      projectId: id,
+      projectId,
       path: directory,
       classification: 'intrinsic',
     });
     const parent = path.posix.dirname(directory);
     addContains(
       edges,
-      parent === root ? packageKey(id, root) : directoryKey(id, parent),
+      parent === root ? packageKey(projectId, root) : directoryKey(projectId, parent),
       key,
       'project-detector',
       directory,
@@ -120,28 +108,30 @@ function addDirectories(
 
 /*** Preserve all inspected files, including files without an implemented language parser. */
 function addFiles(
-  project: SourceProject,
+  project: ProjectAnalysisSnapshot,
   packageRoots: ReadonlySet<string>,
   nodes: Map<string, SourceNodeDraft>,
   edges: SourceEdgeDraft[],
 ): void {
-  const { id, inspection } = project;
-  for (const file of inspection.files) {
+  const { projectId } = project;
+  for (const file of project.files) {
     const root = owningPackageRoot(file, packageRoots);
     const parent = path.posix.dirname(file);
-    const key = fileKey(id, file);
+    const key = fileKey(projectId, file);
     addNode(nodes, {
       semanticPath: key,
       kind: 'file',
       name: path.posix.basename(file),
-      projectId: id,
+      projectId,
       path: file,
       filePath: file,
       classification: 'intrinsic',
     });
     addContains(
       edges,
-      parent === root || parent === '.' ? packageKey(id, root) : directoryKey(id, parent),
+      parent === root || parent === '.'
+        ? packageKey(projectId, root)
+        : directoryKey(projectId, parent),
       key,
       'project-detector',
       file,
@@ -242,40 +232,6 @@ function addDeclaration(
     });
   }
   for (const child of declaration.children) addDeclaration(file, child, key, nodes, edges);
-}
-
-/*** Define source facts that each parser actually emits. */
-function analyzerCapabilities(
-  analyzerId: string,
-): SourceGraphDraft['capabilities'][number]['available'] {
-  if (analyzerId === 'project-detector') return ['containment'];
-  if (analyzerId === 'java')
-    return [
-      'containment',
-      'declarations',
-      'documentation',
-      'extends',
-      'implements',
-      'imports',
-      'signatures',
-      'source-locations',
-      'visibility',
-    ];
-  if (analyzerId === 'typescript')
-    return [
-      'containment',
-      'declarations',
-      'documentation',
-      'exports',
-      'extends',
-      'implements',
-      'imports',
-      'signatures',
-      'source-locations',
-      'visibility',
-    ];
-  if (['cpp', 'delphi', 'kotlin', 'python'].includes(analyzerId)) return ['imports'];
-  return [];
 }
 
 /*** Select the deepest workspace/package root that owns a portable source path. */

@@ -18,9 +18,9 @@ Inspect project roots, then delegate dependency topology construction to the ins
 
 Kind: `function`
 Module: `src/features/dependency-analysis/composition/createDependencyGraphFromInspectionsAsync.ts`
-Source: `src/features/dependency-analysis/composition/createDependencyGraphFromInspectionsAsync.ts:16:1`
+Source: `src/features/dependency-analysis/composition/createDependencyGraphFromInspectionsAsync.ts:10:1`
 
-Build one canonical dependency graph from already-inspected projects without rescanning them.
+Build the established dependency view from one canonical source analysis.
 
 ### Signatures
 
@@ -32,7 +32,7 @@ Build one canonical dependency graph from already-inspected projects without res
 
 Kind: `type`
 Module: `src/types/dependencyGraph.ts`
-Source: `src/types/dependencyGraph.ts:65:1`
+Source: `src/types/dependencyGraph.ts:72:1`
 
 ### Members
 
@@ -41,18 +41,54 @@ Source: `src/types/dependencyGraph.ts:65:1`
 | projects | property | `readonly DependencyGraphInspectionProjectInput[]` | yes      |             |
 | signal   | property | `AbortSignal`                                      | no       |             |
 
+## createDependencyGraphFromProjectAnalysisSnapshots
+
+Kind: `function`
+Module: `src/features/dependency-analysis/composition/createDependencyGraphFromProjectAnalysisSnapshots.ts`
+Source: `src/features/dependency-analysis/composition/createDependencyGraphFromProjectAnalysisSnapshots.ts:7:1`
+
+Recompose portable project snapshots into the canonical dependency graph.
+
+### Signatures
+
+- `(snapshots: readonly ProjectAnalysisSnapshot[]) => DependencyGraph`
+  - snapshots: `readonly ProjectAnalysisSnapshot[]`
+  - returns: `DependencyGraph`
+
 ## CreateDependencyGraphInput
 
 Kind: `type`
 Module: `src/types/dependencyGraph.ts`
-Source: `src/types/dependencyGraph.ts:60:1`
+Source: `src/types/dependencyGraph.ts:65:1`
 
 ### Members
 
-| Name     | Kind     | Type                                     | Required | Description |
-| -------- | -------- | ---------------------------------------- | -------- | ----------- |
-| projects | property | `readonly DependencyGraphProjectInput[]` | yes      |             |
-| signal   | property | `AbortSignal`                            | no       |             |
+| Name     | Kind     | Type                                                                               | Required | Description |
+| -------- | -------- | ---------------------------------------------------------------------------------- | -------- | ----------- |
+| projects | property | `readonly (DependencyGraphProjectInput \| DependencyGraphInspectedProjectInput)[]` | yes      |             |
+| signal   | property | `AbortSignal`                                                                      | no       |             |
+
+## createProjectAnalysisSnapshotAsync
+
+Kind: `function`
+Module: `src/features/source-graph/composition/createProjectAnalysisSnapshotAsync.ts`
+Source: `src/features/source-graph/composition/createProjectAnalysisSnapshotAsync.ts:20:1`
+
+Analyze one bounded project into facts that remain valid after its source root is removed.
+
+### Signatures
+
+- `(input: CreateProjectAnalysisSnapshotInput & { readonly signal?: AbortSignal; }) => Promise<ProjectAnalysisSnapshot>`
+  - input: `CreateProjectAnalysisSnapshotInput & { readonly signal?: AbortSignal; }`
+  - returns: `Promise<ProjectAnalysisSnapshot>`
+
+## CreateProjectAnalysisSnapshotInput
+
+Kind: `unknown`
+Module: `src/types/projectAnalysisSnapshot.ts`
+Source: `src/types/projectAnalysisSnapshot.ts:44:1`
+
+A project root or its already-bounded inspection may create a portable analysis snapshot.
 
 ## createSourceGraph
 
@@ -86,7 +122,7 @@ Inspect project roots, then build the canonical source graph from their bounded 
 
 Kind: `function`
 Module: `src/features/source-graph/composition/createSourceGraphFromInspectionsAsync.ts`
-Source: `src/features/source-graph/composition/createSourceGraphFromInspectionsAsync.ts:20:1`
+Source: `src/features/source-graph/composition/createSourceGraphFromInspectionsAsync.ts:9:1`
 
 Analyze inspected files once into a language-neutral factual source graph.
 
@@ -100,7 +136,7 @@ Analyze inspected files once into a language-neutral factual source graph.
 
 Kind: `type`
 Module: `src/types/sourceGraph.ts`
-Source: `src/types/sourceGraph.ts:147:1`
+Source: `src/types/sourceGraph.ts:148:1`
 
 ### Members
 
@@ -108,6 +144,20 @@ Source: `src/types/sourceGraph.ts:147:1`
 | -------- | -------- | ----------------------------------------- | -------- | ----------- |
 | projects | property | `readonly SourceInspectionProjectInput[]` | yes      |             |
 | signal   | property | `AbortSignal`                             | no       |             |
+
+## createSourceGraphFromProjectAnalysisSnapshots
+
+Kind: `function`
+Module: `src/features/source-graph/composition/createSourceGraphFromProjectAnalysisSnapshots.ts`
+Source: `src/features/source-graph/composition/createSourceGraphFromProjectAnalysisSnapshots.ts:9:1`
+
+Recompose portable project facts through the canonical structure and relation pipeline.
+
+### Signatures
+
+- `(snapshots: readonly ProjectAnalysisSnapshot[]) => SourceGraph`
+  - snapshots: `readonly ProjectAnalysisSnapshot[]`
+  - returns: `SourceGraph`
 
 ## createSourceGraphIndex
 
@@ -127,7 +177,7 @@ Build reusable semantic and adjacency indexes once from observed source facts.
 
 Kind: `type`
 Module: `src/types/sourceGraph.ts`
-Source: `src/types/sourceGraph.ts:152:1`
+Source: `src/types/sourceGraph.ts:153:1`
 
 ### Members
 
@@ -175,6 +225,26 @@ Kind: `unknown`
 Module: `src/types/dependencyGraph.ts`
 Source: `src/types/dependencyGraph.ts:40:1`
 
+## dependencyGraphApi
+
+Kind: `value`
+Module: `src/features/dependency-analysis/adapters/inbound/api/dependencyGraphApi.ts`
+Source: `src/features/dependency-analysis/adapters/inbound/api/dependencyGraphApi.ts:7:14`
+
+Expose dependency graph creation through the canonical framework-neutral Ankhorage API action.
+
+## DependencyGraphApiInput
+
+Kind: `type`
+Module: `src/types/dependencyGraphApi.ts`
+Source: `src/types/dependencyGraphApi.ts:6:1`
+
+### Members
+
+| Name     | Kind     | Type                                                                               | Required | Description |
+| -------- | -------- | ---------------------------------------------------------------------------------- | -------- | ----------- |
+| projects | property | `readonly (DependencyGraphProjectInput \| DependencyGraphInspectedProjectInput)[]` | yes      |             |
+
 ## DependencyGraphEdgeData
 
 Kind: `type`
@@ -194,7 +264,7 @@ Source: `src/types/dependencyGraph.ts:33:1`
 
 Kind: `type`
 Module: `src/types/dependencyGraph.ts`
-Source: `src/types/dependencyGraph.ts:47:1`
+Source: `src/types/dependencyGraph.ts:52:1`
 
 ### Members
 
@@ -226,7 +296,7 @@ Source: `src/types/dependencyGraph.ts:22:1`
 
 Kind: `type`
 Module: `src/types/dependencyGraph.ts`
-Source: `src/types/dependencyGraph.ts:52:1`
+Source: `src/types/dependencyGraph.ts:57:1`
 
 ### Members
 
@@ -283,6 +353,20 @@ Source: `src/types/dependencyGraph.ts:6:1`
 Kind: `unknown`
 Module: `src/types/dependencyGraph.ts`
 Source: `src/types/dependencyGraph.ts:5:1`
+
+## deserializeProjectAnalysisSnapshot
+
+Kind: `function`
+Module: `src/features/source-graph/domain/deserializeProjectAnalysisSnapshot.ts`
+Source: `src/features/source-graph/domain/deserializeProjectAnalysisSnapshot.ts:5:1`
+
+Restore and validate one portable project analysis snapshot before it enters recomposition.
+
+### Signatures
+
+- `(serialized: string) => ProjectAnalysisSnapshot`
+  - serialized: `string`
+  - returns: `ProjectAnalysisSnapshot`
 
 ## deserializeSourceGraph
 
@@ -423,6 +507,119 @@ Read relationships emitted from a semantic node in index time.
   - semanticPath: `string`
   - returns: `readonly SourceRelationView[]`
 
+## ProjectAnalysisAnalyzer
+
+Kind: `type`
+Module: `src/types/projectAnalysisSnapshot.ts`
+Source: `src/types/projectAnalysisSnapshot.ts:30:1`
+
+Analyzer provenance and available factual capabilities captured at analysis time.
+
+### Members
+
+| Name         | Kind     | Type                          | Required | Description |
+| ------------ | -------- | ----------------------------- | -------- | ----------- |
+| capabilities | property | `readonly SourceCapability[]` | yes      |             |
+| id           | property | `string`                      | yes      |             |
+
+## ProjectAnalysisPackage
+
+Kind: `type`
+Module: `src/types/projectAnalysisSnapshot.ts`
+Source: `src/types/projectAnalysisSnapshot.ts:18:1`
+
+One detected package expressed only with project-relative identity.
+
+### Members
+
+| Name     | Kind     | Type     | Required | Description |
+| -------- | -------- | -------- | -------- | ----------- |
+| name     | property | `string` | no       |             |
+| rootPath | property | `string` | yes      |             |
+
+## ProjectAnalysisSnapshot
+
+Kind: `type`
+Module: `src/types/projectAnalysisSnapshot.ts`
+Source: `src/types/projectAnalysisSnapshot.ts:6:1`
+
+Versioned, filesystem-independent facts required to recompose one analyzed project.
+
+### Members
+
+| Name          | Kind     | Type                                   | Required | Description |
+| ------------- | -------- | -------------------------------------- | -------- | ----------- |
+| analyzedFiles | property | `readonly ProjectAnalysisSourceFile[]` | yes      |             |
+| analyzers     | property | `readonly ProjectAnalysisAnalyzer[]`   | yes      |             |
+| directories   | property | `readonly string[]`                    | yes      |             |
+| files         | property | `readonly string[]`                    | yes      |             |
+| packages      | property | `readonly ProjectAnalysisPackage[]`    | yes      |             |
+| projectId     | property | `string`                               | yes      |             |
+| version       | property | `1`                                    | yes      |             |
+| workspaces    | property | `readonly ProjectAnalysisWorkspace[]`  | yes      |             |
+
+## ProjectAnalysisSourceFile
+
+Kind: `type`
+Module: `src/types/projectAnalysisSnapshot.ts`
+Source: `src/types/projectAnalysisSnapshot.ts:36:1`
+
+One project-relative source file and its language-neutral analyzer output.
+
+### Members
+
+| Name                 | Kind     | Type                                                                                                     | Required | Description |
+| -------------------- | -------- | -------------------------------------------------------------------------------------------------------- | -------- | ----------- |
+| analyzerId           | property | `string`                                                                                                 | yes      |             |
+| declaredDependencies | property | `Readonly<Record<string, readonly import("./dependencyGraph.js").DependencyDeclaration[]>> \| undefined` | no       |             |
+| facts                | property | `SourceFileFacts`                                                                                        | yes      |             |
+| path                 | property | `string`                                                                                                 | yes      |             |
+
+## ProjectAnalysisWorkspace
+
+Kind: `type`
+Module: `src/types/projectAnalysisSnapshot.ts`
+Source: `src/types/projectAnalysisSnapshot.ts:24:1`
+
+Workspace membership required to retain the established focus-package selection.
+
+### Members
+
+| Name         | Kind     | Type                | Required | Description |
+| ------------ | -------- | ------------------- | -------- | ----------- |
+| packagePaths | property | `readonly string[]` | yes      |             |
+| rootPath     | property | `string`            | yes      |             |
+
+## projectDependencyGraphFromInspections
+
+Kind: `function`
+Module: `src/features/dependency-analysis/application/projectDependencyGraphFromInspections.ts`
+Source: `src/features/dependency-analysis/application/projectDependencyGraphFromInspections.ts:13:1`
+
+Project a previously analyzed source graph into the established package/module view.
+
+### Signatures
+
+- `(sourceGraph: SourceGraph, projects: readonly DependencyGraphInspectionProjectInput[]) => DependencyGraph`
+  - projects: `readonly DependencyGraphInspectionProjectInput[]`
+  - sourceGraph: `SourceGraph`
+  - returns: `DependencyGraph`
+
+## projectDependencyGraphFromProjectAnalysisSnapshots
+
+Kind: `function`
+Module: `src/features/dependency-analysis/application/projectDependencyGraphFromProjectAnalysisSnapshots.ts`
+Source: `src/features/dependency-analysis/application/projectDependencyGraphFromProjectAnalysisSnapshots.ts:7:1`
+
+Project recomposed portable source facts through the established package/module graph view.
+
+### Signatures
+
+- `(sourceGraph: SourceGraph, snapshots: readonly ProjectAnalysisSnapshot[]) => DependencyGraph`
+  - snapshots: `readonly ProjectAnalysisSnapshot[]`
+  - sourceGraph: `SourceGraph`
+  - returns: `DependencyGraph`
+
 ## rollupSourceRelations
 
 Kind: `function`
@@ -439,6 +636,20 @@ Aggregate observed relationships at the requested containment level, preserving 
   - relationKind: `"imports" | "exports" | "extends" | "implements"` (optional)
   - sourceGraph: `SourceGraph`
   - returns: `readonly SourceRollupEdge[]`
+
+## serializeProjectAnalysisSnapshot
+
+Kind: `function`
+Module: `src/features/source-graph/domain/serializeProjectAnalysisSnapshot.ts`
+Source: `src/features/source-graph/domain/serializeProjectAnalysisSnapshot.ts:5:1`
+
+Serialize a validated portable project analysis snapshot for cache storage or transfer.
+
+### Signatures
+
+- `(snapshot: ProjectAnalysisSnapshot) => string`
+  - snapshot: `ProjectAnalysisSnapshot`
+  - returns: `string`
 
 ## serializeSourceGraph
 
@@ -458,7 +669,7 @@ Intern repeated source strings while retaining a lossless JSON interchange forma
 
 Kind: `type`
 Module: `src/types/sourceGraph.ts`
-Source: `src/types/sourceGraph.ts:134:1`
+Source: `src/types/sourceGraph.ts:135:1`
 
 Parsed source fact associated with a project-relative path.
 
@@ -476,7 +687,7 @@ Parsed source fact associated with a project-relative path.
 
 Kind: `unknown`
 Module: `src/types/sourceGraph.ts`
-Source: `src/types/sourceGraph.ts:53:1`
+Source: `src/types/sourceGraph.ts:54:1`
 
 Analyzer capabilities whose absence must not be interpreted as a negative fact.
 
@@ -484,7 +695,7 @@ Analyzer capabilities whose absence must not be interpreted as a negative fact.
 
 Kind: `type`
 Module: `src/types/sourceGraph.ts`
-Source: `src/types/sourceGraph.ts:66:1`
+Source: `src/types/sourceGraph.ts:67:1`
 
 ### Members
 
@@ -538,7 +749,7 @@ Analyzer-observed source documentation, distinct from consumer interpretation.
 
 Kind: `type`
 Module: `src/types/sourceGraph.ts`
-Source: `src/types/sourceGraph.ts:105:1`
+Source: `src/types/sourceGraph.ts:106:1`
 
 ### Members
 
@@ -551,7 +762,7 @@ Source: `src/types/sourceGraph.ts:105:1`
 
 Kind: `type`
 Module: `src/types/sourceGraph.ts`
-Source: `src/types/sourceGraph.ts:121:1`
+Source: `src/types/sourceGraph.ts:122:1`
 
 ### Members
 
@@ -565,7 +776,7 @@ Source: `src/types/sourceGraph.ts:121:1`
 
 Kind: `type`
 Module: `src/types/sourceGraph.ts`
-Source: `src/types/sourceGraph.ts:46:1`
+Source: `src/types/sourceGraph.ts:47:1`
 
 Portable facts extracted from one source file by its language analyzer.
 
@@ -581,7 +792,7 @@ Portable facts extracted from one source file by its language analyzer.
 
 Kind: `type`
 Module: `src/types/sourceGraph.ts`
-Source: `src/types/sourceGraph.ts:111:1`
+Source: `src/types/sourceGraph.ts:112:1`
 
 Compact serializable source graph; its indexes and rollups are derived separately.
 
@@ -597,7 +808,7 @@ Compact serializable source graph; its indexes and rollups are derived separatel
 
 Kind: `type`
 Module: `src/types/sourceGraph.ts`
-Source: `src/types/sourceGraph.ts:127:1`
+Source: `src/types/sourceGraph.ts:128:1`
 
 ### Members
 
@@ -611,7 +822,7 @@ Source: `src/types/sourceGraph.ts:127:1`
 
 Kind: `type`
 Module: `src/types/sourceGraph.ts`
-Source: `src/types/sourceGraph.ts:158:1`
+Source: `src/types/sourceGraph.ts:159:1`
 
 Indexed semantic access built from a serializable source graph snapshot.
 
@@ -637,19 +848,20 @@ An import observed at an exact source position.
 
 ### Members
 
-| Name      | Kind     | Type                     | Required | Description |
-| --------- | -------- | ------------------------ | -------- | ----------- |
-| kind      | property | `"import" \| "reexport"` | no       |             |
-| local     | property | `boolean`                | no       |             |
-| location  | property | `SourceLocation`         | no       |             |
-| specifier | property | `string`                 | yes      |             |
-| typeOnly  | property | `boolean`                | no       |             |
+| Name         | Kind     | Type                     | Required | Description |
+| ------------ | -------- | ------------------------ | -------- | ----------- |
+| kind         | property | `"import" \| "reexport"` | no       |             |
+| local        | property | `boolean`                | no       |             |
+| location     | property | `SourceLocation`         | no       |             |
+| resolvedPath | property | `string`                 | no       |             |
+| specifier    | property | `string`                 | yes      |             |
+| typeOnly     | property | `boolean`                | no       |             |
 
 ## SourceInspectionProjectInput
 
 Kind: `type`
 Module: `src/types/sourceGraph.ts`
-Source: `src/types/sourceGraph.ts:142:1`
+Source: `src/types/sourceGraph.ts:143:1`
 
 ### Members
 
@@ -679,7 +891,7 @@ A portable one-based source span emitted by a language analyzer.
 
 Kind: `type`
 Module: `src/types/sourceGraph.ts`
-Source: `src/types/sourceGraph.ts:77:1`
+Source: `src/types/sourceGraph.ts:78:1`
 
 Factual node data with a stable semantic key independent from its dense local ID.
 
@@ -707,7 +919,7 @@ Factual node data with a stable semantic key independent from its dense local ID
 
 Kind: `type`
 Module: `src/types/sourceGraph.ts`
-Source: `src/types/sourceGraph.ts:117:1`
+Source: `src/types/sourceGraph.ts:118:1`
 
 ### Members
 
@@ -719,13 +931,13 @@ Source: `src/types/sourceGraph.ts:117:1`
 
 Kind: `unknown`
 Module: `src/types/sourceGraph.ts`
-Source: `src/types/sourceGraph.ts:72:1`
+Source: `src/types/sourceGraph.ts:73:1`
 
 ## SourceNodeSummary
 
 Kind: `type`
 Module: `src/types/sourceGraph.ts`
-Source: `src/types/sourceGraph.ts:199:1`
+Source: `src/types/sourceGraph.ts:200:1`
 
 ### Members
 
@@ -742,7 +954,7 @@ Source: `src/types/sourceGraph.ts:199:1`
 
 Kind: `type`
 Module: `src/types/sourceGraph.ts`
-Source: `src/types/sourceGraph.ts:96:1`
+Source: `src/types/sourceGraph.ts:97:1`
 
 Evidence for one observed relationship, including analyzer provenance.
 
@@ -761,13 +973,13 @@ Evidence for one observed relationship, including analyzer provenance.
 
 Kind: `unknown`
 Module: `src/types/sourceGraph.ts`
-Source: `src/types/sourceGraph.ts:73:1`
+Source: `src/types/sourceGraph.ts:74:1`
 
 ## SourceRelationView
 
 Kind: `type`
 Module: `src/types/sourceGraph.ts`
-Source: `src/types/sourceGraph.ts:175:1`
+Source: `src/types/sourceGraph.ts:176:1`
 
 Semantic relation view with source evidence and no required ID lookup.
 
@@ -785,7 +997,7 @@ Semantic relation view with source evidence and no required ID lookup.
 
 Kind: `type`
 Module: `src/types/sourceGraph.ts`
-Source: `src/types/sourceGraph.ts:184:1`
+Source: `src/types/sourceGraph.ts:185:1`
 
 Pairwise projected dependency with references to canonical observed edges.
 
@@ -804,7 +1016,7 @@ Pairwise projected dependency with references to canonical observed edges.
 
 Kind: `type`
 Module: `src/types/sourceGraph.ts`
-Source: `src/types/sourceGraph.ts:194:1`
+Source: `src/types/sourceGraph.ts:195:1`
 
 Cached semantic queries for one deterministic projection level.
 
