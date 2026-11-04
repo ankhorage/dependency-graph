@@ -4,6 +4,7 @@ import path from 'node:path';
 
 import { expect, test } from 'bun:test';
 
+import type { ProjectAnalysisSnapshot } from '../../../dependencyGraph.js';
 import {
   createDependencyGraphAsync,
   createDependencyGraphFromProjectAnalysisSnapshots,
@@ -103,6 +104,147 @@ test('rejects unsupported snapshot versions before recomposition', async () => {
     await rm(root, { recursive: true, force: true });
   }
 });
+
+test('accepts the portable root package identity', () => {
+  const restored = deserializeProjectAnalysisSnapshot(JSON.stringify(validSnapshot()));
+
+  expect(restored.packages[0]?.rootPath).toBe('.');
+});
+
+test('rejects absolute and traversal project-relative paths throughout a snapshot', () => {
+  const snapshot = validSnapshot();
+  const invalidSnapshots = [
+    { ...snapshot, files: ['/outside/index.ts'] },
+    { ...snapshot, packages: [{ rootPath: '../package', name: 'fixture' }] },
+    { ...snapshot, workspaces: [{ rootPath: '.', packagePaths: ['../package'] }] },
+    {
+      ...snapshot,
+      analyzedFiles: [
+        {
+          ...snapshot.analyzedFiles[0],
+          facts: {
+            declarations: [],
+            imports: [{ specifier: './other', resolvedPath: '../other.ts' }],
+          },
+        },
+      ],
+    },
+  ];
+
+  for (const invalid of invalidSnapshots) {
+    expect(() => deserializeProjectAnalysisSnapshot(JSON.stringify(invalid))).toThrow(
+      'Invalid project analysis snapshot.',
+    );
+  }
+});
+
+test('rejects unsupported analyzer metadata and capability declarations', () => {
+  const snapshot = validSnapshot();
+  const invalidSnapshots = [
+    { ...snapshot, analyzers: [{ id: 'untrusted', capabilities: [] }] },
+    {
+      ...snapshot,
+      analyzers: [snapshot.analyzers[0], { id: 'typescript', capabilities: ['imports'] }],
+    },
+  ];
+
+  for (const invalid of invalidSnapshots) {
+    expect(() => deserializeProjectAnalysisSnapshot(JSON.stringify(invalid))).toThrow(
+      'Invalid project analysis snapshot.',
+    );
+  }
+});
+
+test('rejects malformed dependency evidence and source facts', () => {
+  const snapshot = validSnapshot();
+  const invalidSnapshots = [
+    {
+      ...snapshot,
+      analyzedFiles: [
+        {
+          ...snapshot.analyzedFiles[0],
+          declaredDependencies: { package: [{ kind: 'runtime', range: '^1.0.0' }] },
+        },
+      ],
+    },
+    {
+      ...snapshot,
+      analyzedFiles: [
+        {
+          ...snapshot.analyzedFiles[0],
+          facts: { declarations: [], imports: [{ specifier: 1 }] },
+        },
+      ],
+    },
+  ];
+
+  for (const invalid of invalidSnapshots) {
+    expect(() => deserializeProjectAnalysisSnapshot(JSON.stringify(invalid))).toThrow(
+      'Invalid project analysis snapshot.',
+    );
+  }
+});
+
+test('rejects duplicate package, file, and workspace identities', () => {
+  const snapshot = validSnapshot();
+  const workspaceSnapshot = {
+    ...snapshot,
+    directories: [...snapshot.directories, 'packages', 'packages/fixture'],
+    packages: [...snapshot.packages, { rootPath: 'packages/fixture', name: '@fixture/package' }],
+    workspaces: [{ rootPath: '.', packagePaths: ['packages/fixture'] }],
+  };
+  const invalidSnapshots = [
+    { ...snapshot, packages: [...snapshot.packages, { rootPath: '.', name: 'other' }] },
+    { ...snapshot, files: [...snapshot.files, snapshot.files[0] ?? 'src/index.ts'] },
+    {
+      ...workspaceSnapshot,
+      workspaces: [...workspaceSnapshot.workspaces, workspaceSnapshot.workspaces[0]],
+    },
+  ];
+
+  for (const invalid of invalidSnapshots) {
+    expect(() => deserializeProjectAnalysisSnapshot(JSON.stringify(invalid))).toThrow(
+      'Invalid project analysis snapshot.',
+    );
+  }
+});
+
+/*** Create a complete, already valid portable snapshot independent of a checkout. */
+function validSnapshot(): ProjectAnalysisSnapshot {
+  return {
+    version: 1,
+    projectId: 'fixture',
+    directories: ['src'],
+    files: ['src/index.ts'],
+    packages: [{ rootPath: '.', name: '@fixture/root' }],
+    workspaces: [],
+    analyzers: [
+      { id: 'project-detector', capabilities: ['containment'] },
+      {
+        id: 'typescript',
+        capabilities: [
+          'containment',
+          'declarations',
+          'documentation',
+          'exports',
+          'extends',
+          'implements',
+          'imports',
+          'signatures',
+          'source-locations',
+          'visibility',
+        ],
+      },
+    ],
+    analyzedFiles: [
+      {
+        analyzerId: 'typescript',
+        path: 'src/index.ts',
+        facts: { declarations: [], imports: [] },
+      },
+    ],
+  };
+}
 
 /*** Materialize two independent repositories whose package imports form a cross-project cycle. */
 async function createConnectedProjectsAsync(): Promise<{

@@ -1,5 +1,19 @@
 import type { SourceCapability } from '../../../types/sourceGraph.js';
 
+/*** Check whether an analyzer identity belongs to the portable snapshot contract. */
+export function isSourceAnalyzerId(value: string): boolean {
+  return [
+    'cpp',
+    'delphi',
+    'java',
+    'javascript',
+    'kotlin',
+    'project-detector',
+    'python',
+    'typescript',
+  ].includes(value);
+}
+
 /*** Declare the factual capabilities each supported analyzer contract can emit. */
 export function sourceAnalyzerCapabilities(analyzerId: string): readonly SourceCapability[] {
   if (analyzerId === 'project-detector') return ['containment'];
