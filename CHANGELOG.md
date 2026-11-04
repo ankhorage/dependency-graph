@@ -1,5 +1,11 @@
 # @ankhorage/dependency-graph
 
+## 1.3.1
+
+### Patch Changes
+
+- 93a207f: Preserve distinct TypeScript root-module identities in dependency projections.
+
 ## 1.3.0
 
 ### Minor Changes
