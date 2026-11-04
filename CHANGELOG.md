@@ -1,5 +1,11 @@
 # @ankhorage/dependency-graph
 
+## 1.4.0
+
+### Minor Changes
+
+- b8211fc: Add portable, validated project-analysis snapshots and canonical multi-project recomposition APIs.
+
 ## 1.3.1
 
 ### Patch Changes
