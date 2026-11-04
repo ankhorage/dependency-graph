@@ -35,6 +35,36 @@ test('matches filesystem analysis for an inspected TypeScript workspace', async 
   }
 });
 
+test('preserves root-module cycles separately from workspace package roots', async () => {
+  const root = await createFixtureAsync({
+    'package.json': JSON.stringify({
+      name: '@fixture/root',
+      workspaces: ['packages/*'],
+    }),
+    'a.ts': "import { b } from './b';\nexport const a = b;\n",
+    'b.ts': "import { a } from './a';\nexport const b = a;\n",
+    'packages/child/package.json': JSON.stringify({ name: '@fixture/child' }),
+    'packages/child/index.ts': 'export const child = true;\n',
+  });
+
+  try {
+    const graph = await createDependencyGraphAsync({
+      projects: [{ id: 'fixture', rootPath: root }],
+    });
+
+    expect(graph.nodes.some(({ id }) => id === 'package:fixture:.')).toBe(true);
+    expect(graph.nodes.some(({ id }) => id === 'package:fixture:.#a')).toBe(true);
+    expect(graph.nodes.some(({ id }) => id === 'package:fixture:.#b')).toBe(true);
+    expect(graph.nodes.some(({ id }) => id === 'package:fixture:packages/child')).toBe(true);
+    expect(graph.edges.map(({ source, target }) => `${source}->${target}`).sort()).toEqual([
+      'package:fixture:.#a->package:fixture:.#b',
+      'package:fixture:.#b->package:fixture:.#a',
+    ]);
+  } finally {
+    await rm(root, { recursive: true });
+  }
+});
+
 test('resolves tsconfig path aliases as intrinsic source and package dependencies', async () => {
   const root = await createFixtureAsync({
     'package.json': JSON.stringify({ name: 'alias-fixture' }),
