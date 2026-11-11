@@ -205,6 +205,61 @@ export interface SourceNodeSummary {
   readonly outgoingRelations: number;
   readonly dependencies: Readonly<Record<'intrinsic' | 'unknown' | 'vendor', number>>;
 }
+
+/*** One declaration-backed feature identity scoped to its analyzed project. */
+export interface SourceFeature {
+  readonly id: string;
+  readonly name: string;
+  readonly projectId: string;
+  readonly members: readonly SourceFeatureMember[];
+}
+
+/*** A declared component or module member with its canonical source evidence. */
+export interface SourceFeatureMember {
+  readonly analyzerId: string;
+  readonly evidence: SourceLocation;
+  readonly filePath: string;
+  readonly semanticPath: string;
+}
+
+/*** One analyzer's ability to discover explicit feature declarations in a project snapshot. */
+export interface SourceFeatureCapability {
+  readonly analyzerId: string;
+  readonly projectId: string;
+  readonly state: 'available' | 'unavailable';
+}
+
+/*** Invalid explicit feature metadata retained without manufacturing a feature. */
+export interface SourceFeatureDiagnostic {
+  readonly analyzerId: string;
+  readonly filePath: string;
+  readonly location: SourceLocation;
+  readonly message: string;
+  readonly projectId: string;
+  readonly semanticPath: string;
+}
+
+/*** Portable feature projection derived once from canonical SourceGraph evidence. */
+export interface SourceFeatureProjection {
+  readonly capabilities: readonly SourceFeatureCapability[];
+  readonly diagnostics: readonly SourceFeatureDiagnostic[];
+  readonly features: readonly SourceFeature[];
+  readonly version: 1;
+}
+
+/*** Derived lookup structures for bounded feature interaction without graph rescans. */
+export interface SourceFeatureProjectionIndex {
+  readonly featureById: ReadonlyMap<string, SourceFeature>;
+  readonly featureOffsetById: ReadonlyMap<string, number>;
+  readonly memberOffsetByFeatureId: ReadonlyMap<string, ReadonlyMap<string, number>>;
+  readonly projection: SourceFeatureProjection;
+}
+
+/*** A deterministic bounded page returned by feature and member queries. */
+export interface SourceFeaturePage<T> {
+  readonly items: readonly T[];
+  readonly nextCursor?: string;
+}
 import type { Graph, GraphEdge, GraphNode } from '@ankhorage/graph';
 import type { ProjectInspection } from '@ankhorage/project-detector/types';
 
