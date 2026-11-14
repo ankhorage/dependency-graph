@@ -1,5 +1,5 @@
 ---
-"@ankhorage/dependency-graph": patch
+'@ankhorage/dependency-graph': patch
 ---
 
 Add canonical repository metadata.
