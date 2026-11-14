@@ -1,5 +1,11 @@
 # @ankhorage/dependency-graph
 
+## 1.4.1
+
+### Patch Changes
+
+- 13a6d60: Add canonical repository metadata.
+
 ## 1.4.0
 
 ### Minor Changes
