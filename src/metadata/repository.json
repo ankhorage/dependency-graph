@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "kind": "library",
+  "title": "Ankhorage Dependency Graph",
+  "summary": "Analyzes project dependencies and produces canonical Ankhorage graph data with source evidence.",
+  "purpose": "Provide project-aware dependency topology that other tools can inspect without coupling analysis to a visualization or package-mutation workflow.",
+  "domain": "source and dependency analysis",
+  "responsibilities": [
+    "Detect project boundaries used during dependency analysis.",
+    "Analyze dependency relationships and retain evidence for produced graph data.",
+    "Project analysis results into the canonical graph model."
+  ],
+  "boundaries": [
+    "Does not own Cytoscape visualization or user-interface rendering.",
+    "Does not execute dependency updates, rollbacks, or package-manager mutations.",
+    "Does not own GitHub repository transport."
+  ],
+  "audience": [
+    "Architecture and developer tools that need inspectable dependency topology.",
+    "Consumers of canonical Ankhorage graph data."
+  ],
+  "useCases": [
+    "Analyze a project and obtain its dependency graph.",
+    "Inspect evidence behind source and dependency relationships.",
+    "Feed project-aware topology into graph or architecture tooling."
+  ],
+  "architecture": {
+    "role": "Reusable analysis library between project detection and the canonical graph boundary.",
+    "invariants": [
+      "Analysis results use canonical graph data rather than visualization-specific models.",
+      "Repository transport and update execution remain outside the analysis core."
+    ]
+  }
+}
