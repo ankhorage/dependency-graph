@@ -85,6 +85,28 @@ test('retains workspace focus packages and distinct same-named root modules', as
   }
 });
 
+test('excludes discovered cache packages that duplicate the root project package identity', async () => {
+  const root = await mkdtemp(path.join(os.tmpdir(), 'dependency-graph-snapshot-cache-'));
+  try {
+    await writeFixtureAsync(root, {
+      'package.json': JSON.stringify({ name: '@fixture/root' }),
+      'src/index.ts': 'export const root = 1;\n',
+      '.analysis-cache/first/package.json': JSON.stringify({ name: '@fixture/cache' }),
+      '.analysis-cache/first/src/index.ts': 'export const first = 1;\n',
+      '.analysis-cache/second/package.json': JSON.stringify({ name: '@fixture/cache' }),
+      '.analysis-cache/second/src/index.ts': 'export const second = 1;\n',
+    });
+
+    const snapshot = await createProjectAnalysisSnapshotAsync({ id: 'cache', rootPath: root });
+
+    expect(snapshot.packages).toEqual([{ rootPath: '.', name: '@fixture/root' }]);
+    expect(snapshot.files).not.toContain('.analysis-cache/first/package.json');
+    expect(() => serializeProjectAnalysisSnapshot(snapshot)).not.toThrow();
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});
+
 test('rejects unsupported snapshot versions before recomposition', async () => {
   const root = await mkdtemp(path.join(os.tmpdir(), 'dependency-graph-snapshot-version-'));
   try {
