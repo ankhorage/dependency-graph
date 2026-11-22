@@ -1,5 +1,11 @@
 # @ankhorage/dependency-graph
 
+## 1.5.1
+
+### Patch Changes
+
+- 09f66ba: Reject non-declaration source graph nodes as feature evidence.
+
 ## 1.5.0
 
 ### Minor Changes
