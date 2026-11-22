@@ -41,7 +41,12 @@ interface FeatureEvidence {
 
 /*** Accept only the published one-token feature tag contract from TypeScript declarations. */
 function featureEvidence(data: SourceNodeData, analyzerId: string | undefined): FeatureEvidence {
-  if (analyzerId !== 'typescript' || data.filePath === undefined || data.location === undefined)
+  if (
+    analyzerId !== 'typescript' ||
+    !isDeclaration(data.kind) ||
+    data.filePath === undefined ||
+    data.location === undefined
+  )
     return {};
   const tags = data.documentation?.tags.feature ?? [];
   if (tags.length === 0) return {};
@@ -71,6 +76,11 @@ function featureEvidence(data: SourceNodeData, analyzerId: string | undefined): 
       },
     },
   };
+}
+
+/*** Accept feature metadata only from canonical declaration nodes, never graph containers. */
+function isDeclaration(kind: SourceNodeData['kind']): boolean {
+  return kind !== 'project' && kind !== 'package' && kind !== 'directory' && kind !== 'file';
 }
 
 /*** Build deterministic project-scoped features without treating absent tags as negative evidence. */

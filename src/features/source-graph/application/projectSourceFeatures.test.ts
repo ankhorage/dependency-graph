@@ -6,6 +6,7 @@ import { expect, test } from 'bun:test';
 
 import {
   createSourceFeatureProjectionIndex,
+  createSourceGraph,
   createSourceGraphAsync,
   deserializeSourceGraph,
   findSourceFeature,
@@ -14,6 +15,44 @@ import {
   projectSourceFeatures,
   serializeSourceGraph,
 } from '../../../dependencyGraph.js';
+
+test('accepts feature tags only from TypeScript declarations after serializable graph restoration', () => {
+  const graph = createSourceGraph({
+    capabilities: [
+      {
+        analyzerId: 'typescript',
+        available: ['declarations', 'documentation', 'source-locations'],
+        projectId: 'fixture',
+      },
+    ],
+    edges: [],
+    nodes: [
+      featureEvidenceNode('project', 'project', 'ignored-project'),
+      featureEvidenceNode('package', 'package', 'ignored-package'),
+      featureEvidenceNode('directory', 'directory', 'ignored-directory'),
+      featureEvidenceNode('file', 'file', 'ignored-file'),
+      featureEvidenceNode('class', 'Checkout', 'checkout'),
+    ],
+  });
+
+  const projection = projectSourceFeatures(graph);
+  const restored = projectSourceFeatures(deserializeSourceGraph(serializeSourceGraph(graph)));
+  const index = createSourceFeatureProjectionIndex(projection);
+
+  expect(restored).toEqual(projection);
+  expect(projection.diagnostics).toEqual([]);
+  expect(projection.features).toEqual([
+    expect.objectContaining({
+      id: 'feature:fixture:checkout',
+      members: [expect.objectContaining({ semanticPath: 'class:fixture:Checkout' })],
+      name: 'checkout',
+    }),
+  ]);
+  expect(findSourceFeature(index, 'feature:fixture:ignored-file')).toBeUndefined();
+  expect(listSourceFeatures(index, { limit: 1 })).toEqual({
+    items: projection.features,
+  });
+});
 
 test('projects only explicit TypeScript feature declarations with stable evidence and bounded queries', async () => {
   const root = await featureFixtureAsync();
@@ -127,4 +166,24 @@ async function writeFixtureAsync(
       await writeFile(target, content);
     }),
   );
+}
+
+/*** Build hostile container evidence with every otherwise-required TypeScript feature field. */
+function featureEvidenceNode(
+  kind: 'project' | 'package' | 'directory' | 'file' | 'class',
+  name: string,
+  feature: string,
+) {
+  return {
+    data: {
+      analyzerId: 'typescript',
+      documentation: { text: `@feature ${feature}`, tags: { feature: [feature] } },
+      filePath: 'src/Checkout.ts',
+      kind,
+      location: { column: 1, endColumn: 2, endLine: 1, line: 1 },
+      name,
+      projectId: 'fixture',
+      semanticPath: `${kind}:fixture:${name}`,
+    },
+  };
 }
