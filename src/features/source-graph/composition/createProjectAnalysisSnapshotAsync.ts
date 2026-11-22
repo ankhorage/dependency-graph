@@ -2,7 +2,7 @@ import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 
 import { inspectProjectAsync } from '@ankhorage/project-detector/node';
-import type { ProjectInspection } from '@ankhorage/project-detector/types';
+import type { InspectedPackage, ProjectInspection } from '@ankhorage/project-detector/types';
 
 import type {
   CreateProjectAnalysisSnapshotInput,
@@ -28,21 +28,24 @@ export async function createProjectAnalysisSnapshotAsync(
         });
   if (!inspection.complete)
     throw new Error(`Project analysis inspection is incomplete for ${input.id}.`);
-  const analyzedFiles = await readProjectFilesAsync(input.id, inspection, input.signal);
+  const scopedInspection = createScopedInspection(inspection);
+  const analyzedFiles = await readProjectFilesAsync(input.id, scopedInspection, input.signal);
   const analyzerIds = new Set([
     'project-detector',
-    ...inspection.detection.languages.map(({ id }) => id),
+    ...scopedInspection.packages.flatMap(({ detection }) =>
+      detection.languages.map(({ id }) => id),
+    ),
     ...analyzedFiles.map(({ analyzerId }) => analyzerId),
   ]);
   return {
     version: 1,
     projectId: input.id,
-    directories: [...inspection.directories].sort(compareText),
-    files: [...inspection.files].sort(compareText),
-    packages: inspection.packages
+    directories: [...scopedInspection.directories].sort(compareText),
+    files: [...scopedInspection.files].sort(compareText),
+    packages: scopedInspection.packages
       .map(({ rootPath, name }) => ({ rootPath, ...(name === undefined ? {} : { name }) }))
       .sort((left, right) => compareText(left.rootPath, right.rootPath)),
-    workspaces: inspection.workspaces
+    workspaces: scopedInspection.workspaces
       .map(({ rootPath, packagePaths }) => ({
         rootPath,
         packagePaths: [...packagePaths].sort(compareText),
@@ -55,6 +58,57 @@ export async function createProjectAnalysisSnapshotAsync(
       .map(({ projectId: _, ...file }) => file)
       .sort((left, right) => compareText(left.path, right.path)),
   };
+}
+
+/*** Retain the root package and its declared workspace members, excluding discovered caches. */
+function createScopedInspection(inspection: ProjectInspection): ProjectInspection {
+  const packageRoots = selectedPackageRoots(inspection);
+  const packages = inspection.packages.filter(({ rootPath }) => packageRoots.has(rootPath));
+  const workspaces = inspection.workspaces.filter(({ rootPath }) => packageRoots.has(rootPath));
+  const isOwnedBySelectedPackage = (candidate: string): boolean => {
+    const owner = owningPackageRoot(candidate, inspection.packages);
+    return owner === undefined || packageRoots.has(owner);
+  };
+  return {
+    ...inspection,
+    directories: inspection.directories.filter(isOwnedBySelectedPackage),
+    files: inspection.files.filter(isOwnedBySelectedPackage),
+    packages,
+    workspaces,
+  };
+}
+
+/*** Select the root project package and recursively declared workspace package roots. */
+function selectedPackageRoots(inspection: ProjectInspection): ReadonlySet<string> {
+  if (!inspection.packages.some(({ rootPath }) => rootPath === '.'))
+    return new Set(inspection.packages.map(({ rootPath }) => rootPath));
+  const roots = new Set<string>(['.']);
+  let changed = true;
+  while (changed) {
+    changed = false;
+    for (const workspace of inspection.workspaces) {
+      if (!roots.has(workspace.rootPath)) continue;
+      for (const rootPath of workspace.packagePaths) {
+        if (roots.has(rootPath)) continue;
+        roots.add(rootPath);
+        changed = true;
+      }
+    }
+  }
+  return roots;
+}
+
+/*** Resolve the nearest inspected package boundary that owns a project-relative path. */
+function owningPackageRoot(
+  candidate: string,
+  packages: readonly InspectedPackage[],
+): string | undefined {
+  return packages
+    .filter(
+      ({ rootPath }) =>
+        rootPath === '.' || candidate === rootPath || candidate.startsWith(`${rootPath}/`),
+    )
+    .sort((left, right) => right.rootPath.length - left.rootPath.length)[0]?.rootPath;
 }
 
 /*** Read project-relative source files once and retain only portable analyzer facts. */
