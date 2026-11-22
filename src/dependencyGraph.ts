@@ -3,10 +3,12 @@ export { projectDependencyGraphFromProjectAnalysisSnapshots } from './features/d
 export { createDependencyGraphAsync } from './features/dependency-analysis/composition/createDependencyGraphAsync.js';
 export { createDependencyGraphFromInspectionsAsync } from './features/dependency-analysis/composition/createDependencyGraphFromInspectionsAsync.js';
 export { createDependencyGraphFromProjectAnalysisSnapshots } from './features/dependency-analysis/composition/createDependencyGraphFromProjectAnalysisSnapshots.js';
+export { projectSourceFeatures } from './features/source-graph/application/projectSourceFeatures.js';
 export { createProjectAnalysisSnapshotAsync } from './features/source-graph/composition/createProjectAnalysisSnapshotAsync.js';
 export { createSourceGraphAsync } from './features/source-graph/composition/createSourceGraphAsync.js';
 export { createSourceGraphFromInspectionsAsync } from './features/source-graph/composition/createSourceGraphFromInspectionsAsync.js';
 export { createSourceGraphFromProjectAnalysisSnapshots } from './features/source-graph/composition/createSourceGraphFromProjectAnalysisSnapshots.js';
+export { createSourceFeatureProjectionIndex } from './features/source-graph/domain/createSourceFeatureProjectionIndex.js';
 export { createSourceGraph } from './features/source-graph/domain/createSourceGraph.js';
 export { createSourceGraphIndex } from './features/source-graph/domain/createSourceGraphIndex.js';
 export {
@@ -15,6 +17,11 @@ export {
   outgoingRolledUpDependencies,
 } from './features/source-graph/domain/createSourceRollupIndex.js';
 export { deserializeProjectAnalysisSnapshot } from './features/source-graph/domain/deserializeProjectAnalysisSnapshot.js';
+export {
+  findSourceFeature,
+  listSourceFeatureMembers,
+  listSourceFeatures,
+} from './features/source-graph/domain/querySourceFeatureProjection.js';
 export {
   findSourceFile,
   findSourceNode,
@@ -64,6 +71,13 @@ export type {
   SourceDocumentation,
   SourceEdgeData,
   SourceEdgeDraft,
+  SourceFeature,
+  SourceFeatureCapability,
+  SourceFeatureDiagnostic,
+  SourceFeatureMember,
+  SourceFeaturePage,
+  SourceFeatureProjection,
+  SourceFeatureProjectionIndex,
   SourceFileFacts,
   SourceGraph,
   SourceGraphDraft,
