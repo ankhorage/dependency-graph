@@ -1,5 +1,11 @@
 # @ankhorage/dependency-graph
 
+## 1.5.0
+
+### Minor Changes
+
+- e0d1baa: Expose deterministic, evidence-backed SourceGraph feature projections from explicit TypeScript `@feature <name>` declaration tags, with bounded queries and capability diagnostics.
+
 ## 1.4.1
 
 ### Patch Changes
