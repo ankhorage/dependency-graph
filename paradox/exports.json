@@ -11,8 +11,13 @@
       "line": 11,
       "column": 1
     },
-    "exportPaths": ["src/dependencyGraph.ts"],
-    "relatedSymbols": ["CreateDependencyGraphInput", "DependencyGraph"],
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
+    "relatedSymbols": [
+      "CreateDependencyGraphInput",
+      "DependencyGraph"
+    ],
     "signatures": [
       {
         "label": "(input: CreateDependencyGraphInput) => Promise<DependencyGraph>",
@@ -43,8 +48,13 @@
       "line": 10,
       "column": 1
     },
-    "exportPaths": ["src/dependencyGraph.ts"],
-    "relatedSymbols": ["CreateDependencyGraphFromInspectionsInput", "DependencyGraph"],
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
+    "relatedSymbols": [
+      "CreateDependencyGraphFromInspectionsInput",
+      "DependencyGraph"
+    ],
     "signatures": [
       {
         "label": "(input: CreateDependencyGraphFromInspectionsInput) => Promise<DependencyGraph>",
@@ -75,8 +85,12 @@
       "line": 72,
       "column": 1
     },
-    "exportPaths": ["src/dependencyGraph.ts"],
-    "relatedSymbols": ["DependencyGraphInspectionProjectInput"],
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
+    "relatedSymbols": [
+      "DependencyGraphInspectionProjectInput"
+    ],
     "signatures": [],
     "members": [
       {
@@ -108,8 +122,13 @@
       "line": 7,
       "column": 1
     },
-    "exportPaths": ["src/dependencyGraph.ts"],
-    "relatedSymbols": ["DependencyGraph", "ProjectAnalysisSnapshot"],
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
+    "relatedSymbols": [
+      "DependencyGraph",
+      "ProjectAnalysisSnapshot"
+    ],
     "signatures": [
       {
         "label": "(snapshots: readonly ProjectAnalysisSnapshot[]) => DependencyGraph",
@@ -140,8 +159,12 @@
       "line": 65,
       "column": 1
     },
-    "exportPaths": ["src/dependencyGraph.ts"],
-    "relatedSymbols": ["DependencyGraphProjectInput"],
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
+    "relatedSymbols": [
+      "DependencyGraphProjectInput"
+    ],
     "signatures": [],
     "members": [
       {
@@ -173,8 +196,13 @@
       "line": 20,
       "column": 1
     },
-    "exportPaths": ["src/dependencyGraph.ts"],
-    "relatedSymbols": ["CreateProjectAnalysisSnapshotInput", "ProjectAnalysisSnapshot"],
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
+    "relatedSymbols": [
+      "CreateProjectAnalysisSnapshotInput",
+      "ProjectAnalysisSnapshot"
+    ],
     "signatures": [
       {
         "label": "(input: CreateProjectAnalysisSnapshotInput & { readonly signal?: AbortSignal; }) => Promise<ProjectAnalysisSnapshot>",
@@ -205,9 +233,48 @@
       "line": 44,
       "column": 1
     },
-    "exportPaths": ["src/dependencyGraph.ts"],
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
     "relatedSymbols": [],
     "signatures": [],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "createSourceFeatureProjectionIndex",
+    "description": "Index a completed feature projection for interaction-time lookup without source graph traversal.",
+    "isReadme": false,
+    "examples": [],
+    "kind": "function",
+    "modulePath": "src/features/source-graph/domain/createSourceFeatureProjectionIndex.ts",
+    "sourceLocation": {
+      "filePath": "src/features/source-graph/domain/createSourceFeatureProjectionIndex.ts",
+      "line": 7,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
+    "relatedSymbols": [
+      "SourceFeatureProjection",
+      "SourceFeatureProjectionIndex"
+    ],
+    "signatures": [
+      {
+        "label": "(projection: SourceFeatureProjection) => SourceFeatureProjectionIndex",
+        "parameters": [
+          {
+            "name": "projection",
+            "type": "SourceFeatureProjection",
+            "required": true,
+            "description": null
+          }
+        ],
+        "returnType": "SourceFeatureProjectionIndex",
+        "returnDescription": null
+      }
+    ],
     "members": [],
     "structuredRows": []
   },
@@ -223,8 +290,13 @@
       "line": 12,
       "column": 1
     },
-    "exportPaths": ["src/dependencyGraph.ts"],
-    "relatedSymbols": ["SourceGraph", "SourceGraphDraft"],
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
+    "relatedSymbols": [
+      "SourceGraph",
+      "SourceGraphDraft"
+    ],
     "signatures": [
       {
         "label": "(draft: SourceGraphDraft) => SourceGraph",
@@ -255,8 +327,13 @@
       "line": 7,
       "column": 1
     },
-    "exportPaths": ["src/dependencyGraph.ts"],
-    "relatedSymbols": ["CreateSourceGraphInput", "SourceGraph"],
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
+    "relatedSymbols": [
+      "CreateSourceGraphInput",
+      "SourceGraph"
+    ],
     "signatures": [
       {
         "label": "(input: CreateSourceGraphInput) => Promise<SourceGraph>",
@@ -287,8 +364,13 @@
       "line": 9,
       "column": 1
     },
-    "exportPaths": ["src/dependencyGraph.ts"],
-    "relatedSymbols": ["CreateSourceGraphFromInspectionsInput", "SourceGraph"],
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
+    "relatedSymbols": [
+      "CreateSourceGraphFromInspectionsInput",
+      "SourceGraph"
+    ],
     "signatures": [
       {
         "label": "(input: CreateSourceGraphFromInspectionsInput) => Promise<SourceGraph>",
@@ -319,8 +401,12 @@
       "line": 148,
       "column": 1
     },
-    "exportPaths": ["src/dependencyGraph.ts"],
-    "relatedSymbols": ["SourceInspectionProjectInput"],
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
+    "relatedSymbols": [
+      "SourceInspectionProjectInput"
+    ],
     "signatures": [],
     "members": [
       {
@@ -352,8 +438,13 @@
       "line": 9,
       "column": 1
     },
-    "exportPaths": ["src/dependencyGraph.ts"],
-    "relatedSymbols": ["ProjectAnalysisSnapshot", "SourceGraph"],
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
+    "relatedSymbols": [
+      "ProjectAnalysisSnapshot",
+      "SourceGraph"
+    ],
     "signatures": [
       {
         "label": "(snapshots: readonly ProjectAnalysisSnapshot[]) => SourceGraph",
@@ -384,8 +475,13 @@
       "line": 11,
       "column": 1
     },
-    "exportPaths": ["src/dependencyGraph.ts"],
-    "relatedSymbols": ["SourceGraph", "SourceGraphIndex"],
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
+    "relatedSymbols": [
+      "SourceGraph",
+      "SourceGraphIndex"
+    ],
     "signatures": [
       {
         "label": "(sourceGraph: SourceGraph) => SourceGraphIndex",
@@ -416,7 +512,9 @@
       "line": 153,
       "column": 1
     },
-    "exportPaths": ["src/dependencyGraph.ts"],
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
     "relatedSymbols": [],
     "signatures": [],
     "members": [
@@ -449,8 +547,13 @@
       "line": 4,
       "column": 1
     },
-    "exportPaths": ["src/dependencyGraph.ts"],
-    "relatedSymbols": ["SourceRollupEdge", "SourceRollupIndex"],
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
+    "relatedSymbols": [
+      "SourceRollupEdge",
+      "SourceRollupIndex"
+    ],
     "signatures": [
       {
         "label": "(rollups: readonly SourceRollupEdge[]) => SourceRollupIndex",
@@ -481,8 +584,12 @@
       "line": 10,
       "column": 1
     },
-    "exportPaths": ["src/dependencyGraph.ts"],
-    "relatedSymbols": ["DependencyDeclarationKind"],
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
+    "relatedSymbols": [
+      "DependencyDeclarationKind"
+    ],
     "signatures": [],
     "members": [
       {
@@ -514,7 +621,9 @@
       "line": 7,
       "column": 1
     },
-    "exportPaths": ["src/dependencyGraph.ts"],
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
     "relatedSymbols": [],
     "signatures": [],
     "members": [],
@@ -532,7 +641,9 @@
       "line": 40,
       "column": 1
     },
-    "exportPaths": ["src/dependencyGraph.ts"],
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
     "relatedSymbols": [],
     "signatures": [],
     "members": [],
@@ -550,7 +661,9 @@
       "line": 7,
       "column": 14
     },
-    "exportPaths": ["src/dependencyGraphApi.ts"],
+    "exportPaths": [
+      "src/dependencyGraphApi.ts"
+    ],
     "relatedSymbols": [],
     "signatures": [],
     "members": [],
@@ -568,8 +681,12 @@
       "line": 6,
       "column": 1
     },
-    "exportPaths": ["src/dependencyGraphApi.ts"],
-    "relatedSymbols": ["DependencyGraphProjectInput"],
+    "exportPaths": [
+      "src/dependencyGraphApi.ts"
+    ],
+    "relatedSymbols": [
+      "DependencyGraphProjectInput"
+    ],
     "signatures": [],
     "members": [
       {
@@ -594,8 +711,12 @@
       "line": 33,
       "column": 1
     },
-    "exportPaths": ["src/dependencyGraph.ts"],
-    "relatedSymbols": ["DependencyImportEvidence"],
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
+    "relatedSymbols": [
+      "DependencyImportEvidence"
+    ],
     "signatures": [],
     "members": [
       {
@@ -641,7 +762,9 @@
       "line": 52,
       "column": 1
     },
-    "exportPaths": ["src/dependencyGraph.ts"],
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
     "relatedSymbols": [],
     "signatures": [],
     "members": [
@@ -674,8 +797,13 @@
       "line": 22,
       "column": 1
     },
-    "exportPaths": ["src/dependencyGraph.ts"],
-    "relatedSymbols": ["DependencyNodeClassification", "DependencyNodeKind"],
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
+    "relatedSymbols": [
+      "DependencyNodeClassification",
+      "DependencyNodeKind"
+    ],
     "signatures": [],
     "members": [
       {
@@ -749,7 +877,9 @@
       "line": 57,
       "column": 1
     },
-    "exportPaths": ["src/dependencyGraph.ts"],
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
     "relatedSymbols": [],
     "signatures": [],
     "members": [
@@ -803,7 +933,9 @@
       "line": 42,
       "column": 1
     },
-    "exportPaths": ["src/dependencyGraph.ts"],
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
     "relatedSymbols": [],
     "signatures": [],
     "members": [
@@ -836,8 +968,13 @@
       "line": 15,
       "column": 1
     },
-    "exportPaths": ["src/dependencyGraph.ts"],
-    "relatedSymbols": ["DependencyDeclaration", "DependencyReferenceClassification"],
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
+    "relatedSymbols": [
+      "DependencyDeclaration",
+      "DependencyReferenceClassification"
+    ],
     "signatures": [],
     "members": [
       {
@@ -883,7 +1020,9 @@
       "line": 4,
       "column": 1
     },
-    "exportPaths": ["src/dependencyGraph.ts"],
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
     "relatedSymbols": [],
     "signatures": [],
     "members": [],
@@ -901,7 +1040,9 @@
       "line": 6,
       "column": 1
     },
-    "exportPaths": ["src/dependencyGraph.ts"],
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
     "relatedSymbols": [],
     "signatures": [],
     "members": [],
@@ -919,7 +1060,9 @@
       "line": 5,
       "column": 1
     },
-    "exportPaths": ["src/dependencyGraph.ts"],
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
     "relatedSymbols": [],
     "signatures": [],
     "members": [],
@@ -937,8 +1080,12 @@
       "line": 5,
       "column": 1
     },
-    "exportPaths": ["src/dependencyGraph.ts"],
-    "relatedSymbols": ["ProjectAnalysisSnapshot"],
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
+    "relatedSymbols": [
+      "ProjectAnalysisSnapshot"
+    ],
     "signatures": [
       {
         "label": "(serialized: string) => ProjectAnalysisSnapshot",
@@ -969,8 +1116,12 @@
       "line": 28,
       "column": 1
     },
-    "exportPaths": ["src/dependencyGraph.ts"],
-    "relatedSymbols": ["SourceGraph"],
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
+    "relatedSymbols": [
+      "SourceGraph"
+    ],
     "signatures": [
       {
         "label": "(serialized: string) => SourceGraph",
@@ -1001,8 +1152,13 @@
       "line": 17,
       "column": 1
     },
-    "exportPaths": ["src/dependencyGraph.ts"],
-    "relatedSymbols": ["SourceRollupEdge", "SourceRollupIndex"],
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
+    "relatedSymbols": [
+      "SourceRollupEdge",
+      "SourceRollupIndex"
+    ],
     "signatures": [
       {
         "label": "(index: SourceRollupIndex, sourceSemanticPath: string, targetSemanticPath: string) => SourceRollupEdge | undefined",
@@ -1034,6 +1190,49 @@
     "structuredRows": []
   },
   {
+    "name": "findSourceFeature",
+    "description": "Resolve one stable feature identity in constant time.",
+    "isReadme": false,
+    "examples": [],
+    "kind": "function",
+    "modulePath": "src/features/source-graph/domain/querySourceFeatureProjection.ts",
+    "sourceLocation": {
+      "filePath": "src/features/source-graph/domain/querySourceFeatureProjection.ts",
+      "line": 8,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
+    "relatedSymbols": [
+      "SourceFeature",
+      "SourceFeatureProjectionIndex"
+    ],
+    "signatures": [
+      {
+        "label": "(index: SourceFeatureProjectionIndex, id: string) => SourceFeature | undefined",
+        "parameters": [
+          {
+            "name": "id",
+            "type": "string",
+            "required": true,
+            "description": null
+          },
+          {
+            "name": "index",
+            "type": "SourceFeatureProjectionIndex",
+            "required": true,
+            "description": null
+          }
+        ],
+        "returnType": "SourceFeature | undefined",
+        "returnDescription": null
+      }
+    ],
+    "members": [],
+    "structuredRows": []
+  },
+  {
     "name": "findSourceFile",
     "description": "Resolve a file in one project by its project-relative portable path.",
     "isReadme": false,
@@ -1045,8 +1244,13 @@
       "line": 19,
       "column": 1
     },
-    "exportPaths": ["src/dependencyGraph.ts"],
-    "relatedSymbols": ["SourceGraphIndex", "SourceNodeData"],
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
+    "relatedSymbols": [
+      "SourceGraphIndex",
+      "SourceNodeData"
+    ],
     "signatures": [
       {
         "label": "(index: SourceGraphIndex, projectId: string, path: string) => GraphNode<SourceNodeData, number> | undefined",
@@ -1089,8 +1293,13 @@
       "line": 11,
       "column": 1
     },
-    "exportPaths": ["src/dependencyGraph.ts"],
-    "relatedSymbols": ["SourceGraphIndex", "SourceNodeData"],
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
+    "relatedSymbols": [
+      "SourceGraphIndex",
+      "SourceNodeData"
+    ],
     "signatures": [
       {
         "label": "(index: SourceGraphIndex, semanticPath: string) => GraphNode<SourceNodeData, number> | undefined",
@@ -1127,8 +1336,13 @@
       "line": 60,
       "column": 1
     },
-    "exportPaths": ["src/dependencyGraph.ts"],
-    "relatedSymbols": ["SourceGraphIndex", "SourceRelationView"],
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
+    "relatedSymbols": [
+      "SourceGraphIndex",
+      "SourceRelationView"
+    ],
     "signatures": [
       {
         "label": "(index: SourceGraphIndex, sourceSemanticPath: string, targetSemanticPath: string) => readonly SourceRelationView[]",
@@ -1171,8 +1385,13 @@
       "line": 28,
       "column": 1
     },
-    "exportPaths": ["src/dependencyGraph.ts"],
-    "relatedSymbols": ["SourceGraphIndex", "SourceNodeData"],
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
+    "relatedSymbols": [
+      "SourceGraphIndex",
+      "SourceNodeData"
+    ],
     "signatures": [
       {
         "label": "(index: SourceGraphIndex, projectId: string, path: string, name: string) => readonly GraphNode<SourceNodeData, number>[]",
@@ -1221,8 +1440,13 @@
       "line": 49,
       "column": 1
     },
-    "exportPaths": ["src/dependencyGraph.ts"],
-    "relatedSymbols": ["SourceGraphIndex", "SourceRelationView"],
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
+    "relatedSymbols": [
+      "SourceGraphIndex",
+      "SourceRelationView"
+    ],
     "signatures": [
       {
         "label": "(index: SourceGraphIndex, semanticPath: string) => readonly SourceRelationView[]",
@@ -1248,6 +1472,100 @@
     "structuredRows": []
   },
   {
+    "name": "listSourceFeatureMembers",
+    "description": "Return bounded component or module evidence for one resolved feature.",
+    "isReadme": false,
+    "examples": [],
+    "kind": "function",
+    "modulePath": "src/features/source-graph/domain/querySourceFeatureProjection.ts",
+    "sourceLocation": {
+      "filePath": "src/features/source-graph/domain/querySourceFeatureProjection.ts",
+      "line": 24,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
+    "relatedSymbols": [
+      "SourceFeatureMember",
+      "SourceFeaturePage",
+      "SourceFeatureProjectionIndex"
+    ],
+    "signatures": [
+      {
+        "label": "(index: SourceFeatureProjectionIndex, featureId: string, input: { readonly cursor?: string; readonly limit: number; }) => SourceFeaturePage<import(\"../../../types/sourceGraph.js\").SourceFeatureMember>",
+        "parameters": [
+          {
+            "name": "featureId",
+            "type": "string",
+            "required": true,
+            "description": null
+          },
+          {
+            "name": "index",
+            "type": "SourceFeatureProjectionIndex",
+            "required": true,
+            "description": null
+          },
+          {
+            "name": "input",
+            "type": "{ readonly cursor?: string; readonly limit: number; }",
+            "required": true,
+            "description": null
+          }
+        ],
+        "returnType": "SourceFeaturePage<import(\"../../../types/sourceGraph.js\").SourceFeatureMember>",
+        "returnDescription": null
+      }
+    ],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "listSourceFeatures",
+    "description": "Return a bounded deterministic page of evidenced features.",
+    "isReadme": false,
+    "examples": [],
+    "kind": "function",
+    "modulePath": "src/features/source-graph/domain/querySourceFeatureProjection.ts",
+    "sourceLocation": {
+      "filePath": "src/features/source-graph/domain/querySourceFeatureProjection.ts",
+      "line": 16,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
+    "relatedSymbols": [
+      "SourceFeature",
+      "SourceFeaturePage",
+      "SourceFeatureProjectionIndex"
+    ],
+    "signatures": [
+      {
+        "label": "(index: SourceFeatureProjectionIndex, input: { readonly cursor?: string; readonly limit: number; }) => SourceFeaturePage<SourceFeature>",
+        "parameters": [
+          {
+            "name": "index",
+            "type": "SourceFeatureProjectionIndex",
+            "required": true,
+            "description": null
+          },
+          {
+            "name": "input",
+            "type": "{ readonly cursor?: string; readonly limit: number; }",
+            "required": true,
+            "description": null
+          }
+        ],
+        "returnType": "SourceFeaturePage<SourceFeature>",
+        "returnDescription": null
+      }
+    ],
+    "members": [],
+    "structuredRows": []
+  },
+  {
     "name": "outgoingRolledUpDependencies",
     "description": "List aggregate dependencies leaving one semantic container.",
     "isReadme": false,
@@ -1259,8 +1577,13 @@
       "line": 26,
       "column": 1
     },
-    "exportPaths": ["src/dependencyGraph.ts"],
-    "relatedSymbols": ["SourceRollupEdge", "SourceRollupIndex"],
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
+    "relatedSymbols": [
+      "SourceRollupEdge",
+      "SourceRollupIndex"
+    ],
     "signatures": [
       {
         "label": "(index: SourceRollupIndex, sourceSemanticPath: string) => readonly SourceRollupEdge[]",
@@ -1297,8 +1620,13 @@
       "line": 38,
       "column": 1
     },
-    "exportPaths": ["src/dependencyGraph.ts"],
-    "relatedSymbols": ["SourceGraphIndex", "SourceRelationView"],
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
+    "relatedSymbols": [
+      "SourceGraphIndex",
+      "SourceRelationView"
+    ],
     "signatures": [
       {
         "label": "(index: SourceGraphIndex, semanticPath: string) => readonly SourceRelationView[]",
@@ -1335,8 +1663,12 @@
       "line": 30,
       "column": 1
     },
-    "exportPaths": ["src/dependencyGraph.ts"],
-    "relatedSymbols": ["SourceCapability"],
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
+    "relatedSymbols": [
+      "SourceCapability"
+    ],
     "signatures": [],
     "members": [
       {
@@ -1368,7 +1700,9 @@
       "line": 18,
       "column": 1
     },
-    "exportPaths": ["src/dependencyGraph.ts"],
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
     "relatedSymbols": [],
     "signatures": [],
     "members": [
@@ -1401,7 +1735,9 @@
       "line": 6,
       "column": 1
     },
-    "exportPaths": ["src/dependencyGraph.ts"],
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
     "relatedSymbols": [
       "ProjectAnalysisAnalyzer",
       "ProjectAnalysisPackage",
@@ -1481,8 +1817,13 @@
       "line": 36,
       "column": 1
     },
-    "exportPaths": ["src/dependencyGraph.ts"],
-    "relatedSymbols": ["DependencyDeclaration", "SourceFileFacts"],
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
+    "relatedSymbols": [
+      "DependencyDeclaration",
+      "SourceFileFacts"
+    ],
     "signatures": [],
     "members": [
       {
@@ -1528,7 +1869,9 @@
       "line": 24,
       "column": 1
     },
-    "exportPaths": ["src/dependencyGraph.ts"],
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
     "relatedSymbols": [],
     "signatures": [],
     "members": [
@@ -1561,8 +1904,14 @@
       "line": 13,
       "column": 1
     },
-    "exportPaths": ["src/dependencyGraph.ts"],
-    "relatedSymbols": ["DependencyGraph", "DependencyGraphInspectionProjectInput", "SourceGraph"],
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
+    "relatedSymbols": [
+      "DependencyGraph",
+      "DependencyGraphInspectionProjectInput",
+      "SourceGraph"
+    ],
     "signatures": [
       {
         "label": "(sourceGraph: SourceGraph, projects: readonly DependencyGraphInspectionProjectInput[]) => DependencyGraph",
@@ -1599,8 +1948,14 @@
       "line": 7,
       "column": 1
     },
-    "exportPaths": ["src/dependencyGraph.ts"],
-    "relatedSymbols": ["DependencyGraph", "ProjectAnalysisSnapshot", "SourceGraph"],
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
+    "relatedSymbols": [
+      "DependencyGraph",
+      "ProjectAnalysisSnapshot",
+      "SourceGraph"
+    ],
     "signatures": [
       {
         "label": "(sourceGraph: SourceGraph, snapshots: readonly ProjectAnalysisSnapshot[]) => DependencyGraph",
@@ -1626,6 +1981,43 @@
     "structuredRows": []
   },
   {
+    "name": "projectSourceFeatures",
+    "description": "Project only explicit TypeScript `@feature <name>` declaration evidence from a SourceGraph.",
+    "isReadme": false,
+    "examples": [],
+    "kind": "function",
+    "modulePath": "src/features/source-graph/application/projectSourceFeatures.ts",
+    "sourceLocation": {
+      "filePath": "src/features/source-graph/application/projectSourceFeatures.ts",
+      "line": 12,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
+    "relatedSymbols": [
+      "SourceFeatureProjection",
+      "SourceGraph"
+    ],
+    "signatures": [
+      {
+        "label": "(sourceGraph: SourceGraph) => SourceFeatureProjection",
+        "parameters": [
+          {
+            "name": "sourceGraph",
+            "type": "SourceGraph",
+            "required": true,
+            "description": null
+          }
+        ],
+        "returnType": "SourceFeatureProjection",
+        "returnDescription": null
+      }
+    ],
+    "members": [],
+    "structuredRows": []
+  },
+  {
     "name": "rollupSourceRelations",
     "description": "Aggregate observed relationships at the requested containment level, preserving edge IDs.",
     "isReadme": false,
@@ -1637,8 +2029,14 @@
       "line": 8,
       "column": 1
     },
-    "exportPaths": ["src/dependencyGraph.ts"],
-    "relatedSymbols": ["SourceGraph", "SourceGraphIndex", "SourceRollupEdge"],
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
+    "relatedSymbols": [
+      "SourceGraph",
+      "SourceGraphIndex",
+      "SourceRollupEdge"
+    ],
     "signatures": [
       {
         "label": "(sourceGraph: SourceGraph, index: SourceGraphIndex, aggregateKind: \"project\" | \"package\" | \"directory\" | \"file\", relationKind?: \"imports\" | \"exports\" | \"extends\" | \"implements\") => readonly SourceRollupEdge[]",
@@ -1687,8 +2085,12 @@
       "line": 5,
       "column": 1
     },
-    "exportPaths": ["src/dependencyGraph.ts"],
-    "relatedSymbols": ["ProjectAnalysisSnapshot"],
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
+    "relatedSymbols": [
+      "ProjectAnalysisSnapshot"
+    ],
     "signatures": [
       {
         "label": "(snapshot: ProjectAnalysisSnapshot) => string",
@@ -1719,8 +2121,12 @@
       "line": 12,
       "column": 1
     },
-    "exportPaths": ["src/dependencyGraph.ts"],
-    "relatedSymbols": ["SourceGraph"],
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
+    "relatedSymbols": [
+      "SourceGraph"
+    ],
     "signatures": [
       {
         "label": "(sourceGraph: SourceGraph) => string",
@@ -1751,8 +2157,13 @@
       "line": 135,
       "column": 1
     },
-    "exportPaths": ["src/dependencyGraph.ts"],
-    "relatedSymbols": ["DependencyDeclaration", "SourceFileFacts"],
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
+    "relatedSymbols": [
+      "DependencyDeclaration",
+      "SourceFileFacts"
+    ],
     "signatures": [],
     "members": [
       {
@@ -1805,7 +2216,9 @@
       "line": 54,
       "column": 1
     },
-    "exportPaths": ["src/dependencyGraph.ts"],
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
     "relatedSymbols": [],
     "signatures": [],
     "members": [],
@@ -1823,8 +2236,12 @@
       "line": 67,
       "column": 1
     },
-    "exportPaths": ["src/dependencyGraph.ts"],
-    "relatedSymbols": ["SourceCapability"],
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
+    "relatedSymbols": [
+      "SourceCapability"
+    ],
     "signatures": [],
     "members": [
       {
@@ -1863,8 +2280,14 @@
       "line": 21,
       "column": 1
     },
-    "exportPaths": ["src/dependencyGraph.ts"],
-    "relatedSymbols": ["SourceDocumentation", "SourceLocation", "SourceVisibility"],
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
+    "relatedSymbols": [
+      "SourceDocumentation",
+      "SourceLocation",
+      "SourceVisibility"
+    ],
     "signatures": [],
     "members": [
       {
@@ -1966,7 +2389,9 @@
       "line": 10,
       "column": 1
     },
-    "exportPaths": ["src/dependencyGraph.ts"],
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
     "relatedSymbols": [],
     "signatures": [],
     "members": [
@@ -1999,8 +2424,13 @@
       "line": 106,
       "column": 1
     },
-    "exportPaths": ["src/dependencyGraph.ts"],
-    "relatedSymbols": ["SourceRelationEvidence", "SourceRelationKind"],
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
+    "relatedSymbols": [
+      "SourceRelationEvidence",
+      "SourceRelationKind"
+    ],
     "signatures": [],
     "members": [
       {
@@ -2032,8 +2462,12 @@
       "line": 122,
       "column": 1
     },
-    "exportPaths": ["src/dependencyGraph.ts"],
-    "relatedSymbols": ["SourceEdgeData"],
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
+    "relatedSymbols": [
+      "SourceEdgeData"
+    ],
     "signatures": [],
     "members": [
       {
@@ -2061,6 +2495,355 @@
     "structuredRows": []
   },
   {
+    "name": "SourceFeature",
+    "description": "One declaration-backed feature identity scoped to its analyzed project.",
+    "isReadme": false,
+    "examples": [],
+    "kind": "type",
+    "modulePath": "src/types/sourceGraph.ts",
+    "sourceLocation": {
+      "filePath": "src/types/sourceGraph.ts",
+      "line": 210,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
+    "relatedSymbols": [
+      "SourceFeatureMember"
+    ],
+    "signatures": [],
+    "members": [
+      {
+        "name": "id",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "members",
+        "kind": "property",
+        "type": "readonly SourceFeatureMember[]",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "name",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "projectId",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "SourceFeatureCapability",
+    "description": "One analyzer's ability to discover explicit feature declarations in a project snapshot.",
+    "isReadme": false,
+    "examples": [],
+    "kind": "type",
+    "modulePath": "src/types/sourceGraph.ts",
+    "sourceLocation": {
+      "filePath": "src/types/sourceGraph.ts",
+      "line": 226,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [
+      {
+        "name": "analyzerId",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "projectId",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "state",
+        "kind": "property",
+        "type": "\"available\" | \"unavailable\"",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "SourceFeatureDiagnostic",
+    "description": "Invalid explicit feature metadata retained without manufacturing a feature.",
+    "isReadme": false,
+    "examples": [],
+    "kind": "type",
+    "modulePath": "src/types/sourceGraph.ts",
+    "sourceLocation": {
+      "filePath": "src/types/sourceGraph.ts",
+      "line": 233,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
+    "relatedSymbols": [
+      "SourceLocation"
+    ],
+    "signatures": [],
+    "members": [
+      {
+        "name": "analyzerId",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "filePath",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "location",
+        "kind": "property",
+        "type": "SourceLocation",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "message",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "projectId",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "semanticPath",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "SourceFeatureMember",
+    "description": "A declared component or module member with its canonical source evidence.",
+    "isReadme": false,
+    "examples": [],
+    "kind": "type",
+    "modulePath": "src/types/sourceGraph.ts",
+    "sourceLocation": {
+      "filePath": "src/types/sourceGraph.ts",
+      "line": 218,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
+    "relatedSymbols": [
+      "SourceLocation"
+    ],
+    "signatures": [],
+    "members": [
+      {
+        "name": "analyzerId",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "evidence",
+        "kind": "property",
+        "type": "SourceLocation",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "filePath",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "semanticPath",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "SourceFeaturePage",
+    "description": "A deterministic bounded page returned by feature and member queries.",
+    "isReadme": false,
+    "examples": [],
+    "kind": "type",
+    "modulePath": "src/types/sourceGraph.ts",
+    "sourceLocation": {
+      "filePath": "src/types/sourceGraph.ts",
+      "line": 259,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [
+      {
+        "name": "items",
+        "kind": "property",
+        "type": "readonly T[]",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "nextCursor",
+        "kind": "property",
+        "type": "string",
+        "required": false,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "SourceFeatureProjection",
+    "description": "Portable feature projection derived once from canonical SourceGraph evidence.",
+    "isReadme": false,
+    "examples": [],
+    "kind": "type",
+    "modulePath": "src/types/sourceGraph.ts",
+    "sourceLocation": {
+      "filePath": "src/types/sourceGraph.ts",
+      "line": 243,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
+    "relatedSymbols": [
+      "SourceFeature",
+      "SourceFeatureCapability",
+      "SourceFeatureDiagnostic"
+    ],
+    "signatures": [],
+    "members": [
+      {
+        "name": "capabilities",
+        "kind": "property",
+        "type": "readonly SourceFeatureCapability[]",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "diagnostics",
+        "kind": "property",
+        "type": "readonly SourceFeatureDiagnostic[]",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "features",
+        "kind": "property",
+        "type": "readonly SourceFeature[]",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "version",
+        "kind": "property",
+        "type": "1",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "SourceFeatureProjectionIndex",
+    "description": "Derived lookup structures for bounded feature interaction without graph rescans.",
+    "isReadme": false,
+    "examples": [],
+    "kind": "type",
+    "modulePath": "src/types/sourceGraph.ts",
+    "sourceLocation": {
+      "filePath": "src/types/sourceGraph.ts",
+      "line": 251,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
+    "relatedSymbols": [
+      "SourceFeature",
+      "SourceFeatureProjection"
+    ],
+    "signatures": [],
+    "members": [
+      {
+        "name": "featureById",
+        "kind": "property",
+        "type": "ReadonlyMap<string, SourceFeature>",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "featureOffsetById",
+        "kind": "property",
+        "type": "ReadonlyMap<string, number>",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "memberOffsetByFeatureId",
+        "kind": "property",
+        "type": "ReadonlyMap<string, ReadonlyMap<string, number>>",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "projection",
+        "kind": "property",
+        "type": "SourceFeatureProjection",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
     "name": "SourceFileFacts",
     "description": "Portable facts extracted from one source file by its language analyzer.",
     "isReadme": false,
@@ -2072,8 +2855,13 @@
       "line": 47,
       "column": 1
     },
-    "exportPaths": ["src/dependencyGraph.ts"],
-    "relatedSymbols": ["SourceDeclarationFact", "SourceImportFact"],
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
+    "relatedSymbols": [
+      "SourceDeclarationFact",
+      "SourceImportFact"
+    ],
     "signatures": [],
     "members": [
       {
@@ -2112,8 +2900,14 @@
       "line": 112,
       "column": 1
     },
-    "exportPaths": ["src/dependencyGraph.ts"],
-    "relatedSymbols": ["SourceCapabilityReport", "SourceEdgeData", "SourceNodeData"],
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
+    "relatedSymbols": [
+      "SourceCapabilityReport",
+      "SourceEdgeData",
+      "SourceNodeData"
+    ],
     "signatures": [],
     "members": [
       {
@@ -2152,8 +2946,14 @@
       "line": 128,
       "column": 1
     },
-    "exportPaths": ["src/dependencyGraph.ts"],
-    "relatedSymbols": ["SourceCapabilityReport", "SourceEdgeDraft", "SourceNodeDraft"],
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
+    "relatedSymbols": [
+      "SourceCapabilityReport",
+      "SourceEdgeDraft",
+      "SourceNodeDraft"
+    ],
     "signatures": [],
     "members": [
       {
@@ -2192,8 +2992,13 @@
       "line": 159,
       "column": 1
     },
-    "exportPaths": ["src/dependencyGraph.ts"],
-    "relatedSymbols": ["SourceEdgeData", "SourceNodeData"],
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
+    "relatedSymbols": [
+      "SourceEdgeData",
+      "SourceNodeData"
+    ],
     "signatures": [],
     "members": [
       {
@@ -2260,8 +3065,12 @@
       "line": 37,
       "column": 1
     },
-    "exportPaths": ["src/dependencyGraph.ts"],
-    "relatedSymbols": ["SourceLocation"],
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
+    "relatedSymbols": [
+      "SourceLocation"
+    ],
     "signatures": [],
     "members": [
       {
@@ -2321,7 +3130,9 @@
       "line": 143,
       "column": 1
     },
-    "exportPaths": ["src/dependencyGraph.ts"],
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
     "relatedSymbols": [],
     "signatures": [],
     "members": [
@@ -2354,7 +3165,9 @@
       "line": 2,
       "column": 1
     },
-    "exportPaths": ["src/dependencyGraph.ts"],
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
     "relatedSymbols": [],
     "signatures": [],
     "members": [
@@ -2401,7 +3214,9 @@
       "line": 78,
       "column": 1
     },
-    "exportPaths": ["src/dependencyGraph.ts"],
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
     "relatedSymbols": [
       "SourceDocumentation",
       "SourceLocation",
@@ -2530,8 +3345,12 @@
       "line": 118,
       "column": 1
     },
-    "exportPaths": ["src/dependencyGraph.ts"],
-    "relatedSymbols": ["SourceNodeData"],
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
+    "relatedSymbols": [
+      "SourceNodeData"
+    ],
     "signatures": [],
     "members": [
       {
@@ -2556,7 +3375,9 @@
       "line": 73,
       "column": 1
     },
-    "exportPaths": ["src/dependencyGraph.ts"],
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
     "relatedSymbols": [],
     "signatures": [],
     "members": [],
@@ -2574,8 +3395,12 @@
       "line": 200,
       "column": 1
     },
-    "exportPaths": ["src/dependencyGraph.ts"],
-    "relatedSymbols": ["SourceNodeKind"],
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
+    "relatedSymbols": [
+      "SourceNodeKind"
+    ],
     "signatures": [],
     "members": [
       {
@@ -2635,8 +3460,13 @@
       "line": 97,
       "column": 1
     },
-    "exportPaths": ["src/dependencyGraph.ts"],
-    "relatedSymbols": ["DependencyDeclaration", "SourceLocation"],
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
+    "relatedSymbols": [
+      "DependencyDeclaration",
+      "SourceLocation"
+    ],
     "signatures": [],
     "members": [
       {
@@ -2696,7 +3526,9 @@
       "line": 74,
       "column": 1
     },
-    "exportPaths": ["src/dependencyGraph.ts"],
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
     "relatedSymbols": [],
     "signatures": [],
     "members": [],
@@ -2714,8 +3546,14 @@
       "line": 176,
       "column": 1
     },
-    "exportPaths": ["src/dependencyGraph.ts"],
-    "relatedSymbols": ["SourceNodeData", "SourceRelationEvidence", "SourceRelationKind"],
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
+    "relatedSymbols": [
+      "SourceNodeData",
+      "SourceRelationEvidence",
+      "SourceRelationKind"
+    ],
     "signatures": [],
     "members": [
       {
@@ -2768,7 +3606,9 @@
       "line": 185,
       "column": 1
     },
-    "exportPaths": ["src/dependencyGraph.ts"],
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
     "relatedSymbols": [],
     "signatures": [],
     "members": [
@@ -2829,8 +3669,12 @@
       "line": 195,
       "column": 1
     },
-    "exportPaths": ["src/dependencyGraph.ts"],
-    "relatedSymbols": ["SourceRollupEdge"],
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
+    "relatedSymbols": [
+      "SourceRollupEdge"
+    ],
     "signatures": [],
     "members": [
       {
@@ -2862,7 +3706,9 @@
       "line": 18,
       "column": 1
     },
-    "exportPaths": ["src/dependencyGraph.ts"],
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
     "relatedSymbols": [],
     "signatures": [],
     "members": [],
@@ -2880,8 +3726,14 @@
       "line": 9,
       "column": 1
     },
-    "exportPaths": ["src/dependencyGraph.ts"],
-    "relatedSymbols": ["SourceGraph", "SourceGraphIndex", "SourceNodeSummary"],
+    "exportPaths": [
+      "src/dependencyGraph.ts"
+    ],
+    "relatedSymbols": [
+      "SourceGraph",
+      "SourceGraphIndex",
+      "SourceNodeSummary"
+    ],
     "signatures": [
       {
         "label": "(sourceGraph: SourceGraph, index: SourceGraphIndex, semanticPath: string) => SourceNodeSummary | undefined",

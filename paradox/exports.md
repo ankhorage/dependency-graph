@@ -36,10 +36,10 @@ Source: `src/types/dependencyGraph.ts:72:1`
 
 ### Members
 
-| Name     | Kind     | Type                                               | Required | Description |
-| -------- | -------- | -------------------------------------------------- | -------- | ----------- |
-| projects | property | `readonly DependencyGraphInspectionProjectInput[]` | yes      |             |
-| signal   | property | `AbortSignal`                                      | no       |             |
+| Name | Kind | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| projects | property | `readonly DependencyGraphInspectionProjectInput[]` | yes |  |
+| signal | property | `AbortSignal` | no |  |
 
 ## createDependencyGraphFromProjectAnalysisSnapshots
 
@@ -63,10 +63,10 @@ Source: `src/types/dependencyGraph.ts:65:1`
 
 ### Members
 
-| Name     | Kind     | Type                                                                               | Required | Description |
-| -------- | -------- | ---------------------------------------------------------------------------------- | -------- | ----------- |
-| projects | property | `readonly (DependencyGraphProjectInput \| DependencyGraphInspectedProjectInput)[]` | yes      |             |
-| signal   | property | `AbortSignal`                                                                      | no       |             |
+| Name | Kind | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| projects | property | `readonly (DependencyGraphProjectInput \| DependencyGraphInspectedProjectInput)[]` | yes |  |
+| signal | property | `AbortSignal` | no |  |
 
 ## createProjectAnalysisSnapshotAsync
 
@@ -89,6 +89,20 @@ Module: `src/types/projectAnalysisSnapshot.ts`
 Source: `src/types/projectAnalysisSnapshot.ts:44:1`
 
 A project root or its already-bounded inspection may create a portable analysis snapshot.
+
+## createSourceFeatureProjectionIndex
+
+Kind: `function`
+Module: `src/features/source-graph/domain/createSourceFeatureProjectionIndex.ts`
+Source: `src/features/source-graph/domain/createSourceFeatureProjectionIndex.ts:7:1`
+
+Index a completed feature projection for interaction-time lookup without source graph traversal.
+
+### Signatures
+
+- `(projection: SourceFeatureProjection) => SourceFeatureProjectionIndex`
+  - projection: `SourceFeatureProjection`
+  - returns: `SourceFeatureProjectionIndex`
 
 ## createSourceGraph
 
@@ -140,10 +154,10 @@ Source: `src/types/sourceGraph.ts:148:1`
 
 ### Members
 
-| Name     | Kind     | Type                                      | Required | Description |
-| -------- | -------- | ----------------------------------------- | -------- | ----------- |
-| projects | property | `readonly SourceInspectionProjectInput[]` | yes      |             |
-| signal   | property | `AbortSignal`                             | no       |             |
+| Name | Kind | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| projects | property | `readonly SourceInspectionProjectInput[]` | yes |  |
+| signal | property | `AbortSignal` | no |  |
 
 ## createSourceGraphFromProjectAnalysisSnapshots
 
@@ -181,10 +195,10 @@ Source: `src/types/sourceGraph.ts:153:1`
 
 ### Members
 
-| Name     | Kind     | Type                                                             | Required | Description |
-| -------- | -------- | ---------------------------------------------------------------- | -------- | ----------- |
-| projects | property | `readonly { readonly id: string; readonly rootPath: string; }[]` | yes      |             |
-| signal   | property | `AbortSignal`                                                    | no       |             |
+| Name | Kind | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| projects | property | `readonly { readonly id: string; readonly rootPath: string; }[]` | yes |  |
+| signal | property | `AbortSignal` | no |  |
 
 ## createSourceRollupIndex
 
@@ -208,10 +222,10 @@ Source: `src/types/dependencyGraph.ts:10:1`
 
 ### Members
 
-| Name  | Kind     | Type                        | Required | Description |
-| ----- | -------- | --------------------------- | -------- | ----------- |
-| kind  | property | `DependencyDeclarationKind` | yes      |             |
-| range | property | `string`                    | yes      |             |
+| Name | Kind | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| kind | property | `DependencyDeclarationKind` | yes |  |
+| range | property | `string` | yes |  |
 
 ## DependencyDeclarationKind
 
@@ -241,9 +255,9 @@ Source: `src/types/dependencyGraphApi.ts:6:1`
 
 ### Members
 
-| Name     | Kind     | Type                                                                               | Required | Description |
-| -------- | -------- | ---------------------------------------------------------------------------------- | -------- | ----------- |
-| projects | property | `readonly (DependencyGraphProjectInput \| DependencyGraphInspectedProjectInput)[]` | yes      |             |
+| Name | Kind | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| projects | property | `readonly (DependencyGraphProjectInput \| DependencyGraphInspectedProjectInput)[]` | yes |  |
 
 ## DependencyGraphEdgeData
 
@@ -253,12 +267,12 @@ Source: `src/types/dependencyGraph.ts:33:1`
 
 ### Members
 
-| Name       | Kind     | Type                                  | Required | Description |
-| ---------- | -------- | ------------------------------------- | -------- | ----------- |
-| analyzerId | property | `string`                              | yes      |             |
-| evidence   | property | `readonly DependencyImportEvidence[]` | yes      |             |
-| kind       | property | `"import"`                            | yes      |             |
-| weight     | property | `number`                              | yes      |             |
+| Name | Kind | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| analyzerId | property | `string` | yes |  |
+| evidence | property | `readonly DependencyImportEvidence[]` | yes |  |
+| kind | property | `"import"` | yes |  |
+| weight | property | `number` | yes |  |
 
 ## DependencyGraphInspectionProjectInput
 
@@ -268,10 +282,10 @@ Source: `src/types/dependencyGraph.ts:52:1`
 
 ### Members
 
-| Name       | Kind     | Type                | Required | Description |
-| ---------- | -------- | ------------------- | -------- | ----------- |
-| id         | property | `string`            | yes      |             |
-| inspection | property | `ProjectInspection` | yes      |             |
+| Name | Kind | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| id | property | `string` | yes |  |
+| inspection | property | `ProjectInspection` | yes |  |
 
 ## DependencyGraphNodeData
 
@@ -281,16 +295,16 @@ Source: `src/types/dependencyGraph.ts:22:1`
 
 ### Members
 
-| Name           | Kind     | Type                           | Required | Description |
-| -------------- | -------- | ------------------------------ | -------- | ----------- |
-| classification | property | `DependencyNodeClassification` | yes      |             |
-| focus          | property | `boolean`                      | yes      |             |
-| kind           | property | `DependencyNodeKind`           | yes      |             |
-| label          | property | `string`                       | yes      |             |
-| packageName    | property | `string`                       | no       |             |
-| parentPath     | property | `string`                       | no       |             |
-| path           | property | `string`                       | no       |             |
-| projectId      | property | `string`                       | no       |             |
+| Name | Kind | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| classification | property | `DependencyNodeClassification` | yes |  |
+| focus | property | `boolean` | yes |  |
+| kind | property | `DependencyNodeKind` | yes |  |
+| label | property | `string` | yes |  |
+| packageName | property | `string` | no |  |
+| parentPath | property | `string` | no |  |
+| path | property | `string` | no |  |
+| projectId | property | `string` | no |  |
 
 ## DependencyGraphPackage
 
@@ -300,13 +314,13 @@ Source: `src/types/dependencyGraph.ts:57:1`
 
 ### Members
 
-| Name         | Kind     | Type     | Required | Description |
-| ------------ | -------- | -------- | -------- | ----------- |
-| id           | property | `string` | yes      |             |
-| name         | property | `string` | no       |             |
-| nodeId       | property | `string` | yes      |             |
-| projectId    | property | `string` | yes      |             |
-| relativeRoot | property | `string` | yes      |             |
+| Name | Kind | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| id | property | `string` | yes |  |
+| name | property | `string` | no |  |
+| nodeId | property | `string` | yes |  |
+| projectId | property | `string` | yes |  |
+| relativeRoot | property | `string` | yes |  |
 
 ## DependencyGraphProjectInput
 
@@ -316,10 +330,10 @@ Source: `src/types/dependencyGraph.ts:42:1`
 
 ### Members
 
-| Name     | Kind     | Type     | Required | Description |
-| -------- | -------- | -------- | -------- | ----------- |
-| id       | property | `string` | yes      |             |
-| rootPath | property | `string` | yes      |             |
+| Name | Kind | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| id | property | `string` | yes |  |
+| rootPath | property | `string` | yes |  |
 
 ## DependencyImportEvidence
 
@@ -329,12 +343,12 @@ Source: `src/types/dependencyGraph.ts:15:1`
 
 ### Members
 
-| Name           | Kind     | Type                                | Required | Description |
-| -------------- | -------- | ----------------------------------- | -------- | ----------- |
-| classification | property | `DependencyReferenceClassification` | yes      |             |
-| declarations   | property | `readonly DependencyDeclaration[]`  | yes      |             |
-| sourceFile     | property | `string`                            | yes      |             |
-| specifier      | property | `string`                            | yes      |             |
+| Name | Kind | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| classification | property | `DependencyReferenceClassification` | yes |  |
+| declarations | property | `readonly DependencyDeclaration[]` | yes |  |
+| sourceFile | property | `string` | yes |  |
+| specifier | property | `string` | yes |  |
 
 ## DependencyNodeClassification
 
@@ -397,6 +411,21 @@ Look up an aggregate dependency using stable semantic identities.
   - sourceSemanticPath: `string`
   - targetSemanticPath: `string`
   - returns: `SourceRollupEdge | undefined`
+
+## findSourceFeature
+
+Kind: `function`
+Module: `src/features/source-graph/domain/querySourceFeatureProjection.ts`
+Source: `src/features/source-graph/domain/querySourceFeatureProjection.ts:8:1`
+
+Resolve one stable feature identity in constant time.
+
+### Signatures
+
+- `(index: SourceFeatureProjectionIndex, id: string) => SourceFeature | undefined`
+  - id: `string`
+  - index: `SourceFeatureProjectionIndex`
+  - returns: `SourceFeature | undefined`
 
 ## findSourceFile
 
@@ -477,6 +506,37 @@ Read relationships targeting a semantic node in index time.
   - semanticPath: `string`
   - returns: `readonly SourceRelationView[]`
 
+## listSourceFeatureMembers
+
+Kind: `function`
+Module: `src/features/source-graph/domain/querySourceFeatureProjection.ts`
+Source: `src/features/source-graph/domain/querySourceFeatureProjection.ts:24:1`
+
+Return bounded component or module evidence for one resolved feature.
+
+### Signatures
+
+- `(index: SourceFeatureProjectionIndex, featureId: string, input: { readonly cursor?: string; readonly limit: number; }) => SourceFeaturePage<import("../../../types/sourceGraph.js").SourceFeatureMember>`
+  - featureId: `string`
+  - index: `SourceFeatureProjectionIndex`
+  - input: `{ readonly cursor?: string; readonly limit: number; }`
+  - returns: `SourceFeaturePage<import("../../../types/sourceGraph.js").SourceFeatureMember>`
+
+## listSourceFeatures
+
+Kind: `function`
+Module: `src/features/source-graph/domain/querySourceFeatureProjection.ts`
+Source: `src/features/source-graph/domain/querySourceFeatureProjection.ts:16:1`
+
+Return a bounded deterministic page of evidenced features.
+
+### Signatures
+
+- `(index: SourceFeatureProjectionIndex, input: { readonly cursor?: string; readonly limit: number; }) => SourceFeaturePage<SourceFeature>`
+  - index: `SourceFeatureProjectionIndex`
+  - input: `{ readonly cursor?: string; readonly limit: number; }`
+  - returns: `SourceFeaturePage<SourceFeature>`
+
 ## outgoingRolledUpDependencies
 
 Kind: `function`
@@ -517,10 +577,10 @@ Analyzer provenance and available factual capabilities captured at analysis time
 
 ### Members
 
-| Name         | Kind     | Type                          | Required | Description |
-| ------------ | -------- | ----------------------------- | -------- | ----------- |
-| capabilities | property | `readonly SourceCapability[]` | yes      |             |
-| id           | property | `string`                      | yes      |             |
+| Name | Kind | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| capabilities | property | `readonly SourceCapability[]` | yes |  |
+| id | property | `string` | yes |  |
 
 ## ProjectAnalysisPackage
 
@@ -532,10 +592,10 @@ One detected package expressed only with project-relative identity.
 
 ### Members
 
-| Name     | Kind     | Type     | Required | Description |
-| -------- | -------- | -------- | -------- | ----------- |
-| name     | property | `string` | no       |             |
-| rootPath | property | `string` | yes      |             |
+| Name | Kind | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| name | property | `string` | no |  |
+| rootPath | property | `string` | yes |  |
 
 ## ProjectAnalysisSnapshot
 
@@ -547,16 +607,16 @@ Versioned, filesystem-independent facts required to recompose one analyzed proje
 
 ### Members
 
-| Name          | Kind     | Type                                   | Required | Description |
-| ------------- | -------- | -------------------------------------- | -------- | ----------- |
-| analyzedFiles | property | `readonly ProjectAnalysisSourceFile[]` | yes      |             |
-| analyzers     | property | `readonly ProjectAnalysisAnalyzer[]`   | yes      |             |
-| directories   | property | `readonly string[]`                    | yes      |             |
-| files         | property | `readonly string[]`                    | yes      |             |
-| packages      | property | `readonly ProjectAnalysisPackage[]`    | yes      |             |
-| projectId     | property | `string`                               | yes      |             |
-| version       | property | `1`                                    | yes      |             |
-| workspaces    | property | `readonly ProjectAnalysisWorkspace[]`  | yes      |             |
+| Name | Kind | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| analyzedFiles | property | `readonly ProjectAnalysisSourceFile[]` | yes |  |
+| analyzers | property | `readonly ProjectAnalysisAnalyzer[]` | yes |  |
+| directories | property | `readonly string[]` | yes |  |
+| files | property | `readonly string[]` | yes |  |
+| packages | property | `readonly ProjectAnalysisPackage[]` | yes |  |
+| projectId | property | `string` | yes |  |
+| version | property | `1` | yes |  |
+| workspaces | property | `readonly ProjectAnalysisWorkspace[]` | yes |  |
 
 ## ProjectAnalysisSourceFile
 
@@ -568,12 +628,12 @@ One project-relative source file and its language-neutral analyzer output.
 
 ### Members
 
-| Name                 | Kind     | Type                                                                                                     | Required | Description |
-| -------------------- | -------- | -------------------------------------------------------------------------------------------------------- | -------- | ----------- |
-| analyzerId           | property | `string`                                                                                                 | yes      |             |
-| declaredDependencies | property | `Readonly<Record<string, readonly import("./dependencyGraph.js").DependencyDeclaration[]>> \| undefined` | no       |             |
-| facts                | property | `SourceFileFacts`                                                                                        | yes      |             |
-| path                 | property | `string`                                                                                                 | yes      |             |
+| Name | Kind | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| analyzerId | property | `string` | yes |  |
+| declaredDependencies | property | `Readonly<Record<string, readonly import("./dependencyGraph.js").DependencyDeclaration[]>> \| undefined` | no |  |
+| facts | property | `SourceFileFacts` | yes |  |
+| path | property | `string` | yes |  |
 
 ## ProjectAnalysisWorkspace
 
@@ -585,10 +645,10 @@ Workspace membership required to retain the established focus-package selection.
 
 ### Members
 
-| Name         | Kind     | Type                | Required | Description |
-| ------------ | -------- | ------------------- | -------- | ----------- |
-| packagePaths | property | `readonly string[]` | yes      |             |
-| rootPath     | property | `string`            | yes      |             |
+| Name | Kind | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| packagePaths | property | `readonly string[]` | yes |  |
+| rootPath | property | `string` | yes |  |
 
 ## projectDependencyGraphFromInspections
 
@@ -619,6 +679,20 @@ Project recomposed portable source facts through the established package/module 
   - snapshots: `readonly ProjectAnalysisSnapshot[]`
   - sourceGraph: `SourceGraph`
   - returns: `DependencyGraph`
+
+## projectSourceFeatures
+
+Kind: `function`
+Module: `src/features/source-graph/application/projectSourceFeatures.ts`
+Source: `src/features/source-graph/application/projectSourceFeatures.ts:12:1`
+
+Project only explicit TypeScript `@feature <name>` declaration evidence from a SourceGraph.
+
+### Signatures
+
+- `(sourceGraph: SourceGraph) => SourceFeatureProjection`
+  - sourceGraph: `SourceGraph`
+  - returns: `SourceFeatureProjection`
 
 ## rollupSourceRelations
 
@@ -675,13 +749,13 @@ Parsed source fact associated with a project-relative path.
 
 ### Members
 
-| Name                 | Kind     | Type                                                         | Required | Description |
-| -------------------- | -------- | ------------------------------------------------------------ | -------- | ----------- |
-| analyzerId           | property | `string`                                                     | yes      |             |
-| declaredDependencies | property | `Readonly<Record<string, readonly DependencyDeclaration[]>>` | no       |             |
-| facts                | property | `SourceFileFacts`                                            | yes      |             |
-| path                 | property | `string`                                                     | yes      |             |
-| projectId            | property | `string`                                                     | yes      |             |
+| Name | Kind | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| analyzerId | property | `string` | yes |  |
+| declaredDependencies | property | `Readonly<Record<string, readonly DependencyDeclaration[]>>` | no |  |
+| facts | property | `SourceFileFacts` | yes |  |
+| path | property | `string` | yes |  |
+| projectId | property | `string` | yes |  |
 
 ## SourceCapability
 
@@ -699,11 +773,11 @@ Source: `src/types/sourceGraph.ts:67:1`
 
 ### Members
 
-| Name       | Kind     | Type                          | Required | Description |
-| ---------- | -------- | ----------------------------- | -------- | ----------- |
-| analyzerId | property | `string`                      | yes      |             |
-| available  | property | `readonly SourceCapability[]` | yes      |             |
-| projectId  | property | `string`                      | yes      |             |
+| Name | Kind | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| analyzerId | property | `string` | yes |  |
+| available | property | `readonly SourceCapability[]` | yes |  |
+| projectId | property | `string` | yes |  |
 
 ## SourceDeclarationFact
 
@@ -715,20 +789,20 @@ A source declaration before graph-wide identity and relationship resolution.
 
 ### Members
 
-| Name          | Kind     | Type                               | Required | Description |
-| ------------- | -------- | ---------------------------------- | -------- | ----------- |
-| children      | property | `readonly SourceDeclarationFact[]` | yes      |             |
-| documentation | property | `SourceDocumentation`              | no       |             |
-| exported      | property | `boolean`                          | no       |             |
-| extends       | property | `readonly string[]`                | yes      |             |
-| implements    | property | `readonly string[]`                | yes      |             |
-| kind          | property | `SourceDeclarationKind`            | yes      |             |
-| location      | property | `SourceLocation`                   | yes      |             |
-| modifiers     | property | `readonly string[]`                | yes      |             |
-| name          | property | `string`                           | yes      |             |
-| signature     | property | `string`                           | no       |             |
-| typeOnly      | property | `boolean`                          | no       |             |
-| visibility    | property | `SourceVisibility`                 | yes      |             |
+| Name | Kind | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| children | property | `readonly SourceDeclarationFact[]` | yes |  |
+| documentation | property | `SourceDocumentation` | no |  |
+| exported | property | `boolean` | no |  |
+| extends | property | `readonly string[]` | yes |  |
+| implements | property | `readonly string[]` | yes |  |
+| kind | property | `SourceDeclarationKind` | yes |  |
+| location | property | `SourceLocation` | yes |  |
+| modifiers | property | `readonly string[]` | yes |  |
+| name | property | `string` | yes |  |
+| signature | property | `string` | no |  |
+| typeOnly | property | `boolean` | no |  |
+| visibility | property | `SourceVisibility` | yes |  |
 
 ## SourceDocumentation
 
@@ -740,10 +814,10 @@ Analyzer-observed source documentation, distinct from consumer interpretation.
 
 ### Members
 
-| Name | Kind     | Type                                          | Required | Description |
-| ---- | -------- | --------------------------------------------- | -------- | ----------- |
-| tags | property | `Readonly<Record<string, readonly string[]>>` | yes      |             |
-| text | property | `string`                                      | yes      |             |
+| Name | Kind | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| tags | property | `Readonly<Record<string, readonly string[]>>` | yes |  |
+| text | property | `string` | yes |  |
 
 ## SourceEdgeData
 
@@ -753,10 +827,10 @@ Source: `src/types/sourceGraph.ts:106:1`
 
 ### Members
 
-| Name     | Kind     | Type                                | Required | Description |
-| -------- | -------- | ----------------------------------- | -------- | ----------- |
-| evidence | property | `readonly SourceRelationEvidence[]` | yes      |             |
-| kind     | property | `SourceRelationKind`                | yes      |             |
+| Name | Kind | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| evidence | property | `readonly SourceRelationEvidence[]` | yes |  |
+| kind | property | `SourceRelationKind` | yes |  |
 
 ## SourceEdgeDraft
 
@@ -766,11 +840,129 @@ Source: `src/types/sourceGraph.ts:122:1`
 
 ### Members
 
-| Name   | Kind     | Type             | Required | Description |
-| ------ | -------- | ---------------- | -------- | ----------- |
-| data   | property | `SourceEdgeData` | yes      |             |
-| source | property | `string`         | yes      |             |
-| target | property | `string`         | yes      |             |
+| Name | Kind | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| data | property | `SourceEdgeData` | yes |  |
+| source | property | `string` | yes |  |
+| target | property | `string` | yes |  |
+
+## SourceFeature
+
+Kind: `type`
+Module: `src/types/sourceGraph.ts`
+Source: `src/types/sourceGraph.ts:210:1`
+
+One declaration-backed feature identity scoped to its analyzed project.
+
+### Members
+
+| Name | Kind | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| id | property | `string` | yes |  |
+| members | property | `readonly SourceFeatureMember[]` | yes |  |
+| name | property | `string` | yes |  |
+| projectId | property | `string` | yes |  |
+
+## SourceFeatureCapability
+
+Kind: `type`
+Module: `src/types/sourceGraph.ts`
+Source: `src/types/sourceGraph.ts:226:1`
+
+One analyzer's ability to discover explicit feature declarations in a project snapshot.
+
+### Members
+
+| Name | Kind | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| analyzerId | property | `string` | yes |  |
+| projectId | property | `string` | yes |  |
+| state | property | `"available" \| "unavailable"` | yes |  |
+
+## SourceFeatureDiagnostic
+
+Kind: `type`
+Module: `src/types/sourceGraph.ts`
+Source: `src/types/sourceGraph.ts:233:1`
+
+Invalid explicit feature metadata retained without manufacturing a feature.
+
+### Members
+
+| Name | Kind | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| analyzerId | property | `string` | yes |  |
+| filePath | property | `string` | yes |  |
+| location | property | `SourceLocation` | yes |  |
+| message | property | `string` | yes |  |
+| projectId | property | `string` | yes |  |
+| semanticPath | property | `string` | yes |  |
+
+## SourceFeatureMember
+
+Kind: `type`
+Module: `src/types/sourceGraph.ts`
+Source: `src/types/sourceGraph.ts:218:1`
+
+A declared component or module member with its canonical source evidence.
+
+### Members
+
+| Name | Kind | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| analyzerId | property | `string` | yes |  |
+| evidence | property | `SourceLocation` | yes |  |
+| filePath | property | `string` | yes |  |
+| semanticPath | property | `string` | yes |  |
+
+## SourceFeaturePage
+
+Kind: `type`
+Module: `src/types/sourceGraph.ts`
+Source: `src/types/sourceGraph.ts:259:1`
+
+A deterministic bounded page returned by feature and member queries.
+
+### Members
+
+| Name | Kind | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| items | property | `readonly T[]` | yes |  |
+| nextCursor | property | `string` | no |  |
+
+## SourceFeatureProjection
+
+Kind: `type`
+Module: `src/types/sourceGraph.ts`
+Source: `src/types/sourceGraph.ts:243:1`
+
+Portable feature projection derived once from canonical SourceGraph evidence.
+
+### Members
+
+| Name | Kind | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| capabilities | property | `readonly SourceFeatureCapability[]` | yes |  |
+| diagnostics | property | `readonly SourceFeatureDiagnostic[]` | yes |  |
+| features | property | `readonly SourceFeature[]` | yes |  |
+| version | property | `1` | yes |  |
+
+## SourceFeatureProjectionIndex
+
+Kind: `type`
+Module: `src/types/sourceGraph.ts`
+Source: `src/types/sourceGraph.ts:251:1`
+
+Derived lookup structures for bounded feature interaction without graph rescans.
+
+### Members
+
+| Name | Kind | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| featureById | property | `ReadonlyMap<string, SourceFeature>` | yes |  |
+| featureOffsetById | property | `ReadonlyMap<string, number>` | yes |  |
+| memberOffsetByFeatureId | property | `ReadonlyMap<string, ReadonlyMap<string, number>>` | yes |  |
+| projection | property | `SourceFeatureProjection` | yes |  |
 
 ## SourceFileFacts
 
@@ -782,11 +974,11 @@ Portable facts extracted from one source file by its language analyzer.
 
 ### Members
 
-| Name         | Kind     | Type                               | Required | Description |
-| ------------ | -------- | ---------------------------------- | -------- | ----------- |
-| declarations | property | `readonly SourceDeclarationFact[]` | yes      |             |
-| imports      | property | `readonly SourceImportFact[]`      | yes      |             |
-| packageName  | property | `string`                           | no       |             |
+| Name | Kind | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| declarations | property | `readonly SourceDeclarationFact[]` | yes |  |
+| imports | property | `readonly SourceImportFact[]` | yes |  |
+| packageName | property | `string` | no |  |
 
 ## SourceGraph
 
@@ -798,11 +990,11 @@ Compact serializable source graph; its indexes and rollups are derived separatel
 
 ### Members
 
-| Name         | Kind     | Type                                                    | Required | Description |
-| ------------ | -------- | ------------------------------------------------------- | -------- | ----------- |
-| capabilities | property | `readonly SourceCapabilityReport[]`                     | yes      |             |
-| graph        | property | `Graph<SourceNodeData, SourceEdgeData, number, number>` | yes      |             |
-| version      | property | `1`                                                     | yes      |             |
+| Name | Kind | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| capabilities | property | `readonly SourceCapabilityReport[]` | yes |  |
+| graph | property | `Graph<SourceNodeData, SourceEdgeData, number, number>` | yes |  |
+| version | property | `1` | yes |  |
 
 ## SourceGraphDraft
 
@@ -812,11 +1004,11 @@ Source: `src/types/sourceGraph.ts:128:1`
 
 ### Members
 
-| Name         | Kind     | Type                                | Required | Description |
-| ------------ | -------- | ----------------------------------- | -------- | ----------- |
-| capabilities | property | `readonly SourceCapabilityReport[]` | yes      |             |
-| edges        | property | `readonly SourceEdgeDraft[]`        | yes      |             |
-| nodes        | property | `readonly SourceNodeDraft[]`        | yes      |             |
+| Name | Kind | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| capabilities | property | `readonly SourceCapabilityReport[]` | yes |  |
+| edges | property | `readonly SourceEdgeDraft[]` | yes |  |
+| nodes | property | `readonly SourceNodeDraft[]` | yes |  |
 
 ## SourceGraphIndex
 
@@ -828,15 +1020,15 @@ Indexed semantic access built from a serializable source graph snapshot.
 
 ### Members
 
-| Name                 | Kind     | Type                                                                        | Required | Description |
-| -------------------- | -------- | --------------------------------------------------------------------------- | -------- | ----------- |
-| fileByPath           | property | `ReadonlyMap<string, GraphNode<SourceNodeData, number>>`                    | yes      |             |
-| incomingByNodeId     | property | `ReadonlyMap<number, readonly GraphEdge<SourceEdgeData, number, number>[]>` | yes      |             |
-| nodeById             | property | `ReadonlyMap<number, GraphNode<SourceNodeData, number>>`                    | yes      |             |
-| nodeBySemanticPath   | property | `ReadonlyMap<string, GraphNode<SourceNodeData, number>>`                    | yes      |             |
-| outgoingByNodeId     | property | `ReadonlyMap<number, readonly GraphEdge<SourceEdgeData, number, number>[]>` | yes      |             |
-| parentByNodeId       | property | `ReadonlyMap<number, number>`                                               | yes      |             |
-| symbolsByFileAndName | property | `ReadonlyMap<string, readonly GraphNode<SourceNodeData, number>[]>`         | yes      |             |
+| Name | Kind | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| fileByPath | property | `ReadonlyMap<string, GraphNode<SourceNodeData, number>>` | yes |  |
+| incomingByNodeId | property | `ReadonlyMap<number, readonly GraphEdge<SourceEdgeData, number, number>[]>` | yes |  |
+| nodeById | property | `ReadonlyMap<number, GraphNode<SourceNodeData, number>>` | yes |  |
+| nodeBySemanticPath | property | `ReadonlyMap<string, GraphNode<SourceNodeData, number>>` | yes |  |
+| outgoingByNodeId | property | `ReadonlyMap<number, readonly GraphEdge<SourceEdgeData, number, number>[]>` | yes |  |
+| parentByNodeId | property | `ReadonlyMap<number, number>` | yes |  |
+| symbolsByFileAndName | property | `ReadonlyMap<string, readonly GraphNode<SourceNodeData, number>[]>` | yes |  |
 
 ## SourceImportFact
 
@@ -848,14 +1040,14 @@ An import observed at an exact source position.
 
 ### Members
 
-| Name         | Kind     | Type                     | Required | Description |
-| ------------ | -------- | ------------------------ | -------- | ----------- |
-| kind         | property | `"import" \| "reexport"` | no       |             |
-| local        | property | `boolean`                | no       |             |
-| location     | property | `SourceLocation`         | no       |             |
-| resolvedPath | property | `string`                 | no       |             |
-| specifier    | property | `string`                 | yes      |             |
-| typeOnly     | property | `boolean`                | no       |             |
+| Name | Kind | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| kind | property | `"import" \| "reexport"` | no |  |
+| local | property | `boolean` | no |  |
+| location | property | `SourceLocation` | no |  |
+| resolvedPath | property | `string` | no |  |
+| specifier | property | `string` | yes |  |
+| typeOnly | property | `boolean` | no |  |
 
 ## SourceInspectionProjectInput
 
@@ -865,10 +1057,10 @@ Source: `src/types/sourceGraph.ts:143:1`
 
 ### Members
 
-| Name       | Kind     | Type                | Required | Description |
-| ---------- | -------- | ------------------- | -------- | ----------- |
-| id         | property | `string`            | yes      |             |
-| inspection | property | `ProjectInspection` | yes      |             |
+| Name | Kind | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| id | property | `string` | yes |  |
+| inspection | property | `ProjectInspection` | yes |  |
 
 ## SourceLocation
 
@@ -880,12 +1072,12 @@ A portable one-based source span emitted by a language analyzer.
 
 ### Members
 
-| Name      | Kind     | Type     | Required | Description |
-| --------- | -------- | -------- | -------- | ----------- |
-| column    | property | `number` | yes      |             |
-| endColumn | property | `number` | yes      |             |
-| endLine   | property | `number` | yes      |             |
-| line      | property | `number` | yes      |             |
+| Name | Kind | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| column | property | `number` | yes |  |
+| endColumn | property | `number` | yes |  |
+| endLine | property | `number` | yes |  |
+| line | property | `number` | yes |  |
 
 ## SourceNodeData
 
@@ -897,23 +1089,23 @@ Factual node data with a stable semantic key independent from its dense local ID
 
 ### Members
 
-| Name           | Kind     | Type                                   | Required | Description |
-| -------------- | -------- | -------------------------------------- | -------- | ----------- |
-| analyzerId     | property | `string`                               | no       |             |
-| classification | property | `"intrinsic" \| "unknown" \| "vendor"` | no       |             |
-| documentation  | property | `SourceDocumentation`                  | no       |             |
-| filePath       | property | `string`                               | no       |             |
-| kind           | property | `SourceNodeKind`                       | yes      |             |
-| location       | property | `SourceLocation`                       | no       |             |
-| modifiers      | property | `readonly string[]`                    | no       |             |
-| name           | property | `string`                               | yes      |             |
-| packageName    | property | `string`                               | no       |             |
-| path           | property | `string`                               | no       |             |
-| projectId      | property | `string`                               | yes      |             |
-| semanticPath   | property | `string`                               | yes      |             |
-| signature      | property | `string`                               | no       |             |
-| typeOnly       | property | `boolean`                              | no       |             |
-| visibility     | property | `SourceVisibility`                     | no       |             |
+| Name | Kind | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| analyzerId | property | `string` | no |  |
+| classification | property | `"intrinsic" \| "unknown" \| "vendor"` | no |  |
+| documentation | property | `SourceDocumentation` | no |  |
+| filePath | property | `string` | no |  |
+| kind | property | `SourceNodeKind` | yes |  |
+| location | property | `SourceLocation` | no |  |
+| modifiers | property | `readonly string[]` | no |  |
+| name | property | `string` | yes |  |
+| packageName | property | `string` | no |  |
+| path | property | `string` | no |  |
+| projectId | property | `string` | yes |  |
+| semanticPath | property | `string` | yes |  |
+| signature | property | `string` | no |  |
+| typeOnly | property | `boolean` | no |  |
+| visibility | property | `SourceVisibility` | no |  |
 
 ## SourceNodeDraft
 
@@ -923,9 +1115,9 @@ Source: `src/types/sourceGraph.ts:118:1`
 
 ### Members
 
-| Name | Kind     | Type             | Required | Description |
-| ---- | -------- | ---------------- | -------- | ----------- |
-| data | property | `SourceNodeData` | yes      |             |
+| Name | Kind | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| data | property | `SourceNodeData` | yes |  |
 
 ## SourceNodeKind
 
@@ -941,14 +1133,14 @@ Source: `src/types/sourceGraph.ts:200:1`
 
 ### Members
 
-| Name              | Kind     | Type                                                                 | Required | Description |
-| ----------------- | -------- | -------------------------------------------------------------------- | -------- | ----------- |
-| dependencies      | property | `Readonly<Record<"intrinsic" \| "unknown" \| "vendor", number>>`     | yes      |             |
-| descendants       | property | `Readonly<Partial<Record<SourceNodeKind, number>>>`                  | yes      |             |
-| exports           | property | `Readonly<{ readonly runtime: number; readonly typeOnly: number; }>` | yes      |             |
-| incomingRelations | property | `number`                                                             | yes      |             |
-| nodeId            | property | `number`                                                             | yes      |             |
-| outgoingRelations | property | `number`                                                             | yes      |             |
+| Name | Kind | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| dependencies | property | `Readonly<Record<"intrinsic" \| "unknown" \| "vendor", number>>` | yes |  |
+| descendants | property | `Readonly<Partial<Record<SourceNodeKind, number>>>` | yes |  |
+| exports | property | `Readonly<{ readonly runtime: number; readonly typeOnly: number; }>` | yes |  |
+| incomingRelations | property | `number` | yes |  |
+| nodeId | property | `number` | yes |  |
+| outgoingRelations | property | `number` | yes |  |
 
 ## SourceRelationEvidence
 
@@ -960,14 +1152,14 @@ Evidence for one observed relationship, including analyzer provenance.
 
 ### Members
 
-| Name         | Kind     | Type                               | Required | Description |
-| ------------ | -------- | ---------------------------------- | -------- | ----------- |
-| analyzerId   | property | `string`                           | yes      |             |
-| declarations | property | `readonly DependencyDeclaration[]` | no       |             |
-| location     | property | `SourceLocation`                   | no       |             |
-| sourcePath   | property | `string`                           | yes      |             |
-| specifier    | property | `string`                           | no       |             |
-| typeOnly     | property | `boolean`                          | no       |             |
+| Name | Kind | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| analyzerId | property | `string` | yes |  |
+| declarations | property | `readonly DependencyDeclaration[]` | no |  |
+| location | property | `SourceLocation` | no |  |
+| sourcePath | property | `string` | yes |  |
+| specifier | property | `string` | no |  |
+| typeOnly | property | `boolean` | no |  |
 
 ## SourceRelationKind
 
@@ -985,13 +1177,13 @@ Semantic relation view with source evidence and no required ID lookup.
 
 ### Members
 
-| Name     | Kind     | Type                                | Required | Description |
-| -------- | -------- | ----------------------------------- | -------- | ----------- |
-| edgeId   | property | `number`                            | yes      |             |
-| evidence | property | `readonly SourceRelationEvidence[]` | yes      |             |
-| kind     | property | `SourceRelationKind`                | yes      |             |
-| source   | property | `SourceNodeData`                    | yes      |             |
-| target   | property | `SourceNodeData`                    | yes      |             |
+| Name | Kind | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| edgeId | property | `number` | yes |  |
+| evidence | property | `readonly SourceRelationEvidence[]` | yes |  |
+| kind | property | `SourceRelationKind` | yes |  |
+| source | property | `SourceNodeData` | yes |  |
+| target | property | `SourceNodeData` | yes |  |
 
 ## SourceRollupEdge
 
@@ -1003,14 +1195,14 @@ Pairwise projected dependency with references to canonical observed edges.
 
 ### Members
 
-| Name               | Kind     | Type                | Required | Description |
-| ------------------ | -------- | ------------------- | -------- | ----------- |
-| evidenceEdgeIds    | property | `readonly number[]` | yes      |             |
-| source             | property | `number`            | yes      |             |
-| sourceSemanticPath | property | `string`            | yes      |             |
-| target             | property | `number`            | yes      |             |
-| targetSemanticPath | property | `string`            | yes      |             |
-| weight             | property | `number`            | yes      |             |
+| Name | Kind | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| evidenceEdgeIds | property | `readonly number[]` | yes |  |
+| source | property | `number` | yes |  |
+| sourceSemanticPath | property | `string` | yes |  |
+| target | property | `number` | yes |  |
+| targetSemanticPath | property | `string` | yes |  |
+| weight | property | `number` | yes |  |
 
 ## SourceRollupIndex
 
@@ -1022,10 +1214,10 @@ Cached semantic queries for one deterministic projection level.
 
 ### Members
 
-| Name             | Kind     | Type                                               | Required | Description |
-| ---------------- | -------- | -------------------------------------------------- | -------- | ----------- |
-| byPair           | property | `ReadonlyMap<string, SourceRollupEdge>`            | yes      |             |
-| outgoingBySource | property | `ReadonlyMap<string, readonly SourceRollupEdge[]>` | yes      |             |
+| Name | Kind | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| byPair | property | `ReadonlyMap<string, SourceRollupEdge>` | yes |  |
+| outgoingBySource | property | `ReadonlyMap<string, readonly SourceRollupEdge[]>` | yes |  |
 
 ## SourceVisibility
 

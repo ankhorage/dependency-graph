@@ -1,0 +1,11 @@
+sequenceDiagram
+  participant participant_featureCapabilities as featureCapabilities
+  participant participant_featuresFromMembers as featuresFromMembers
+  participant participant_projectIdFromFeatureId as projectIdFromFeatureId
+  participant participant_projectSourceFeatures as projectSourceFeatures
+  participant_projectSourceFeatures->>participant_featureCapabilities: featureCapabilities()
+  participant_featureCapabilities-->>participant_projectSourceFeatures: return
+  participant_projectSourceFeatures->>participant_featuresFromMembers: featuresFromMembers()
+  participant_featuresFromMembers->>participant_projectIdFromFeatureId: projectIdFromFeatureId()
+  participant_projectIdFromFeatureId-->>participant_featuresFromMembers: return
+  participant_featuresFromMembers-->>participant_projectSourceFeatures: return

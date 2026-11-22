@@ -1,5 +1,11 @@
 # @ankhorage/dependency-graph
 
+## 1.5.2
+
+### Patch Changes
+
+- e8398e3: Exclude incidental package-cache trees from project analysis snapshots.
+
 ## 1.5.1
 
 ### Patch Changes

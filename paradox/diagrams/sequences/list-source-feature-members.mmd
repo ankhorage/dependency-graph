@@ -1,0 +1,8 @@
+sequenceDiagram
+  participant participant_identity as identity
+  participant participant_listSourceFeatureMembers as listSourceFeatureMembers
+  participant participant_page as page
+  participant_listSourceFeatureMembers->>participant_page: page()
+  participant_page->>participant_identity: identity()
+  participant_identity-->>participant_page: return
+  participant_page-->>participant_listSourceFeatureMembers: return

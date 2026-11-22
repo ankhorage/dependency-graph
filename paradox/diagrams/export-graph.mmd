@@ -35,12 +35,15 @@ graph LR
   module_src_features_dependency_analysis_domain_projectDependencyGraphFromSourceGraph_ts["src/features/dependency-analysis/domain/projectDependencyGraphFromSourceGraph.ts"]
   module_src_features_dependency_analysis_domain_readDependencyDeclarationsAsync_ts["src/features/dependency-analysis/domain/readDependencyDeclarationsAsync.ts"]
   module_src_features_source_graph_adapters_outbound_extractOtherLanguageFacts_ts["src/features/source-graph/adapters/outbound/extractOtherLanguageFacts.ts"]
+  module_src_features_source_graph_application_projectSourceFeatures_test_ts["src/features/source-graph/application/projectSourceFeatures.test.ts"]
+  module_src_features_source_graph_application_projectSourceFeatures_ts["src/features/source-graph/application/projectSourceFeatures.ts"]
   module_src_features_source_graph_composition_createProjectAnalysisSnapshotAsync_ts["src/features/source-graph/composition/createProjectAnalysisSnapshotAsync.ts"]
   module_src_features_source_graph_composition_createSourceGraphAsync_ts["src/features/source-graph/composition/createSourceGraphAsync.ts"]
   module_src_features_source_graph_composition_createSourceGraphFromInspectionsAsync_test_ts["src/features/source-graph/composition/createSourceGraphFromInspectionsAsync.test.ts"]
   module_src_features_source_graph_composition_createSourceGraphFromInspectionsAsync_ts["src/features/source-graph/composition/createSourceGraphFromInspectionsAsync.ts"]
   module_src_features_source_graph_composition_createSourceGraphFromProjectAnalysisSnapshots_ts["src/features/source-graph/composition/createSourceGraphFromProjectAnalysisSnapshots.ts"]
   module_src_features_source_graph_composition_projectAnalysisSnapshot_test_ts["src/features/source-graph/composition/projectAnalysisSnapshot.test.ts"]
+  module_src_features_source_graph_domain_createSourceFeatureProjectionIndex_ts["src/features/source-graph/domain/createSourceFeatureProjectionIndex.ts"]
   module_src_features_source_graph_domain_createSourceGraph_ts["src/features/source-graph/domain/createSourceGraph.ts"]
   module_src_features_source_graph_domain_createSourceGraphIndex_ts["src/features/source-graph/domain/createSourceGraphIndex.ts"]
   module_src_features_source_graph_domain_createSourceRelationDraft_ts["src/features/source-graph/domain/createSourceRelationDraft.ts"]
@@ -48,6 +51,7 @@ graph LR
   module_src_features_source_graph_domain_createSourceStructureDraft_ts["src/features/source-graph/domain/createSourceStructureDraft.ts"]
   module_src_features_source_graph_domain_deserializeProjectAnalysisSnapshot_ts["src/features/source-graph/domain/deserializeProjectAnalysisSnapshot.ts"]
   module_src_features_source_graph_domain_projectAnalysisSnapshot_ts["src/features/source-graph/domain/projectAnalysisSnapshot.ts"]
+  module_src_features_source_graph_domain_querySourceFeatureProjection_ts["src/features/source-graph/domain/querySourceFeatureProjection.ts"]
   module_src_features_source_graph_domain_querySourceGraph_ts["src/features/source-graph/domain/querySourceGraph.ts"]
   module_src_features_source_graph_domain_resolveSourceImport_ts["src/features/source-graph/domain/resolveSourceImport.ts"]
   module_src_features_source_graph_domain_rollupSourceRelations_ts["src/features/source-graph/domain/rollupSourceRelations.ts"]
@@ -84,6 +88,10 @@ graph LR
   export_createProjectAnalysisSnapshotAsync -.-> export_ProjectAnalysisSnapshot
   export_CreateProjectAnalysisSnapshotInput["CreateProjectAnalysisSnapshotInput"]
   module_src_types_projectAnalysisSnapshot_ts --> export_CreateProjectAnalysisSnapshotInput
+  export_createSourceFeatureProjectionIndex["createSourceFeatureProjectionIndex"]
+  module_src_features_source_graph_domain_createSourceFeatureProjectionIndex_ts --> export_createSourceFeatureProjectionIndex
+  export_createSourceFeatureProjectionIndex -.-> export_SourceFeatureProjection
+  export_createSourceFeatureProjectionIndex -.-> export_SourceFeatureProjectionIndex
   export_createSourceGraph["createSourceGraph"]
   module_src_features_source_graph_domain_createSourceGraph_ts --> export_createSourceGraph
   export_createSourceGraph -.-> export_SourceGraph
@@ -158,6 +166,10 @@ graph LR
   module_src_features_source_graph_domain_createSourceRollupIndex_ts --> export_findRolledUpDependency
   export_findRolledUpDependency -.-> export_SourceRollupEdge
   export_findRolledUpDependency -.-> export_SourceRollupIndex
+  export_findSourceFeature["findSourceFeature"]
+  module_src_features_source_graph_domain_querySourceFeatureProjection_ts --> export_findSourceFeature
+  export_findSourceFeature -.-> export_SourceFeature
+  export_findSourceFeature -.-> export_SourceFeatureProjectionIndex
   export_findSourceFile["findSourceFile"]
   module_src_features_source_graph_domain_querySourceGraph_ts --> export_findSourceFile
   export_findSourceFile -.-> export_SourceGraphIndex
@@ -178,6 +190,16 @@ graph LR
   module_src_features_source_graph_domain_querySourceGraph_ts --> export_incomingSourceRelations
   export_incomingSourceRelations -.-> export_SourceGraphIndex
   export_incomingSourceRelations -.-> export_SourceRelationView
+  export_listSourceFeatureMembers["listSourceFeatureMembers"]
+  module_src_features_source_graph_domain_querySourceFeatureProjection_ts --> export_listSourceFeatureMembers
+  export_listSourceFeatureMembers -.-> export_SourceFeatureMember
+  export_listSourceFeatureMembers -.-> export_SourceFeaturePage
+  export_listSourceFeatureMembers -.-> export_SourceFeatureProjectionIndex
+  export_listSourceFeatures["listSourceFeatures"]
+  module_src_features_source_graph_domain_querySourceFeatureProjection_ts --> export_listSourceFeatures
+  export_listSourceFeatures -.-> export_SourceFeature
+  export_listSourceFeatures -.-> export_SourceFeaturePage
+  export_listSourceFeatures -.-> export_SourceFeatureProjectionIndex
   export_outgoingRolledUpDependencies["outgoingRolledUpDependencies"]
   module_src_features_source_graph_domain_createSourceRollupIndex_ts --> export_outgoingRolledUpDependencies
   export_outgoingRolledUpDependencies -.-> export_SourceRollupEdge
@@ -213,6 +235,10 @@ graph LR
   export_projectDependencyGraphFromProjectAnalysisSnapshots -.-> export_DependencyGraph
   export_projectDependencyGraphFromProjectAnalysisSnapshots -.-> export_ProjectAnalysisSnapshot
   export_projectDependencyGraphFromProjectAnalysisSnapshots -.-> export_SourceGraph
+  export_projectSourceFeatures["projectSourceFeatures"]
+  module_src_features_source_graph_application_projectSourceFeatures_ts --> export_projectSourceFeatures
+  export_projectSourceFeatures -.-> export_SourceFeatureProjection
+  export_projectSourceFeatures -.-> export_SourceGraph
   export_rollupSourceRelations["rollupSourceRelations"]
   module_src_features_source_graph_domain_rollupSourceRelations_ts --> export_rollupSourceRelations
   export_rollupSourceRelations -.-> export_SourceGraph
@@ -247,6 +273,28 @@ graph LR
   export_SourceEdgeDraft["SourceEdgeDraft"]
   module_src_types_sourceGraph_ts --> export_SourceEdgeDraft
   export_SourceEdgeDraft -.-> export_SourceEdgeData
+  export_SourceFeature["SourceFeature"]
+  module_src_types_sourceGraph_ts --> export_SourceFeature
+  export_SourceFeature -.-> export_SourceFeatureMember
+  export_SourceFeatureCapability["SourceFeatureCapability"]
+  module_src_types_sourceGraph_ts --> export_SourceFeatureCapability
+  export_SourceFeatureDiagnostic["SourceFeatureDiagnostic"]
+  module_src_types_sourceGraph_ts --> export_SourceFeatureDiagnostic
+  export_SourceFeatureDiagnostic -.-> export_SourceLocation
+  export_SourceFeatureMember["SourceFeatureMember"]
+  module_src_types_sourceGraph_ts --> export_SourceFeatureMember
+  export_SourceFeatureMember -.-> export_SourceLocation
+  export_SourceFeaturePage["SourceFeaturePage"]
+  module_src_types_sourceGraph_ts --> export_SourceFeaturePage
+  export_SourceFeatureProjection["SourceFeatureProjection"]
+  module_src_types_sourceGraph_ts --> export_SourceFeatureProjection
+  export_SourceFeatureProjection -.-> export_SourceFeature
+  export_SourceFeatureProjection -.-> export_SourceFeatureCapability
+  export_SourceFeatureProjection -.-> export_SourceFeatureDiagnostic
+  export_SourceFeatureProjectionIndex["SourceFeatureProjectionIndex"]
+  module_src_types_sourceGraph_ts --> export_SourceFeatureProjectionIndex
+  export_SourceFeatureProjectionIndex -.-> export_SourceFeature
+  export_SourceFeatureProjectionIndex -.-> export_SourceFeatureProjection
   export_SourceFileFacts["SourceFileFacts"]
   module_src_types_sourceGraph_ts --> export_SourceFileFacts
   export_SourceFileFacts -.-> export_SourceDeclarationFact

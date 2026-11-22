@@ -1,0 +1,5 @@
+sequenceDiagram
+  participant participant_createSourceFeatureProjectionIndex as createSourceFeatureProjectionIndex
+  participant participant_offsets as offsets
+  participant_createSourceFeatureProjectionIndex->>participant_offsets: offsets()
+  participant_offsets-->>participant_createSourceFeatureProjectionIndex: return
